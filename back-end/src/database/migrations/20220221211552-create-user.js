@@ -13,8 +13,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING
-      },
-      password: {
+      },      password: {
         type: Sequelize.STRING
       },
       role: {
