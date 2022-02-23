@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const constumerService = require('../../services/admin/index')
+const constumerService = require('../../services/admin/index');
 
 const createCostumer = async (req, res, next) => {
   const costumer = req.body;
