@@ -11,6 +11,7 @@ module.exports = {
       sale_date: new Date(),
       user_id: 1,
       seller_id: 2,
+      status: 'Pendente',
     },
     {
       total_price: 8895,
@@ -19,6 +20,7 @@ module.exports = {
       sale_date: new Date(),
       user_id: 2,
       seller_id: 2,
+      status: 'Pendente',
     },
     {
       total_price: 199,
@@ -27,6 +29,7 @@ module.exports = {
       sale_date: new Date(),
       user_id: 1,
       seller_id: 2,
+      status: 'Pendente',
     }
   ], {});
   },
