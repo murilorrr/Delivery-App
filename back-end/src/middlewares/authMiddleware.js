@@ -1,3 +1,4 @@
+require('dotenv').config();
 const status = require('http-status-codes').StatusCodes;
 const JWT = require('jsonwebtoken');
 const { customizeError, decodeJWT } = require('../utils');
