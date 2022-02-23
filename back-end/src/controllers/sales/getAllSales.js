@@ -1,9 +1,9 @@
 const { getAll } = require('../../services/sales');
 
 const getAllSales = async (req, res) => {
-  const { id } = req.user;
-  const products = await getAll(id);
-  return res.status(200).json(products);
+  const data = req.user;
+  const sales = await getAll(data);
+  return res.status(200).json(sales);
 };
 
 module.exports = getAllSales;
