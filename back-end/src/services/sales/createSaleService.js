@@ -8,22 +8,14 @@ const createSaleService = async (saleInfo) => {
     deliveryAddress,
     deliveryNumber,
     status,
-    userId
-  } = saleInfo
+    userId,
+  } = saleInfo;
 
-  const isInvalid = [ sellerId, totalPrice, deliveryAddress, deliveryNumber, status, userId ]
-    .some((item) => typeof item === 'undefined')
+  const isInvalid = [sellerId, totalPrice, deliveryAddress, deliveryNumber, status, userId]
+    .some((item) => typeof item === 'undefined');
   if (isInvalid) throw new Error('invalid data', 422);
 
-  const { dataValues: sale } = await Sale.create({
-    sellerId,
-    totalPrice,
-    deliveryAddress,
-    deliveryNumber,
-    saleDate: new Date(),
-    status,
-    userId,
-  });
+  const { dataValues: sale } = await Sale.create({ ...saleInfo, saleDate: new Date() });
 
   return sale;
 };
