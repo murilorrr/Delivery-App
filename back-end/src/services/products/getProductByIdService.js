@@ -9,4 +9,4 @@ const getProductByIdService = async ({ productId }) => {
   return product;
 };
 
-module.exports = { getProductByIdService };
+module.exports = getProductByIdService;

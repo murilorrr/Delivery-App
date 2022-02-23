@@ -1,13 +1,15 @@
 require('express-async-errors');
 const express = require('express');
-const { errorHandler } = require('../middlewares/errorHandler');
-const { products } = require('../routes/products');
+const { errorMiddleware } = require('../middlewares');
+const { productsRoute, customerRoute } = require('../routes');
 
 const app = express();
+app.use(express.json());
 
 app.get('/coffee', (_req, res) => res.status(418).end());
 
-app.use(products);
-app.use(errorHandler);
+app.use(productsRoute);
+app.use(customerRoute);
+app.use(errorMiddleware);
 
 module.exports = app;

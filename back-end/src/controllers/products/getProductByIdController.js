@@ -6,4 +6,4 @@ const getProductByIdController = async (req, res) => {
   return res.status(200).json(product);
 };
 
-module.exports = { getProductByIdController };
+module.exports = getProductByIdController;
