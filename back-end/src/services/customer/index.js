@@ -1,4 +1,4 @@
-const createCostumer = require('./createCostumer');
+const createCostumer = require('./createCustomer');
 
 module.exports =
 { create: (costumer) => createCostumer(costumer) }

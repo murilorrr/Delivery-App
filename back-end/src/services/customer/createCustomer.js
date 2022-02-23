@@ -16,7 +16,7 @@ const alreadyExists = async (email) => {
   return data || null;
 };
 
-const validateCostumer = async ({ name, email, password, role }) => {
+const validateCustomer = async ({ name, email, password, role }) => {
   const { error } = costumerSchema.validate({ name, email, password, role }); 
   if (error) throw customizeError(StatusCodes.BAD_REQUEST, error.message);
 
@@ -24,11 +24,11 @@ const validateCostumer = async ({ name, email, password, role }) => {
   if (exists) throw customizeError(StatusCodes.CONFLICT, 'User already registered');
 };
 
-const createCostumer = async (costumer) => {
-  const { name, email, password, role } = costumer;
-  console.log(costumer);
+const createCustomer = async (customer) => {
+  const { name, email, password, role } = customer;
+  console.log(customer);
 
-  await validateCostumer({ name, email, password, role });
+  await validateCustomer({ name, email, password, role });
   
   try {
     const token = generateJWT({ name, email, role });
@@ -41,4 +41,4 @@ const createCostumer = async (costumer) => {
   }
 };
 
-module.exports = createCostumer;
+module.exports = createCustomer;

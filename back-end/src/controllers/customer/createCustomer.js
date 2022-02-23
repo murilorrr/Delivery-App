@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { create } = require('../../services/costumers');
+const { create } = require('../../services/customer');
 
 const createCostumer = async (req, res, next) => {
   const costumer = req.body;

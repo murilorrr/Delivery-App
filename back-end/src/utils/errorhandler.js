@@ -1,1 +1,1 @@
-module.exports = (status, message) => ({ code: status, message });
+module.exports = (statusCode, message) => ({ statusCode, message });
