@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     total_price: DataTypes.DECIMAL,
     delivery_address: DataTypes.STRING,
     delivery_number: DataTypes.STRING,
-    sale_date: DataTypes.DATETIME,
+    sale_date: DataTypes.DATE,
     user_id: { type: DataTypes.INTEGER, foreignKey: true },
     seller_id: { type: DataTypes.INTEGER, foreignKey: true },
   },
@@ -11,15 +11,9 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
   });
   Sale.associate = (models) => {
-    Sale.belongsTo(models.Users, {
-      foreignKey: 'id', as: 'user_id',
-    });
-  };
-  Sale.associate = (models) => {
-    Sale.belongsTo(models.Users, {
-      foreignKey: 'id', as: 'seller_id',
-    });
-  };
+    Sale.belongsTo(models.User, {foreignKey: 'user_id', as: 'user'});
+    Sale.belongsTo(models.User, {foreignKey: 'seller_id', as: 'seller'});
+  }
 
   return Sale;
 };
