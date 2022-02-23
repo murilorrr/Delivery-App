@@ -5,4 +5,4 @@ const getAllProductsService = async () => {
   return products;
 };
 
-module.exports = { getAllProductsService };
+module.exports = getAllProductsService;
