@@ -8,42 +8,52 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      total_price: {
-        type: Sequelize.DECIMAL,
+      userId: { 
         allowNull: false,
-      },
-      delivery_address: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      delivery_number: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      sale_date: {
-        type: Sequelize.DATE,
-        allowNull: false,
-      },
-      user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        field: 'user_id',
         references: {
           model: 'Users',
           key: 'id',
         },
-      },
-      seller_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
-        // references: {
-        //   model: 'Users',
-        //   key: 'id',
-        // },
       },
+      sellerId: { 
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        field: 'seller_id',
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
+      totalPrice: { 
+        allowNull: false,
+        type: Sequelize.DECIMAL(9,2),
+        field: 'total_price'
+      },
+      deliveryAddress: { 
+        allowNull: false,
+        type: Sequelize.STRING,
+        field: 'delivery_address'
+      },
+      deliveryNumber: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        field: 'delivery_number'
+      },
+      saleDate: { 
+        allowNull: false,
+        type: Sequelize.DATE,
+        field:'sale_date'
+      },
+      status: { 
+        allowNull: false,
+        type: Sequelize.STRING
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {
