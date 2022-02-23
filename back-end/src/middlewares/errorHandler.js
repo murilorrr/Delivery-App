@@ -1,6 +1,6 @@
 const errorHandler = (error, _req, res, _n) => {
-  if (error.status) {
-    return res.status(error.status).json({
+  if (error.statusCode) {
+    return res.status(error.statusCode).json({
       message: error.message,
     });
   }
