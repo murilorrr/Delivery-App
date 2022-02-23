@@ -1,6 +1,7 @@
 const Joi = require('joi');
 const { StatusCodes } = require('http-status-codes');
 const crypto = require('crypto');
+const { Op } = require('sequelize');
 const { customizeError } = require('../../utils');
 const { User } = require('../../database/models');
 const { generateJWT } = require('../../utils');
@@ -12,8 +13,10 @@ const costumerSchema = Joi.object({
   role: Joi.string().required(),
 });
 
-const alreadyExists = async (email) => {
-  const data = await User.findOne({ where: { email } });
+const alreadyExists = async (email, name) => {
+  const data = await User.findOne({ where: {
+    [Op.or]: [{ email }, { name }],
+  } });
   return data || null;
 };
 
@@ -21,7 +24,7 @@ const validateCustomer = async ({ name, email, password, role }) => {
   const { error } = costumerSchema.validate({ name, email, password, role }); 
   if (error) throw customizeError(StatusCodes.BAD_REQUEST, error.message);
 
-  const exists = await alreadyExists(email);
+  const exists = await alreadyExists(email, name);
   if (exists) throw customizeError(StatusCodes.CONFLICT, 'User already registered');
 };
 
