@@ -1,12 +1,16 @@
 const crypto = require('crypto');
+const { Op } = require('sequelize');
 const { StatusCodes } = require('http-status-codes');
 const { customizeError } = require('../../utils');
 const { User } = require('../../database/models');
 const { generateJWT } = require('../../utils');
 
-const alreadyExists = async (email) => {
-  const user = await User.findOne({ where: { email } });
-  return user || null;
+const alreadyExists = async (email, password) => {
+  const hashPassword = crypto.createHash('md5').update(password).digest('hex');
+
+  const user = await User.findOne({ where: { [Op.and]: [{ email }, { password: hashPassword }] } });
+
+  return user;
 };
 
 const validateEmail = async (email) => {
@@ -20,7 +24,7 @@ const validateEmail = async (email) => {
 const validatePassword = (password) => {
   if (!password) throw customizeError(StatusCodes.BAD_REQUEST, '"password" is required');
 
-  if (password.length < 6 || password.length > 13) {
+  if (password.length < 6 /* || password.length > 13 */) {
     throw customizeError(StatusCodes.BAD_REQUEST, '"password" must be greater than 6');
   }
 };
@@ -29,20 +33,17 @@ const validateLogin = async (email, password) => {
   await validateEmail(email);
   await validatePassword(password);
   
-  const users = await alreadyExists(email);
+  const userFound = await alreadyExists(email, password);
 
-  if (!users) {
+  if (!userFound) {
     throw customizeError(StatusCodes.NOT_FOUND, 'Invalid fields');
   }
 
-  const hashPassword = crypto.createHash('md5').update(password).digest('hex');
+  const { password: _password, ...userWithoutPassword } = userFound.dataValues;
 
-  if (users.password === hashPassword) {
-    const token = generateJWT({ email });
-    return { token };
-  }
+  const token = generateJWT(userWithoutPassword);
 
-  return users;
+  return { token };
 };
   
 module.exports = validateLogin;
