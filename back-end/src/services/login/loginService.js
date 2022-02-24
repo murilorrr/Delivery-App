@@ -20,7 +20,7 @@ const validateEmail = async (email) => {
 const validatePassword = (password) => {
   if (!password) throw customizeError(StatusCodes.BAD_REQUEST, '"password" is required');
 
-  if (password.length < 6 || password.length > 13) {
+  if (password.length < 6 /* || password.length > 13 */) {
     throw customizeError(StatusCodes.BAD_REQUEST, '"password" must be greater than 6');
   }
 };
