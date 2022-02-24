@@ -2,7 +2,7 @@ require('express-async-errors');
 const express = require('express');
 const { sales } = require('../routes/sales');
 const { errorMiddleware } = require('../middlewares');
-const { productsRoute, sallerRoute, userRoute } = require('../routes');
+const { productsRoute, sallerRoute, loginRoute, userRoute } = require('../routes');
 
 const app = express();
 app.use(express.json());
@@ -13,6 +13,8 @@ app.use(sales);
 app.use(productsRoute);
 app.use(userRoute);
 app.use(sallerRoute);
+app.use(loginRoute);
+
 app.use(errorMiddleware);
 
 module.exports = app;
