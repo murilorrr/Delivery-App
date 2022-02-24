@@ -11,13 +11,13 @@ const validateAgentRole = (agentRole) => {
   if (agentRole !== 'administrator') throw customizeError(StatusCodes.UNAUTHORIZED, 'Unauthorized');
 };
 
-const deleteUser = async (userId, agentRole) => {
+const deleteUser = async (id, agentRole) => {
   validateAgentRole(agentRole);
 
-  await validateUserExist(userId);
+  await validateUserExist(id);
   
   try {
-    await User.destroy({ where: { userId } });
+    await User.destroy({ where: { id } });
     return;
   } catch (err) {
     throw customizeError(StatusCodes.BAD_REQUEST, err.message);

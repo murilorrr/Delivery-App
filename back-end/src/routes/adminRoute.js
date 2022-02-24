@@ -6,6 +6,6 @@ const admin = Router();
 
 admin.post('/admin/user', authMiddleware, createAnyUser);
 
-admin.delete('/admin/user/:userId', authMiddleware, deleteUser);
+admin.delete('/admin/user/:id', authMiddleware, deleteUser);
 
 module.exports = admin;
