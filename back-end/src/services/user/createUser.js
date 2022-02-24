@@ -6,7 +6,7 @@ const { customizeError } = require('../../utils');
 const { User } = require('../../database/models');
 const { generateJWT } = require('../../utils');
 
-const costumerSchema = Joi.object({
+const userSchema = Joi.object({
   name: Joi.string().min(12),
   email: Joi.string().email().required(),
   password: Joi.string().min(6).required(),
@@ -20,18 +20,18 @@ const alreadyExists = async (email, name) => {
   return data || null;
 };
 
-const validateCustomer = async ({ name, email, password, role }) => {
-  const { error } = costumerSchema.validate({ name, email, password, role }); 
+const validateUser = async ({ name, email, password, role }) => {
+  const { error } = userSchema.validate({ name, email, password, role }); 
   if (error) throw customizeError(StatusCodes.BAD_REQUEST, error.message);
 
   const exists = await alreadyExists(email, name);
   if (exists) throw customizeError(StatusCodes.CONFLICT, 'User already registered');
 };
 
-const createCustomer = async (customer) => {
-  const { name, email, password, role } = customer;
+const createUser = async (user) => {
+  const { name, email, password, role } = user;
 
-  await validateCustomer({ name, email, password, role });
+  await validateUser({ name, email, password, role });
   
   try {
     const token = generateJWT({ name, email, role });
@@ -45,4 +45,4 @@ const createCustomer = async (customer) => {
   }
 };
 
-module.exports = createCustomer;
+module.exports = createUser;
