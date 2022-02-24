@@ -28,9 +28,9 @@ const validatePassword = (password) => {
       code: 400,
     };
   }
-  if (password.length < 6 || password.length > 13) {
+  if (password.length > 6 || password.length < 13) {
     return {
-      message: '"password" length must be 6 characters long',
+      message: '"password" must be greater than 6',
       code: 400,
     };
   }
