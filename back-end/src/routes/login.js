@@ -5,4 +5,4 @@ const login = Router();
 
 login.post('/login', loginController);
 
-module.exports = { login };
+module.exports = login;
