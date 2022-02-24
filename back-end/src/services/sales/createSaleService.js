@@ -20,4 +20,4 @@ const createSaleService = async (saleInfo) => {
   return sale;
 };
 
-module.exports = { createSaleService };
+module.exports = createSaleService;
