@@ -7,8 +7,6 @@ const login = async (req, res, next) => {
   try {
     const result = await loginService(email, password);
 
-    if (result.code) return res.status(result.code).json(result.message);
-    
     return res.status(SUCESS_200).json(result);
   } catch (err) {
     console.log(err.erro);
