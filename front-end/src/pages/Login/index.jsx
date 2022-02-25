@@ -2,7 +2,8 @@ import React from 'react';
 
 export default function Login() {
   return (
-    <div>Login
+    <div>
+      Login
       <a
         href="/register"
         data-testid="common_login__button-register"

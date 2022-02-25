@@ -91,4 +91,4 @@ export default function Register() {
       </S.Form>
     </div>
   );
-};
+}
