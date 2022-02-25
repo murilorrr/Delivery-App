@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { createCustomer } from '../../fetchs';
 import * as S from './styles';
 
+const doisSegundos = 2000;
+
 export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -36,14 +38,17 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const result = await createCustomer({ name, email, password });
+    const { error: message, token } = await createCustomer({ name, email, password });
 
-    if (result.data) {
-      localStorage.setItem('user', JSON.stringify(result.data));
+    const user = { name, email, role: 'customer', token };
+
+    if (token) {
+      localStorage.setItem('user', JSON.stringify(user));
       history.push('/customer/products');
     } else {
-      console.error(result.error);
-      setError('error');
+      console.error(message);
+      setError(message);
+      setTimeout(() => setError(''), doisSegundos);
     }
   };
 
@@ -54,6 +59,7 @@ export default function Register() {
           type="text"
           name="name"
           id="name"
+          value={ name }
           data-testid="common_register__input-name"
           onChange={ ({ target }) => setName(target.value) }
         />
@@ -61,6 +67,7 @@ export default function Register() {
           type="email"
           name="email"
           id="email"
+          value={ email }
           data-testid="common_register__input-email"
           onChange={ ({ target }) => setEmail(target.value) }
         />
@@ -68,6 +75,7 @@ export default function Register() {
           type="password"
           name="password"
           id="password"
+          value={ password }
           data-testid="common_register__input-password"
           onChange={ ({ target }) => setPassword(target.value) }
         />
@@ -81,9 +89,10 @@ export default function Register() {
 
         <S.ErrorMessage
           data-testid="common_register__element-invalid_register"
-          className={ error }
+          className="error"
+          visible={ error === '' }
         >
-          Erro ao cadastrar
+          {error}
         </S.ErrorMessage>
       </S.Form>
     </div>
