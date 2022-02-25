@@ -1,26 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import Register from './pages/Register';
+import { Switch, Route } from 'react-router-dom';
+import { Login, Register } from './pages';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route
-          exact
-          path={ ['/', '/login'] }
-          component={ () => (
-            <a
-              href="/register"
-              data-testid="common_login__button-register"
-            >
-              Login
-            </a>) }
-        />
-        <Route path="/register" component={ Register } />
-      </Switch>
-    </BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={ Login } />
+      <Route exact path="/login" component={ Login } />
+      <Route exact path="/register" component={ Register } />
+      {/* <Route exact path="/" component={  } /> */}
+    </Switch>
   );
 }
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import * as S from './styles';
 import createUser from '../../services/user/createUser';
+import * as S from './styles';
 
-const Register = () => {
+export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -92,5 +92,3 @@ const Register = () => {
     </div>
   );
 };
-
-export default Register;
