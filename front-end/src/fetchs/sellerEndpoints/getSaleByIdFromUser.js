@@ -1,7 +1,7 @@
 import api from '../api';
 
-async function createUser(token, id) {
-  const result = await api
+async function getSaleById(token, id) {
+  const saleDetails = await api
     .get(`/orders/${id}`, {
       headers: {
         Authorization: token,
@@ -9,7 +9,7 @@ async function createUser(token, id) {
     })
     .then((response) => ({ data: response.data }))
     .catch((err) => ({ error: err.response.data.message }));
-  return result;
+  return saleDetails;
 }
 
-export default createUser;
+export default getSaleById;
