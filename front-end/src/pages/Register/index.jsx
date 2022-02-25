@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import createUser from '../../services/user/createUser';
+import { createCustomer } from '../../fetchs';
 import * as S from './styles';
 
 export default function Register() {
@@ -36,13 +36,13 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const user = await createUser({ name, email, password });
-      localStorage.setItem('user', JSON.stringify(user));
+    const result = await createCustomer({ name, email, password });
 
+    if (result.data) {
+      localStorage.setItem('user', JSON.stringify(result.data));
       history.push('/customer/products');
-    } catch (err) {
-      console.error(err);
+    } else {
+      console.error(result.error);
       setError('error');
     }
   };
@@ -55,7 +55,6 @@ export default function Register() {
           name="name"
           id="name"
           data-testid="common_register__input-name"
-          value={ name }
           onChange={ ({ target }) => setName(target.value) }
         />
         <input
@@ -63,7 +62,6 @@ export default function Register() {
           name="email"
           id="email"
           data-testid="common_register__input-email"
-          value={ email }
           onChange={ ({ target }) => setEmail(target.value) }
         />
         <input
@@ -71,12 +69,11 @@ export default function Register() {
           name="password"
           id="password"
           data-testid="common_register__input-password"
-          value={ password }
           onChange={ ({ target }) => setPassword(target.value) }
         />
         <button
           type="submit"
-          data-testid="common_register__input-register"
+          data-testid="common_register__button-register"
           disabled={ disableButton }
         >
           Cadastrar
