@@ -219,7 +219,7 @@ Você pode ler mais sobre os atributos `data-*` [neste link](https://developer.m
 
     - Serão 10 dias de projeto.
 
-    - Data de entrega para avaliação final do projeto: `11/03/2022 14:00`.
+    - Data de entrega para avaliação final do projeto: `16/03/2022 14:00`.
 
 ---
 
