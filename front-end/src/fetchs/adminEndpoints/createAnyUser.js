@@ -5,8 +5,8 @@ async function createAnyUser(user, token) {
     .post('/admin/user', user, {
       headers: { authorization: token },
     })
-    .then((response) => ({ data: response.data }))
-    .catch((err) => ({ error: err.response.data.message }));
+    .then((response) => (response.data))
+    .catch((err) => (err.response.data.message));
   return userToken;
 }
 
