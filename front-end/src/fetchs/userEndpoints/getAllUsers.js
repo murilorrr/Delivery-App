@@ -8,7 +8,7 @@ async function getAllUsers(token) {
       },
     })
     .then((response) => (response.data))
-    .catch((err) => (err.response.data.message));
+    .catch((err) => ({ error: err.response.data.message }));
   return result;
 }
 
