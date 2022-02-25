@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { createCustomer } from '../../fetchs';
 import * as S from './styles';
 
-const doisSegundos = 2000;
+const twoSeconds = 2000;
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -48,7 +48,7 @@ export default function Register() {
     } else {
       console.error(message);
       setError(message);
-      setTimeout(() => setError(''), doisSegundos);
+      setTimeout(() => setError(''), twoSeconds);
     }
   };
 
