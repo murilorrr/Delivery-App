@@ -1,11 +1,11 @@
 import api from '../api';
 
-async function loginUser(sale) {
-  const token = await api
+async function createSale(sale) {
+  const sale = await api
     .post('/sales', sale)
     .then((response) => ({ data: response.data }))
     .catch((err) => ({ error: err.response.data.message }));
-  return token;
+  return sale;
 }
 
-export default loginUser;
+export default createSale;
