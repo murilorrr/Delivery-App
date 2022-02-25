@@ -6,8 +6,8 @@ const createUser = async (req, res, next) => {
   if (!user.role) user.role = 'costumer';
   const { role: agentRole } = req.user;
   try {
-    await createAnyUser(user, agentRole);
-    return res.status(StatusCodes.CREATED).json({ message: 'user created' });
+    const result = await createAnyUser(user, agentRole);
+    return res.status(StatusCodes.CREATED).json({ token: result });
   } catch (error) {
     next(error);
   }
