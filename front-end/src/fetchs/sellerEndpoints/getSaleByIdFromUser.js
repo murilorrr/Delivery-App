@@ -1,8 +1,8 @@
 import api from '../api';
 
-async function getSaleById(token, id) {
+async function getSaleById(token, orderId) {
   const saleDetails = await api
-    .get(`/orders/${id}`, {
+    .get(`/sales/${orderId}`, {
       headers: {
         Authorization: token,
       },
