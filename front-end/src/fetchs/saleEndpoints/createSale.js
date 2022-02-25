@@ -9,4 +9,3 @@ async function createSale(sale) {
 }
 
 export default createSale;
-sale
