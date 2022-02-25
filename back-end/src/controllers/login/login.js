@@ -8,7 +8,6 @@ const login = async (req, res, next) => {
 
     return res.status(StatusCodes.OK).json(result);
   } catch (err) {
-    console.log(err.erro);
     next(err);
   }
 };

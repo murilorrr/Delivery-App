@@ -1,6 +1,6 @@
 const { Sale, User } = require('../../database/models');
 
-const getAllSales = async (user) => {
+const getAllSalesByUser = async (user) => {
   const actualUser = await User.findOne({ where: { name: user.name } });
 
   const products = await Sale.findAll({ where: { userId: actualUser.id } });
@@ -8,4 +8,4 @@ const getAllSales = async (user) => {
   return products;
 };
 
-module.exports = getAllSales;
+module.exports = getAllSalesByUser;
