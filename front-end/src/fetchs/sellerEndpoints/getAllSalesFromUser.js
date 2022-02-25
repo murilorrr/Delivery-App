@@ -7,7 +7,7 @@ async function getAllSales(token) {
         Authorization: token,
       },
     })
-    .then((response) => ({ data: response.data }))
+    .then((response) => (response.data))
     .catch((err) => ({ error: err.response.data.message }));
   return sales;
 }
