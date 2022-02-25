@@ -5,7 +5,7 @@ async function deleteUser(token) {
     .delete(`/admin/user/${id}`, {
       headers: { authorization: token },
     })
-    .then((response) => ({ data: response.data }))
+    .then((response) => (response.data))
     .catch((err) => ({ error: err.response.data.message }));
   return userToken;
 }
