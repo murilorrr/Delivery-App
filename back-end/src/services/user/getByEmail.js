@@ -3,7 +3,7 @@ const { User } = require('../../database/models');
 const { customizeError } = require('../../utils');
 
 const getAllProductsService = async (email) => {
-  const userInfo = await User.findOne({ where: email });
+  const userInfo = await User.findOne({ where: { email } });
   if (!userInfo) throw customizeError(StatusCodes.NOT_FOUND, 'user not found');
   return userInfo;
 };

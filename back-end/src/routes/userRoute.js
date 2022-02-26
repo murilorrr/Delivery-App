@@ -8,6 +8,6 @@ router.post('/user', create);
 
 router.get('/user', authMiddleware, getAll);
 
-router.get('/user/:email', authMiddleware, getByEmail);
+router.get('/user/:email', getByEmail);
 
 module.exports = router;
