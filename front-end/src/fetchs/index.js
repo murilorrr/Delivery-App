@@ -7,3 +7,4 @@ export { default as getAllSalesFromUser } from './sellerEndpoints/getAllSalesFro
 export { default as getSaleByIdFromUser } from './sellerEndpoints/getSaleByIdFromUser';
 export { default as createAnyUser } from './adminEndpoints/createAnyUser';
 export { default as deleteUser } from './adminEndpoints/deleteUser';
+export { default as getByEmail } from './userEndpoints/getByEmail';

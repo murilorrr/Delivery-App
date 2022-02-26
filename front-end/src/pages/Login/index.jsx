@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { loginUser } from '../../fetchs';
+import { getByEmail, loginUser } from '../../fetchs';
 import * as S from './styles';
 
 const twoSeconds = 2000;
@@ -35,10 +35,11 @@ export default function Login() {
 
     const { error: message, token } = await loginUser({ email, password });
     console.log(token);
-    // const { error: message, user } = await getUser({ email });
-    const userInfo = { name: 'Murilo', email, role: 'customer' }; // Teste e ToDo
+    const { name, role } = await getByEmail(email);
 
-    const user = { userInfo, token };
+    const userInfo = { name, email, role };
+
+    const user = { ...userInfo, token };
 
     if (token) {
       localStorage.setItem('user', JSON.stringify(user));
