@@ -30,6 +30,22 @@ export default function Login() {
     } else setDisableButton(true);
   }, [email, password]);
 
+  const redirectUserByRole = (role) => {
+    switch (role) {
+    case 'customer':
+      history.push('/customer/products');
+      break;
+    case 'seller':
+      history.push('/seller/orders');
+      break;
+    case 'administrator':
+      history.push('/admin/manage');
+      break;
+    default:
+      break;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,7 +59,8 @@ export default function Login() {
 
     if (token) {
       localStorage.setItem('user', JSON.stringify(user));
-      history.push('/customer/products');
+      // redirect user by role
+      redirectUserByRole(role);
     } else {
       console.error(message);
       setError(message);
