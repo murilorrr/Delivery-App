@@ -1,14 +1,15 @@
 const { Op } = require('sequelize');
-const { Sale, User } = require('../../database/models');
+const { Sale } = require('../../database/models');
 
 const getSalesByIdFromUser = async (user, orderId) => {
-  const actualUser = await User.findOne({ where: { name: user.name } });
+  const product = await Sale.findOne({ where: {
+    [Op.and]: [{ id: orderId }, { [Op.or]: [{ sellerId: user.id }, { userId: user.id }] }],
+  },
+    include: [{ all: true, nested: true, attributes: { exclude: ['email', 'password'] } }],
+    attributes: { exclude: ['user_id', 'seller_id', 'userId', 'sellerId'] },
+  });
 
-  const products = await Sale.findAll({ where: {
-    [Op.and]: [{ id: orderId }, { userId: actualUser.id }],
-  } });
-
-  return products;
+  return product;
 };
 
 module.exports = getSalesByIdFromUser;
