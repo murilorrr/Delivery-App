@@ -21,8 +21,6 @@ export default function CreateAnyUser() {
       console.error(message);
       setWarning(message);
       setTimeout(() => setWarning(''), twoSeconds);
-    } else {
-      setWarning('CREATED');
     }
   };
 
@@ -97,6 +95,7 @@ export default function CreateAnyUser() {
       <S.ErrorMessage
         data-testid="common_register__element-invalid_register"
         className="error"
+        data-testid='admin_manage__element-invalid-register'
         visible={ warning === '' }
       >
         {warning}
