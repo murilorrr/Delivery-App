@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { createAnyUser } from '../../fetchs';
+import React, { useState, useEffect, useContext } from 'react';
+import { createAnyUser, getByEmail } from '../../fetchs';
 import * as S from '../../pages/Register/styles';
 import FormCreateAnyUser from './styles';
+import { AdminUsersContext } from '../../contexts/adminContext';
 
 export default function CreateAnyUser() {
   const [name, setName] = useState('');
@@ -10,7 +11,7 @@ export default function CreateAnyUser() {
   const [role, setRole] = useState('customer');
   const [warning, setWarning] = useState('');
   const [disableButton, setDisableButton] = useState(false);
-  // const { adminUserList, setAdminUserList } = useContext(Context);
+  const { addUser } = useContext(AdminUsersContext);
 
   const twoSeconds = 2000;
 
@@ -25,11 +26,13 @@ export default function CreateAnyUser() {
     e.preventDefault();
 
     const { error: message } = await createAnyUser({ name, email, password, role });
-
+    const user = await getByEmail(email);
     if (message) {
       console.error(message);
       setWarning(message);
       setTimeout(() => setWarning(''), twoSeconds);
+    } else {
+      addUser(user);
     }
     clearInputs();
   };

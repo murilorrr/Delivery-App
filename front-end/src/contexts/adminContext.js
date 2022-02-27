@@ -1,9 +1,7 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const AdminUsersContext = createContext({
-  users: [],
-});
+export const AdminUsersContext = createContext();
 
 function AdminUsersProvider({ children }) {
   const [usersList, setUsersList] = useState([]);
@@ -17,14 +15,16 @@ function AdminUsersProvider({ children }) {
     setUsersList(updatedList);
   };
 
+  const context = {
+    usersList,
+    addUser,
+    removeUser,
+    setUsersList,
+  };
+
   return (
     <AdminUsersContext.Provider
-      value={ {
-        addUser,
-        removeUser,
-        usersList,
-        setUsersList,
-      } }
+      value={ context }
     >
       { children }
     </AdminUsersContext.Provider>

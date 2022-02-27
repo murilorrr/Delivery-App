@@ -1,18 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { getAllUsers } from '../../fetchs';
 import UserCard from '../cards/UserCard';
-// import { AdminUsersContext } from '../../contexts/adminContext';
+import { AdminUsersContext } from '../../contexts/adminContext';
 
 export default function UserList() {
-  // const [adminUserList, setAdminUserList] = useContext(AdminUsersContext);
-  const [users, setUsers] = useState([]);
+  const { usersList, setUsersList } = useContext(AdminUsersContext);
 
   useEffect(() => {
     const fetch = async () => {
       const fetchUsers = await getAllUsers();
       console.log(fetchUsers);
-      // setAdminUserList(fetchUsers);
-      setUsers(fetchUsers);
+      setUsersList(fetchUsers);
     };
 
     fetch();
@@ -20,11 +18,12 @@ export default function UserList() {
 
   return (
     <div>
-      { users.length >= 1 ? users
+      { usersList.length >= 1 ? usersList
         .map((user, index) => (<UserCard
           user={ user }
           key={ index }
-        />)) : <div>Loading</div>}
+          index={ index }
+        />)) : <div>Nenhum Usuário ainda</div>}
     </div>
   );
 }

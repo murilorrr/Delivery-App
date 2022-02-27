@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import UserCardDiv from './styles';
 import { deleteUser } from '../../fetchs';
 import * as S from '../../pages/Register/styles';
+import { AdminUsersContext } from '../../contexts/adminContext';
 
-export default function UserCard({ user: { id, name, email, role }, key }) {
+export default function UserCard({ user: { id, name, email, role }, index }) {
+  console.log(index, 'key');
   const [warning, setWarnning] = useState('');
-  // const { setAdminUserList } = useContext(Context);
+
+  const { removeUser } = useContext(AdminUsersContext);
 
   const twoSeconds = 2000;
 
@@ -15,7 +18,7 @@ export default function UserCard({ user: { id, name, email, role }, key }) {
     if (error) {
       setWarnning(error);
     } else {
-      // setAdminUserList((state) => state.filter((userState) => userState !== user));
+      removeUser(id);
       setWarnning('deleted');
     }
     setTimeout(() => setWarnning(''), twoSeconds);
@@ -23,24 +26,24 @@ export default function UserCard({ user: { id, name, email, role }, key }) {
 
   return (
     <UserCardDiv>
-      <div data-testid={ `admin_manage__element-user-table-item-number-${key}` }>
+      <div data-testid={ `admin_manage__element-user-table-item-number-${index}` }>
         { id }
 
       </div>
-      <div data-testid={ `admin_manage__element-user-table-name-${key}` }>
+      <div data-testid={ `admin_manage__element-user-table-name-${index}` }>
         { name }
 
       </div>
-      <div data-testid={ `admin_manage__element-user-table-email-${key}` }>
+      <div data-testid={ `admin_manage__element-user-table-email-${index}` }>
         { email }
 
       </div>
-      <div data-testid={ `admin_manage__element-user-table-role-${key}` }>
+      <div data-testid={ `admin_manage__element-user-table-role-${index}` }>
         { role }
 
       </div>
       <button
-        data-testid={ `admin_manage__element-user-table-remove-${key}` }
+        data-testid={ `admin_manage__element-user-table-remove-${index}` }
         onClick={ excludeUser }
         type="button"
       >
@@ -65,5 +68,5 @@ UserCard.propTypes = {
     email: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
   }).isRequired,
-  key: PropTypes.number.isRequired,
+  index: PropTypes.string.isRequired,
 };
