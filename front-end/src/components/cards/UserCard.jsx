@@ -6,6 +6,7 @@ import * as S from '../../pages/Register/styles';
 
 export default function UserCard({ user: { id, name, email, role }, key }) {
   const [warning, setWarnning] = useState('');
+  // const { setAdminUserList } = useContext(Context);
 
   const twoSeconds = 2000;
 
@@ -14,6 +15,7 @@ export default function UserCard({ user: { id, name, email, role }, key }) {
     if (error) {
       setWarnning(error);
     } else {
+      // setAdminUserList((state) => state.filter((userState) => userState !== user));
       setWarnning('deleted');
     }
     setTimeout(() => setWarnning(''), twoSeconds);

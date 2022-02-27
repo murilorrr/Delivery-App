@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     
-    await queryInterface.bulkInsert('Sales', [
+    await queryInterface.bulkInsert('sales', [
     {
       total_price: 99222,
       delivery_address: 'Rua da Marmelada',
