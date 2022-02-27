@@ -3,7 +3,7 @@ const status = require('http-status-codes').StatusCodes;
 const JWT = require('jsonwebtoken');
 const { customizeError, decodeJWT } = require('../utils');
 
-const secret = process.env.JWT_SECRET || 'segredinho';
+const secret = process.env.JWT_SECRET || 'secret_key';
 
 const authMiddleware = (req, res, next) => {
   const { authorization } = req.headers;
