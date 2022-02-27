@@ -35,7 +35,7 @@ export default function CreateAnyUser() {
   useEffect(() => {
     const validateName = () => {
       const minNameLength = 12;
-      return name.length >= minNameLength;
+      return name.length > minNameLength;
     };
     const validateEmail = () => {
       // fonte do regex: https://stackoverflow.com/questions/50330109/simple-regex-pattern-for-email/50343015
@@ -44,7 +44,7 @@ export default function CreateAnyUser() {
     };
     const validatePassword = () => {
       const minPasswordLength = 6;
-      return password.length >= minPasswordLength;
+      return password.length > minPasswordLength;
     };
 
     if (validateEmail() && validateName() && validatePassword()) {
