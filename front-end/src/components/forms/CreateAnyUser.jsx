@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { createAnyUser } from '../../fetchs';
 import * as S from '../../pages/Register/styles';
+import FormCreateAnyUser from './styles';
 
 export default function CreateAnyUser() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('customer');
-  const [warning, setWarning] = useState('customer');
+  const [warning, setWarning] = useState('');
   const [disableButton, setDisableButton] = useState(false);
 
   const twoSeconds = 2000;
@@ -53,7 +54,7 @@ export default function CreateAnyUser() {
   }, [name, email, password]);
 
   return (
-    <form onSubmit={ handleSubmit }>
+    <FormCreateAnyUser onSubmit={ handleSubmit }>
       <input
         data-testid="admin_manage__input-name"
         type="text"
@@ -107,6 +108,6 @@ export default function CreateAnyUser() {
       >
         {warning}
       </S.ErrorMessage>
-    </form>
+    </FormCreateAnyUser>
   );
 }
