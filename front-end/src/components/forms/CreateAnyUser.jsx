@@ -20,7 +20,7 @@ export default function CreateAnyUser() {
     if (message) {
       console.error(message);
       setWarning(message);
-      setTimeout(() => setError(''), twoSeconds);
+      setTimeout(() => setWarning(''), twoSeconds);
     } else {
       setWarning('CREATED');
     }
