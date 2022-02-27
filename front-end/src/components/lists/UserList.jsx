@@ -14,7 +14,7 @@ export default function UserList() {
     };
 
     fetch();
-  }, []);
+  }, [setUsersList]);
 
   return (
     <div>
