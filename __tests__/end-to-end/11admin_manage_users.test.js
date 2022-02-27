@@ -171,7 +171,7 @@ describe(requirement(43), () => {
   });
 });
 
-describe.only(requirement(44), () => {
+describe(requirement(44), () => {
   const people = createUserForAdm(lengthRules);
 
   const peopleList = people
