@@ -34,11 +34,12 @@ const createUser = async (user) => {
   await validateUser({ name, email, password, role });
   
   try {
-    const token = generateJWT({ name, email, role });
-
     const hashPassword = crypto.createHash('md5').update(password).digest('hex');
-  
-    await User.create({ name, email, password: hashPassword, role });
+
+    const { id } = await User.create({ name, email, password: hashPassword, role });
+
+    const token = generateJWT({ id, name, email, role });
+
     return token;
   } catch (err) {
     throw customizeError(StatusCodes.BAD_REQUEST, err.message);
