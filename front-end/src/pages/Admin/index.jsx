@@ -8,7 +8,7 @@ export default function Home() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <main>
+    <div>
       <AdminHeader>
         <div>
           GERENCIAR USUÁRIOS
@@ -18,13 +18,13 @@ export default function Home() {
         </div>
         <Exit />
       </AdminHeader>
-      <body>
+      <div>
         <div>
           Cadastrar Novo Usuário
           <FormCreateAnyUser />
         </div>
         <UserList />
-      </body>
-    </main>
+      </div>
+    </div>
   );
 }

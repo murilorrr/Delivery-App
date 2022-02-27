@@ -1,30 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createAnyUser } from '../../fetchs';
+import * as S from '../../pages/Register/styles';
 
 export default function CreateAnyUser() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('customer');
+  const [warning, setWarning] = useState('customer');
+  const [disableButton, setDisableButton] = useState(false);
+
+  const twoSeconds = 2000;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { error: message } = await createAnyUser({ name, email, password, role });
+
+    if (message) {
+      console.error(message);
+      setWarning(message);
+      setTimeout(() => setError(''), twoSeconds);
+    } else {
+      setWarning('CREATED');
+    }
+  };
+
+  useEffect(() => {
+    const validateName = () => {
+      const minNameLength = 12;
+      return name.length >= minNameLength;
+    };
+    const validateEmail = () => {
+      // fonte do regex: https://stackoverflow.com/questions/50330109/simple-regex-pattern-for-email/50343015
+      const emailRegex = /^[^@]+@[^@]+\.[^@]+$/i;
+      return emailRegex.test(email);
+    };
+    const validatePassword = () => {
+      const minPasswordLength = 6;
+      return password.length >= minPasswordLength;
+    };
+
+    if (validateEmail() && validateName() && validatePassword()) {
+      setDisableButton(false);
+    } else setDisableButton(true);
+  }, [name, email, password]);
 
   return (
-    <form>
+    <form onSubmit={ handleSubmit }>
       <input
         data-testid="admin_manage__input-name"
         type="text"
         placeholder="Name"
+        name="name"
+        id="name"
         value={ name }
         onChange={ ({ target }) => setName(target.value) }
       />
       <input
         data-testid="admin_manage__input-email"
-        type="text"
+        type="email"
+        name="email"
+        id="email"
         value={ email }
         placeholder="Email"
         onChange={ ({ target }) => setEmail(target.value) }
       />
       <input
         data-testid="admin_manage__input-password"
-        type="text"
+        type="password"
+        name="password"
+        id="password"
         value={ password }
         placeholder="Password"
         onChange={ ({ target }) => setPassword(target.value) }
@@ -32,19 +78,29 @@ export default function CreateAnyUser() {
       <select
         data-testid="admin_manage__select-role"
         value={ role }
+        name="role"
+        id="role"
         onChange={ ({ target }) => setRole(target.value) }
       >
-        <option selected value="customer">customer</option>
+        <option value="customer">customer</option>
         <option value="seller">seller</option>
         <option value="administrator">administrator</option>
       </select>
       <button
         data-testid="admin_manage__button-register"
         type="submit"
+        disabled={ disableButton }
       >
         Cadastrar
 
       </button>
+      <S.ErrorMessage
+        data-testid="common_register__element-invalid_register"
+        className="error"
+        visible={ warning === '' }
+      >
+        {warning}
+      </S.ErrorMessage>
     </form>
   );
 }
