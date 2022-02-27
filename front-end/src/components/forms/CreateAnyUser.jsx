@@ -12,6 +12,13 @@ export default function CreateAnyUser() {
 
   const twoSeconds = 2000;
 
+  const clearInputs = () => {
+    setName('');
+    setEmail('');
+    setPassword('');
+    setRole('customer');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -22,6 +29,7 @@ export default function CreateAnyUser() {
       setWarning(message);
       setTimeout(() => setWarning(''), twoSeconds);
     }
+    clearInputs();
   };
 
   useEffect(() => {
@@ -93,9 +101,8 @@ export default function CreateAnyUser() {
 
       </button>
       <S.ErrorMessage
-        data-testid="common_register__element-invalid_register"
+        data-testid="admin_manage__element-invalid-register"
         className="error"
-        data-testid='admin_manage__element-invalid-register'
         visible={ warning === '' }
       >
         {warning}
