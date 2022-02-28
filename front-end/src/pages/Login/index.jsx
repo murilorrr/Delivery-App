@@ -43,7 +43,7 @@ export default function Login() {
     e.preventDefault();
 
     const { error: message, token } = await loginUser({ email, password });
-    console.log(token);
+
     const { name, role } = await getByEmail(email);
 
     const userInfo = { name, email, role };
