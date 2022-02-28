@@ -32,10 +32,10 @@ export default function Login() {
 
   const redirectUserByRole = (role) => {
     const page = {
-      'customer': '/customer/products',
-      'seller': '/seller/orders',
-      'administrator': '/admin/manage',
-    }
+      customer: '/customer/products',
+      seller: '/seller/orders',
+      administrator: '/admin/manage',
+    };
     return history.push(page[role]);
   };
 
