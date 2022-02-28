@@ -11,10 +11,11 @@ module.exports = {
       quantity: {
         type: Sequelize.INTEGER
       },
-      sale_id: {
+      saleId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
+        field: 'sale_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
@@ -22,10 +23,11 @@ module.exports = {
           key: 'id',
         },
       },
-      product_id: {
+      productId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
+        field: 'product_id',
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         references: {
