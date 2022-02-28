@@ -40,9 +40,8 @@ const createUser = async (user, agentRole) => {
   
   try {
     const hashPassword = crypto.createHash('md5').update(password).digest('hex');
-    user.password = hashPassword;
-    await User.create({ name, email, password, role });
-    return user;
+    await User.create({ name, email, password: hashPassword, role });
+    return { ...user, password: hashPassword };
   } catch (err) {
     throw customizeError(StatusCodes.BAD_REQUEST, err.message);
   }
