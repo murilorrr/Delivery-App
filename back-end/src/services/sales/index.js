@@ -9,5 +9,5 @@ module.exports = {
   getById: (userId, orderId) => getSalesByIdFromUser(userId, orderId),
   getSale: (id) => getSaleById(id),
   createSale: (saleInfo) => createSaleService(saleInfo),
-  createSalesProducts: createSalesProductsService,
+  createSalesProducts: createSalesProductsService
 };

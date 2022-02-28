@@ -6,7 +6,7 @@ const createSalesProductsController = async (req, res) => {
 
   const salesProducts = await createSalesProducts({ saleId: sale.id, cart });
 
-  return res.status(201).json({ ...sale, products: salesProducts });
+  return res.status(201).json({...sale, products: salesProducts });
 };
 
 module.exports = createSalesProductsController;
