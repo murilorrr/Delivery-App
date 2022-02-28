@@ -13,7 +13,7 @@ export default function CreateAnyUser() {
   const [disableButton, setDisableButton] = useState(false);
   const { addUser } = useContext(AdminUsersContext);
 
-  const twoSeconds = 2000;
+  // const twoSeconds = 2000;
 
   const clearInputs = () => {
     setName('');
@@ -30,7 +30,7 @@ export default function CreateAnyUser() {
     if (message) {
       console.error(message);
       setWarning(message);
-      setTimeout(() => setWarning(''), twoSeconds);
+      // setTimeout(() => setWarning(''), twoSeconds);
     } else {
       addUser(user);
     }
