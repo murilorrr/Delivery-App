@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    tableName: 'Sales',
+    tableName: 'sales',
     underscored: true,
   });
   Sale.associate = (models) => {
     // para incluir estas infos : { include: [{ model: User, as: 'users' }, { model: User, as: 'seller' }] }
-    Sale.belongsTo(models.User, {foreignKey: 'user_id', as: 'users'});
+    Sale.belongsTo(models.User, {foreignKey: 'user_id', as: 'user'});
     Sale.belongsTo(models.User, {foreignKey: 'seller_id', as: 'seller'});
   }
 
