@@ -31,19 +31,12 @@ export default function Login() {
   }, [email, password]);
 
   const redirectUserByRole = (role) => {
-    switch (role) {
-    case 'customer':
-      history.push('/customer/products');
-      break;
-    case 'seller':
-      history.push('/seller/orders');
-      break;
-    case 'administrator':
-      history.push('/admin/manage');
-      break;
-    default:
-      break;
+    const page = {
+      'customer': '/customer/products',
+      'seller': '/seller/orders',
+      'administrator': '/admin/manage',
     }
+    return history.push(page[role]);
   };
 
   const handleSubmit = async (e) => {
