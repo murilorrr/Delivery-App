@@ -1,64 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import { getAllSalesFromUser, loginUser, getAllSeller } from '../../fetchs';
 import { useHistory } from 'react-router-dom';
+import { getAllSeller, createSale } from '../../fetchs';
+import useCart from '../../hooks/useCart';
 import Exit from '../../components/buttons/exit';
 
-const twoSeconds = 2000;
+function Checkout() {
+  const { cart, cartTotal, updateCart } = useCart();
 
-export default function Login() {
   const [name, setName] = useState('');
-  const [vendedor, setVendedor] = useState('');
+  const [vendedores, setVendedores] = useState('');
   const [endereço, setEndereço] = useState('');
   const [numero, setNumero] = useState('');
-  const [total, setTotal] = useState('');
-  const [cars, setCar] = useState('');
-  const [error, setError] = useState('');
-
   const history = useHistory();
 
   useEffect(() => {
     console.log('useEffect !!!!');
     const user = JSON.parse(localStorage.getItem('user'));
-    const data = await getAllSalesFromUser(user.id);
-    const seller = await getAllSeller();
 
     if (!user) history.push('/login');
-    else setName(user.name);
-    
-    if (seller) {
-      setVendedor(seller);
-    }
 
-    if (data) {
-      setCar(data);
-    }
+    setName(user.name);
 
-    // localStorage.setItem('total', JSON.stringify(total));
-  }, [total]);
+    const fetchSeller = async () => {
+      const seller = await getAllSeller();
+      if (seller) {
+        setVendedores(seller);
+      }
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    const { error: message, token } = await loginUser({ email, password });
-    console.log(token);
-    const { name, role } = await getByEmail(email);
+    fetchSeller();
+  }, [cart, history]);
 
-    const userInfo = { name, email, role };
-    
-    const user = { ...userInfo, token };
-    
-    if (token) {
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      console.error(message);
-      setError(message);
-      setTimeout(() => setError(''), twoSeconds);
-    }
-    history.push('/customer/products');
+  const submitOrder = async (event) => {
+    event.preventDefault();
+
+    const { vendedor } = event.target;
+    const cartItens = cart.map(({ product, quantity }) => {
+      const { id } = product;
+      return { id, quantity };
+    });
+
+    const sale = await createSale({
+      sellerId: vendedor.id,
+      totalPrice: cartTotal,
+      deliveryAddress: endereço,
+      deliveryNumber: numero,
+      status: 'Pendente',
+      cart: cartItens });
+    history.push(`/customer/orders/:${sale.id}`);
   };
 
-  const submitOrders = async (e) => {
-    history.push(`/customer/orders/:${id}`);
+  const removeItem = async (event) => {
+    const { product } = event.target;
+    updateCart(product, 0);
   };
 
   return (
@@ -66,27 +60,29 @@ export default function Login() {
       <header>
         <nav>
           <div>
-          <button
-            type="button"
-            onClick={ () => history.push('/customer/products') }
-          >
-            PRODUTOS
-          </button>
-          <button
-            type="button"
-            onClick={ () => history.push('/customer/orders') }
-          >
-            MEUS PEDIDOS
-          </button>
+            <button
+              type="button"
+              onClick={ () => history.push('/customer/products') }
+            >
+              PRODUTOS
+            </button>
+            <button
+              type="button"
+              onClick={ () => history.push('/customer/orders') }
+            >
+              MEUS PEDIDOS
+            </button>
           </div>
           <div>
-            <h3>`${name}`</h3>
+            <h3>
+              {name}
+            </h3>
             <Exit />
           </div>
         </nav>
       </header>
       <table>
-        <caption>Monthly savings</caption>
+        <caption>Finalizar Pedido</caption>
         <tr>
           <th>Item</th>
           <th>Descrição</th>
@@ -95,91 +91,92 @@ export default function Login() {
           <th>Sub-total</th>
           <th>Remover Item</th>
         </tr>
-        {cars.map((car, index) => {
-          (<tr key={index}>
+        {cart.map((cartItem, index) => (
+          <tr key={ index }>
             <td>
-              {car.id}
+              { cartItem.id }
             </td>
             <td
-              data-testid={`customer_checkout__element-order-table-name-${index}`}
+              data-testid={ `customer_checkout__element-order-table-name-${index}` }
             >
-              {car.name}
+              { cartItem.name }
             </td>
             <td
-              data-testid={`customer_checkout__element-order-table-quantity-${index}`}
+              data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
             >
-              {car.quantity}
+              { cartItem.quantity }
             </td>
             <td
-              data-testid={`customer_checkout__element-order-table-unit-price-${index}`}
+              data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
             >
-              {car.valor}
+              { cartItem.valor }
             </td>
             <td
-              data-testid={`customer_checkout__element-order-table-sub-total-${index}`}
+              data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
             >
-              {car.valor * car.quantity}
+              { cartItem.valor * cartItem.quantity }
             </td>
             <td>
               <button
-                onClick={}
-                data-testid={`customer_checkout__element-order-table-remove-${index}`}
+                type="button"
+                onClick={ removeItem }
+                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
               >
                 Remover
               </button>
             </td>
-          </tr>)
-        })}
-        <div>{`Total: R$ ${total}`}</div>
+          </tr>
+        ))}
+        <div>{`Total: R$ ${cartTotal}`}</div>
       </table>
-      <S.form onSubmit={ submitOrders }>
+
+      <form onSubmit={ submitOrder }>
         <h2>Detalhes e Endereço para Entrega</h2>
-        <label for="vendedor">P.Vendedora Responsável</label> <br/>
-        <select
-          name="vendedor"
-          value={ vendedor }
-          data-testid="customer_checkout__select-seller"
-          onChange={ ({ target }) => setVendedor(target.value) }
-        >
-          {vendedor.map((vendedor) => {
-            <option value={vendedor.name}>`${vendedor.name}`</option>
-          })}
-        </select>
-        <label for="endereço">Endereço</label> <br/>
-        <input
-          type="text"
-          name="endereço"
-          id="endereço"
-          value={ endereço }
-          data-testid="customer_checkout__input-address"
-          onChange={ ({ target }) => setEndereço(target.value) }
-        />
-        <label for="numero">Número</label> <br/>
-        <input
-          type="number"
-          name="numero"
-          id="numero"
-          value={ numero }
-          data-testid="customer_checkout__input-addressNumber"
-          onChange={ ({ target }) => setNumero(target.value) }
-        />
+        <label htmlFor="vendedores">
+          P.Vendedoresa Responsável
+          <select
+            id="vendedores"
+            value={ vendedores }
+            data-testid="customer_checkout__select-seller"
+            onChange={ ({ target }) => setVendedores(target.value) }
+          >
+            {vendedores.map((vendedor, index) => (
+              <option key={ index } value={ vendedor }>{vendedor.name}</option>
+            ))}
+          </select>
+        </label>
+        <label htmlFor="endereço">
+          Endereço
+          <input
+            type="text"
+            name="endereço"
+            id="endereço"
+            value={ endereço }
+            data-testid="customer_checkout__input-address"
+            onChange={ ({ target }) => setEndereço(target.value) }
+          />
+        </label>
+        <label htmlFor="numero">
+          Número
+          <input
+            type="number"
+            name="numero"
+            id="numero"
+            value={ numero }
+            data-testid="customer_checkout__input-addressNumber"
+            onChange={ ({ target }) => setNumero(target.value) }
+          />
+        </label>
         <button
           type="button"
           data-testid="customer_checkout__button-submit-order"
-          onClick={ submitOrders }
+          onClick={ submitOrder }
         >
           FINALIZAR PEDIDO
         </button>
-
-        <S.ErrorMessage
-          data-testid="common_login__element-invalid-email"
-          className="error"
-          visible={ error === '' }
-        >
-          {error}
-        </S.ErrorMessage>
-      </S.form>
-
+      </form>
     </div>
   );
 }
+
+export default Checkout;
