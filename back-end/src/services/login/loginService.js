@@ -7,7 +7,7 @@ const { User } = require('../../database/models');
 const { generateJWT } = require('../../utils');
 
 const userSchema = Joi.object({
-  email: Joi.string().email().required(),
+  email: Joi.string().regex(/\S+@\S+\.\S+/).required(),
   password: Joi.string().min(6).required(),
 });
 

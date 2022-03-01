@@ -16,9 +16,8 @@ export default function Login() {
 
   useEffect(() => {
     const validateEmail = () => {
-      // fonte do regex: https://stackoverflow.com/questions/50330109/simple-regex-pattern-for-email/50343015
-      const emailRegex = /^[^@]+@[^@]+\.[^@]+$/i;
-      return emailRegex.test(email);
+      const emailVerification = /\S+@\S+\.\S+/;
+      return emailVerification.test(email);
     };
     const validatePassword = () => {
       const minPasswordLength = 6;

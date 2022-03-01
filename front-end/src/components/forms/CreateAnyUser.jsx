@@ -44,7 +44,7 @@ export default function CreateAnyUser() {
     };
     const validateEmail = () => {
       const emailVerification = /\S+@\S+\.\S+/;
-      return isValidEmail = emailVerification.test(email);
+      return emailVerification.test(email);
     };
     const validatePassword = () => {
       const minPasswordLength = 6;
