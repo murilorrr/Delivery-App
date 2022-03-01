@@ -50,7 +50,7 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
 
       </button>
       <S.ErrorMessage
-        data-testid="admin_manage__element-invalid-register"
+        // data-testid="admin_manage__element-invalid-register"
         className="error"
         visible={ warning === '' }
       >
