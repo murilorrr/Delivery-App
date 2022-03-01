@@ -13,7 +13,7 @@ export default function CreateAnyUser() {
   const [disableButton, setDisableButton] = useState(true);
   const { addUser } = useContext(AdminUsersContext);
 
-  // const twoSeconds = 2000;
+  const twoSeconds = 2000;
 
   const clearInputs = () => {
     setName('');
@@ -30,7 +30,7 @@ export default function CreateAnyUser() {
     if (message) {
       console.error(message);
       setWarning(message);
-      // setTimeout(() => setWarning(''), twoSeconds);
+      setTimeout(() => setWarning(''), twoSeconds);
     } else {
       addUser(user);
     }
@@ -43,9 +43,8 @@ export default function CreateAnyUser() {
       return name.length >= minNameLength;
     };
     const validateEmail = () => {
-      // fonte do regex: https://stackoverflow.com/questions/50330109/simple-regex-pattern-for-email/50343015
-      const emailRegex = /^[^@]+@[^@]+\.[^@]+$/i;
-      return emailRegex.test(email);
+      const emailVerification = /\S+@\S+\.\S+/;
+      return isValidEmail = emailVerification.test(email);
     };
     const validatePassword = () => {
       const minPasswordLength = 6;
