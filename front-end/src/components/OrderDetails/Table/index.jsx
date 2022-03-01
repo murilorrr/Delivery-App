@@ -43,16 +43,16 @@ function OrderDetailsTable({ products }) {
                   `customer_order_details__element-order-table-sub-total-${index}`
                 }
               >
-                { product.price }
+                { Number(product.price)
+                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
               </td>
               <td
                 data-testid={
                   `customer_order_details__element-order-total-price-${index}`
                 }
               >
-                { (product.price * product.salesProducts.quantity)
-                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                }
+                { (Number(product.price) * Number(product.salesProducts.quantity))
+                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </td>
             </tr>
           ))
