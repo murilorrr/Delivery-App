@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import getAllSales from '../../fetchs/saleEndpoints/getAllSales';
+
+import * as S from './styles';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
@@ -21,10 +22,10 @@ function Orders() {
   return (
     <>
       <Header />
-      <main>
+      <S.Main>
         {
-          orders && orders.map((order) => (
-            <Link to={`/customer/orders/${order.id}`} key={ order.id }>
+          orders.map((order) => (
+            <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
               <span data-testid={ `customer_orders__element-order-id-${order.id}` }>
                 { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
               </span>
@@ -33,13 +34,19 @@ function Orders() {
               >
                 { order.status }
               </span>
-              <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
-                { new Date(order.saleDate).toLocaleDateString({ locales: 'pt-BR' }) }
-              </span>
-            </Link>
+              <div>
+                <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
+                  { new Date(order.saleDate).toLocaleDateString({ locales: 'pt-BR' }) }
+                </span>
+                <span data-testid={ `customer_products__element-card-price-${order.id}` }>
+                  { Number(order.totalPrice)
+                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+                </span>
+              </div>
+            </S.OrderCard>
           ))
         }
-      </main>
+      </S.Main>
     </>
   );
 }
