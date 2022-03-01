@@ -1,6 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Login, Register, Home, OrderDetails, Products, AdminPage } from './pages';
+import {
+  Checkout,
+  Login,
+  Register,
+  Home,
+  OrderDetails,
+  Products,
+  AdminPage,
+} from './pages';
 
 import CartContextProvider from './contexts/cartContext';
 import AdminUsersProvider from './contexts/adminContext';
@@ -16,6 +24,7 @@ function App() {
         <AdminUsersProvider>
           <Route exact path="/admin/manage" component={ AdminPage } />
         </AdminUsersProvider>
+        <Route exact path="/customer/checkout" component={ Checkout } />
         <Route exact path="/customer/orders/:orderId" component={ OrderDetails } />
         {/* <Route exact path="/" component={  } /> */}
       </Switch>

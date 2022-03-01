@@ -9,3 +9,5 @@ export { default as getAllSeller } from './sellerEndpoints/getAllSeller';
 export { default as createAnyUser } from './adminEndpoints/createAnyUser';
 export { default as deleteUser } from './adminEndpoints/deleteUser';
 export { default as getByEmail } from './userEndpoints/getByEmail';
+export { default as createSale } from './saleEndpoints/createSale';
+export { default as getSaleById } from './saleEndpoints/getSaleById';
