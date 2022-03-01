@@ -26,12 +26,11 @@ export default function CreateAnyUser() {
     e.preventDefault();
 
     const { error: message } = await createAnyUser({ name, email, password, role });
-    const user = await getByEmail(email);
     if (message) {
-      console.error(message);
       setWarning(message);
       setTimeout(() => setWarning(''), twoSeconds);
     } else {
+      const user = await getByEmail(email);
       addUser(user);
     }
     clearInputs();

@@ -6,7 +6,6 @@ import * as S from '../../pages/Register/styles';
 import { AdminUsersContext } from '../../contexts/adminContext';
 
 export default function UserCard({ user: { id, name, email, role }, index }) {
-  console.log(index, 'key');
   const [warning, setWarnning] = useState('');
 
   const { removeUser } = useContext(AdminUsersContext);
@@ -68,5 +67,5 @@ UserCard.propTypes = {
     email: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
   }).isRequired,
-  index: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
 };
