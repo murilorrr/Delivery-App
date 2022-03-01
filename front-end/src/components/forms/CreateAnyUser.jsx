@@ -10,7 +10,7 @@ export default function CreateAnyUser() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('customer');
   const [warning, setWarning] = useState('');
-  const [disableButton, setDisableButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(true);
   const { addUser } = useContext(AdminUsersContext);
 
   // const twoSeconds = 2000;
