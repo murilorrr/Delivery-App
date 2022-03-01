@@ -31,7 +31,7 @@ function CartContextProvider({ children }) {
   const updateCart = (product, quantity) => {
     const isProductOnCart = cart.find((cartProduct) => cartProduct.id === product.id);
 
-    if (!isProductOnCart) return addProduct(product, quantity);
+    if (!isProductOnCart && quantity > 0) return addProduct(product, quantity);
 
     if (quantity > 0) return updateProduct(product.id, quantity);
 
