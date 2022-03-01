@@ -9,5 +9,5 @@ module.exports = {
   getSalesById,
   getOrder,
   createSale: createSaleController,
-  createSalesProducts: createSalesProductsController
+  createSalesProducts: createSalesProductsController,
 };
