@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import UserCardDiv from './styles';
 import { deleteUser } from '../../fetchs';
-import * as S from '../../pages/Register/styles';
 import { AdminUsersContext } from '../../contexts/adminContext';
+import ErrorRegister from '../errors/ErroRegister';
 
 export default function UserCard({ user: { id, name, email, role }, index }) {
   const [warning, setWarnning] = useState('');
@@ -22,11 +22,12 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
     }
     setTimeout(() => setWarnning(''), twoSeconds);
   };
+  index += 1;
 
   return (
     <UserCardDiv>
       <div data-testid={ `admin_manage__element-user-table-item-number-${index}` }>
-        { id }
+        { index }
 
       </div>
       <div data-testid={ `admin_manage__element-user-table-name-${index}` }>
@@ -49,13 +50,7 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
         Excluir
 
       </button>
-      <S.ErrorMessage
-        // data-testid="admin_manage__element-invalid-register"
-        className="error"
-        visible={ warning === '' }
-      >
-        {warning}
-      </S.ErrorMessage>
+      <ErrorRegister message={ warning } />
     </UserCardDiv>
   );
 }
