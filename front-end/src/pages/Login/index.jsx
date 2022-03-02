@@ -16,9 +16,8 @@ export default function Login() {
 
   useEffect(() => {
     const validateEmail = () => {
-      // fonte do regex: https://stackoverflow.com/questions/50330109/simple-regex-pattern-for-email/50343015
-      const emailRegex = /^[^@]+@[^@]+\.[^@]+$/i;
-      return emailRegex.test(email);
+      const emailVerification = /\S+@\S+\.\S+/;
+      return emailVerification.test(email);
     };
     const validatePassword = () => {
       const minPasswordLength = 6;
@@ -31,26 +30,19 @@ export default function Login() {
   }, [email, password]);
 
   const redirectUserByRole = (role) => {
-    switch (role) {
-    case 'customer':
-      history.push('/customer/products');
-      break;
-    case 'seller':
-      history.push('/seller/orders');
-      break;
-    case 'administrator':
-      history.push('/admin/manage');
-      break;
-    default:
-      break;
-    }
+    const page = {
+      customer: '/customer/products',
+      seller: '/seller/orders',
+      administrator: '/admin/manage',
+    };
+    return history.push(page[role]);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const { error: message, token } = await loginUser({ email, password });
-    console.log(token);
+
     const { name, role } = await getByEmail(email);
 
     const userInfo = { name, email, role };

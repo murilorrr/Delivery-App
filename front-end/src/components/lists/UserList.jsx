@@ -9,8 +9,9 @@ export default function UserList() {
   useEffect(() => {
     const fetch = async () => {
       const fetchUsers = await getAllUsers();
-      console.log(fetchUsers);
-      setUsersList(fetchUsers);
+      const fetchUsersWithOutAdmins = fetchUsers
+        .filter((user) => user.role !== 'administrator');
+      setUsersList(fetchUsersWithOutAdmins);
     };
 
     fetch();

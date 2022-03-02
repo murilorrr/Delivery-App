@@ -4,8 +4,8 @@ const { authMiddleware } = require('../middlewares');
 
 const admin = Router();
 
-admin.post('/admin/user', authMiddleware, createAnyUser);
+admin.post('/admin', authMiddleware, createAnyUser);
 
-admin.delete('/admin/user/:id', authMiddleware, deleteUser);
+admin.delete('/admin/:id', authMiddleware, deleteUser);
 
 module.exports = admin;

@@ -10,7 +10,7 @@ export default function CreateAnyUser() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('customer');
   const [warning, setWarning] = useState('');
-  const [disableButton, setDisableButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(true);
   const { addUser } = useContext(AdminUsersContext);
 
   const twoSeconds = 2000;
@@ -26,12 +26,11 @@ export default function CreateAnyUser() {
     e.preventDefault();
 
     const { error: message } = await createAnyUser({ name, email, password, role });
-    const user = await getByEmail(email);
     if (message) {
-      console.error(message);
       setWarning(message);
       setTimeout(() => setWarning(''), twoSeconds);
     } else {
+      const user = await getByEmail(email);
       addUser(user);
     }
     clearInputs();
@@ -43,9 +42,8 @@ export default function CreateAnyUser() {
       return name.length >= minNameLength;
     };
     const validateEmail = () => {
-      // fonte do regex: https://stackoverflow.com/questions/50330109/simple-regex-pattern-for-email/50343015
-      const emailRegex = /^[^@]+@[^@]+\.[^@]+$/i;
-      return emailRegex.test(email);
+      const emailVerification = /\S+@\S+\.\S+/;
+      return emailVerification.test(email);
     };
     const validatePassword = () => {
       const minPasswordLength = 6;

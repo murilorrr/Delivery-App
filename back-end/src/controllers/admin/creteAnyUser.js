@@ -3,11 +3,11 @@ const { createAnyUser } = require('../../services/admin');
 
 const createUser = async (req, res, next) => {
   const user = req.body;
-  if (!user.role) user.role = 'costumer';
-  const { role: agentRole } = req.user;
+  const { role } = req.user;
+  console.log(role);
   try {
-    const result = await createAnyUser(user, agentRole);
-    return res.status(StatusCodes.CREATED).json({ token: result });
+    const result = await createAnyUser(user, role);
+    return res.status(StatusCodes.CREATED).json({ user: result });
   } catch (error) {
     next(error);
   }
