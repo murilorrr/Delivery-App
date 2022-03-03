@@ -51,7 +51,7 @@ function OrderDetailsTable({ products }) {
                   `customer_order_details__element-order-total-price-${index}`
                 }
               >
-                { (Number(product.price) * Number(product.salesProducts.quantity))
+                { (Number(product.price) * Number(product.SalesProduct.quantity))
                   .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
               </td>
             </tr>
