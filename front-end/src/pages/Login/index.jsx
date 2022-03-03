@@ -14,6 +14,10 @@ export default function Login() {
 
   const history = useHistory();
 
+  const user = localStorage.getItem('user');
+
+  if (user) history.push('/customer/products');
+
   useEffect(() => {
     const validateEmail = () => {
       const emailVerification = /\S+@\S+\.\S+/;

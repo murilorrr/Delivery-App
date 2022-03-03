@@ -11,7 +11,6 @@ function Orders() {
     const getSalesAsync = async () => {
       const result = await getAllSales();
       setOrders(result);
-      console.log('orders', result);
     };
 
     getSalesAsync();
@@ -38,7 +37,7 @@ function Orders() {
                 <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
                   { new Date(order.saleDate).toLocaleDateString({ locales: 'pt-BR' }) }
                 </span>
-                <span data-testid={ `customer_products__element-card-price-${order.id}` }>
+                <span data-testid={ `customer_orders__element-card-price-${order.id}` }>
                   { Number(order.totalPrice)
                     .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
                 </span>
