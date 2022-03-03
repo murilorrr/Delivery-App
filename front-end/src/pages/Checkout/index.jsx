@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getAllSeller, createSale } from '../../fetchs';
 import useCart from '../../hooks/useCart';
-import Exit from '../../components/buttons/exit';
+import Header from '../../components/Header';
 
 function Checkout() {
   const { cart, cartTotal, updateCart } = useCart();
 
-  const [name, setName] = useState('');
   const [vendedores, setVendedores] = useState('');
   const [endereço, setEndereço] = useState('');
   const [numero, setNumero] = useState('');
@@ -18,8 +17,6 @@ function Checkout() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user) history.push('/login');
-
-    setName(user.name);
 
     const fetchSeller = async () => {
       const seller = await getAllSeller();
@@ -57,30 +54,7 @@ function Checkout() {
 
   return (
     <div>
-      <header>
-        <nav>
-          <div>
-            <button
-              type="button"
-              onClick={ () => history.push('/customer/products') }
-            >
-              PRODUTOS
-            </button>
-            <button
-              type="button"
-              onClick={ () => history.push('/customer/orders') }
-            >
-              MEUS PEDIDOS
-            </button>
-          </div>
-          <div>
-            <h3>
-              {name}
-            </h3>
-            <Exit />
-          </div>
-        </nav>
-      </header>
+      <Header />
       <table>
         <caption>Finalizar Pedido</caption>
         <tr>
