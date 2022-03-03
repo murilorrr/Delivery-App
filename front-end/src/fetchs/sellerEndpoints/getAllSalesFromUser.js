@@ -2,7 +2,7 @@ import api from '../api';
 
 async function getAllSales(token) {
   const sales = await api
-    .get('/sales', {
+    .get('/customer/sales', {
       headers: {
         Authorization: token,
       },
