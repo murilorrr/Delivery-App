@@ -1,4 +1,4 @@
-const { salesProducts } = require('../../database/models');
+const { SalesProduct } = require('../../database/models');
 
 const createSalesProductsService = async ({ saleId, cart }) => {
   const cartToSalesProducts = cart.map((product) => ({
@@ -6,10 +6,12 @@ const createSalesProductsService = async ({ saleId, cart }) => {
     productId: product.id,
     quantity: product.quantity,
   }));
+  
+  const result = await SalesProduct.bulkCreate(cartToSalesProducts);
 
-  const result = await salesProducts.bulkCreate(cartToSalesProducts);
+  const formmatedSalesProducts = result.map(({ dataValues }) => dataValues);
 
-  return result;
+  return formmatedSalesProducts;
 };
 
 module.exports = createSalesProductsService;
