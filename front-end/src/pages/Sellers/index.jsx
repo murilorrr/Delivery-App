@@ -59,28 +59,28 @@ function SellerOrders() {
           >
             <ul>
               <li
-                data-testid = {
+                data-testid={
                   `seller_orders__element-order-id-${cardItem.id}`
                 }
               >
                 { cardItem.id }
               </li>
               <li
-                data-testid = {
+                data-testid={
                   `seller_orders__element-delivery-status-${cardItem.id}`
                 }
               >
                 { cardItem.status }
               </li>
               <li
-                data-testid = {
+                data-testid={
                   `seller_orders__element-order-date-${cardItem.id}`
                 }
               >
                 { cardItem.saleDate }
               </li>
               <li
-                data-testid = {
+                data-testid={
                   `seller_orders__element-card-price-${cardItem.id}`
                 }
               >
@@ -90,7 +90,7 @@ function SellerOrders() {
                 }
               </li>
               <li
-                data-testid = {
+                data-testid={
                   `seller_orders__element-card-address-${cardItem.id}`
                 }
               >
