@@ -66,6 +66,7 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
           expect(res.status).to.be.equal(201);
           expect(res.body).have.contains.key("user");
           expect(res.body.user).have.contains.keys(
+            'id',
             "name",
             "email",
             "role",
@@ -95,6 +96,7 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
           expect(res.status).to.be.equal(201);
           expect(res.body).have.contains.key("user");
           expect(res.body.user).have.contains.keys(
+            'id',
             "name",
             "email",
             "role",
