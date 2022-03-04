@@ -41,7 +41,6 @@ const createUser = async (user, agentRole) => {
   const hashPassword = crypto.createHash('md5').update(password).digest('hex');
   await User.create({ name, email, password: hashPassword, role });
   return { ...user, password: hashPassword };
-  
 };
 
 module.exports = createUser;

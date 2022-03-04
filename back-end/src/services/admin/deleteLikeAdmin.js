@@ -17,8 +17,6 @@ const deleteUser = async (id, agentRole) => {
   await validateUserExist(id);
   
   await User.destroy({ where: { id } });
-  return;
-  
 };
 
 module.exports = deleteUser;

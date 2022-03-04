@@ -1,5 +1,5 @@
-const { Sale, User } = require("../../database/models");
-const { Op } = require("sequelize");
+const { Op } = require('sequelize');
+const { Sale, User } = require('../../database/models');
 
 const getAllSalesByUser = async (user) => {
   const actualUser = await User.findOne({
@@ -10,7 +10,7 @@ const getAllSalesByUser = async (user) => {
     where: {
       [Op.or]: [{ sellerId: actualUser.id }, { userId: actualUser.id }],
     },
-    attributes: { exclude: ["user_id", "seller_id"] },
+    attributes: { exclude: ['user_id', 'seller_id'] },
   });
 
   return sales;
