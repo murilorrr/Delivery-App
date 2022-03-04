@@ -1,7 +1,6 @@
 const chai = require("chai");
 const shell = require("shelljs");
 const chaiHttp = require("chai-http");
-require("dotenv").config();
 const crypto = require("crypto");
 
 chai.use(chaiHttp);
@@ -36,7 +35,6 @@ const userSellerForCreate = {
 
 describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/admin`", () => {
   before(() => {
-    shell.exec("npx sequelize-cli db:drop");
     shell.exec(
       "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
     );
@@ -239,7 +237,7 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
         chai
           .request(server)
           .post("/login")
-          .send(adminUser)
+          .send(user)
           .end((err, res) => {
             if (err) done(err);
             tokenFail = res.body.token;
@@ -285,7 +283,6 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
           .end((err, res) => {
             if (err) done(err);
             tokenFail = res.body.token;
-            done();
           });
 
         chai
@@ -301,7 +298,7 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
           .end((err, res) => {
             if (err) done(err);
             expect(res.status).to.be.equal(401);
-            expect(res.body).to.be.deep.equal({ message: "Role is not admin" });
+            expect(res.body).to.be.deep.equal({ message: "Unauthorized" });
             done();
           });
       });
