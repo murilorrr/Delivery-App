@@ -44,7 +44,6 @@ describe('Get SaleById - Sua aplicação deve ter o endpoint GET `/customer/orde
         .set("authorization", token)
         .end((err, res) => {
           if (err) done(err);
-          console.log(res.body);
           expect(res.status).to.be.equal(200);
           expect(res.body).to.be.a("object");
           expect(res.body).have.keys('id', 'totalPrice', 'deliveryAddress', 'deliveryNumber', 'saleDate', 'status', 'user', 'seller', 'products')
