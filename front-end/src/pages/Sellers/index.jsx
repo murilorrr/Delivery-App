@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getAllSalesFromUser } from '../../fetchs';
 import { Link, useHistory } from 'react-router-dom';
+import { getAllSalesFromUser } from '../../fetchs';
 
 function SellerOrders() {
   const [name, setName] = useState('');
@@ -53,31 +53,40 @@ function SellerOrders() {
       </header>
       <div>
         { pedidos.map((cardItem, index) => (
-            <Link
+          <Link
+            key={ index }
             to={ `/seller/orders/${cardItem.id}` }
-            >
-            <ul key={ index }>
+          >
+            <ul>
               <li
-                data-testid={
-                  `seller_orders__element-order-id-${cardItem.id}` }
+                data-testid=
+                {
+                  `seller_orders__element-order-id-${cardItem.id}`
+                }
               >
                 { cardItem.id }
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-delivery-status-${cardItem.id}` }
+                data-testid=
+                {
+                  `seller_orders__element-delivery-status-${cardItem.id}`
+                }
               >
                 { cardItem.status }
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-order-date-${cardItem.id}` }
+                data-testid=
+                {
+                  `seller_orders__element-order-date-${cardItem.id}`
+                }
               >
                 { cardItem.saleDate }
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-card-price-${cardItem.id}` }
+                data-testid=
+                {
+                  `seller_orders__element-card-price-${cardItem.id}`
+                }
               >
                 {
                   Number(cardItem.totalPrice)
@@ -88,7 +97,7 @@ function SellerOrders() {
                 data-testid={
                   `seller_orders__element-card-address-${cardItem.id}` }
               >
-                { cardItem.deliveryAddress + ", " + cardItem.deliveryNumber }
+                { cardItem.deliveryAddress, cardItem.deliveryNumber }
               </li>
             </ul>
           </Link>

@@ -9,7 +9,7 @@ import {
   Products,
   AdminPage,
   Orders,
-  Seller,
+  Sellers,
 } from './pages';
 
 import CartContextProvider from './contexts/cartContext';
@@ -28,7 +28,7 @@ function App() {
           <Route exact path="/customer/checkout" component={ Checkout } />
           <Route exact path="/customer/orders/:orderId" component={ OrderDetails } />
           <Route path="/customer/orders" component={ Orders } />
-          <Route exact path="/seller/orders" component={ Seller } />
+          <Route exact path="/seller/orders" component={ Sellers } />
           {/* <Route exact path="/" component={  } /> */}
         </Switch>
       </AdminUsersProvider>
