@@ -1,8 +1,8 @@
 import api from '../api';
 
-async function getAllSeller(token) {
+async function getAllSeller() {
   const seller = await api
-    .get('/user/seller')
+    .get('/seller')
     .then((response) => (response.data))
     .catch((err) => ({ error: err.response.data.message }));
   return seller;

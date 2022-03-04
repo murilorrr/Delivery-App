@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       quantity: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       saleId: {
