@@ -4,15 +4,18 @@ import { getAllSalesFromUser } from '../../fetchs';
 
 function SellerOrders() {
   const [name, setName] = useState('');
-  const [pedidos, setPedidos] = useState('');
+  const [pedidos, setPedidos] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user) history.push('/login');
-    else setName(user.name);
+    console.log(user);
+    setName(user.name);
+  }, [history]);
 
+  useEffect(() => {
     const fetchSeller = async () => {
       const listaDePedidos = await getAllSalesFromUser();
       if (listaDePedidos) {
@@ -20,7 +23,7 @@ function SellerOrders() {
       }
     };
     fetchSeller();
-  }, [pedidos, history]);
+  }, []);
 
   const logOut = () => {
     localStorage.removeItem('user');
@@ -37,10 +40,8 @@ function SellerOrders() {
           >
             Produtos
           </Link>
-          <span
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            { name }
+          <span data-testid="customer_products__element-navbar-user-full-name">
+            {name}
           </span>
           <Link
             to="/"
@@ -52,49 +53,36 @@ function SellerOrders() {
         </nav>
       </header>
       <div>
-        { pedidos.map((cardItem, index) => (
-          <Link
-            key={ index }
-            to={ `/seller/orders/${cardItem.id}` }
-          >
+        {pedidos.map((cardItem, index) => (
+          <Link key={ index } to={ `/seller/orders/${cardItem.id}` }>
             <ul>
               <li
-                data-testid={
-                  `seller_orders__element-order-id-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-order-id-${cardItem.id}` }
               >
-                { cardItem.id }
+                {cardItem.id}
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-delivery-status-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-delivery-status-${cardItem.id}` }
               >
-                { cardItem.status }
+                {cardItem.status}
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-order-date-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-order-date-${cardItem.id}` }
               >
-                { cardItem.saleDate }
+                {cardItem.saleDate}
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-card-price-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-card-price-${cardItem.id}` }
               >
-                {
-                  Number(cardItem.totalPrice)
-                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-                }
+                {Number(cardItem.totalPrice).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-card-address-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-card-address-${cardItem.id}` }
               >
-                { `${cardItem.deliveryAddress}``${cardItem.deliveryNumber}` }
+                {`${cardItem.deliveryAddress}, ${cardItem.deliveryNumber}`}
               </li>
             </ul>
           </Link>
