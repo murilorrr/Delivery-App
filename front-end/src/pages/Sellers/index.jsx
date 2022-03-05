@@ -1,10 +1,10 @@
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import moment from 'moment';
+import Header from '../../components/Header';
 import { getAllSalesFromUser } from '../../fetchs';
 
 function SellerOrders() {
-  const [name, setName] = useState('');
   const [pedidos, setPedidos] = useState([]);
   const history = useHistory();
 
@@ -12,11 +12,7 @@ function SellerOrders() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user) history.push('/login');
-    console.log(user);
-    setName(user.name);
-  }, [history]);
 
-  useEffect(() => {
     const fetchSeller = async () => {
       const listaDePedidos = await getAllSalesFromUser();
       if (listaDePedidos) {
@@ -24,66 +20,56 @@ function SellerOrders() {
       }
     };
     fetchSeller();
-  }, []);
-
-  const logOut = () => {
-    localStorage.removeItem('user');
-    history.push('/login');
-  };
+  }, [history]);
 
   return (
     <div>
-      <header>
-        <nav>
-          <Link
-            to="/customer/products"
-            data-testid="customer_products__element-navbar-link-products"
-          >
-            Produtos
-          </Link>
-          <span data-testid="customer_products__element-navbar-user-full-name">
-            {name}
-          </span>
-          <Link
-            to="/"
-            onClick={ logOut }
-            data-testid="customer_products__element-navbar-link-logout"
-          >
-            Sair
-          </Link>
-        </nav>
-      </header>
+      <Header />
       <div>
-        {pedidos.map((cardItem, index) => (
-          <Link key={ index } to={ `/seller/orders/${cardItem.id}` }>
+        { pedidos.length && pedidos.map((cardItem, index) => (
+          <Link
+            key={ index }
+            to={ `/seller/orders/${cardItem.id}` }
+          >
             <ul>
               <li
-                data-testid={ `seller_orders__element-order-id-${cardItem.id}` }
+                data-testid={
+                  `seller_orders__element-order-id-${cardItem.id}`
+                }
               >
-                {cardItem.id}
+                { cardItem.id }
               </li>
               <li
-                data-testid={ `seller_orders__element-delivery-status-${cardItem.id}` }
+                data-testid={
+                  `seller_orders__element-delivery-status-${cardItem.id}`
+                }
               >
-                {cardItem.status}
+                { cardItem.status }
               </li>
               <li
-                data-testid={ `seller_orders__element-order-date-${cardItem.id}` }
+                data-testid={
+                  `seller_orders__element-order-date-${cardItem.id}`
+                }
               >
-                {moment(cardItem.saleDate).format('DD/MM/YYYY')}
+                { moment(cardItem.saleDate).format('DD/MM/YYYY') }
               </li>
               <li
-                data-testid={ `seller_orders__element-card-price-${cardItem.id}` }
+                data-testid={
+                  `seller_orders__element-card-price-${cardItem.id}`
+                }
               >
-                {Number(cardItem.totalPrice).toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                })}
+                {
+                  Number(cardItem.totalPrice)
+                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                    .replace('.', '')
+                }
               </li>
               <li
-                data-testid={ `seller_orders__element-card-address-${cardItem.id}` }
+                data-testid={
+                  `seller_orders__element-card-address-${cardItem.id}`
+                }
               >
-                {`${cardItem.deliveryAddress}, ${cardItem.deliveryNumber}`}
+                { `${cardItem.deliveryAddress} ${cardItem.deliveryNumber}` }
               </li>
             </ul>
           </Link>

@@ -38,6 +38,12 @@ export default function Login() {
     return history.push(page[role]);
   };
 
+  const isLogged = localStorage.getItem('user');
+  if (isLogged) {
+    const user = JSON.parse(isLogged);
+    redirectUserByRole(user.role);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
