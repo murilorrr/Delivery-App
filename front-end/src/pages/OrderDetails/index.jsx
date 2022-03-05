@@ -57,13 +57,15 @@ function OrderDetails() {
             { new Date(order.saleDate).toLocaleDateString({ locales: 'pt-BR' }) }
           </span>
           <span
-            data-testid="
-              customer_order_details__element-order-details-label-delivery-status"
+            data-testid={
+              `customer_order_details__element-order-details-label-delivery-status${''}`
+            }
           >
             { order.status }
           </span>
           <button
             type="button"
+            disabled
             data-testid="customer_order_details__button-delivery-check"
           >
             Marcar como entregue
@@ -71,6 +73,11 @@ function OrderDetails() {
         </div>
 
         <OrderDetailsTable products={ order.products } />
+
+        <div data-testid="customer_order_details__element-order-total-price">
+          { Number(order.totalPrice)
+            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+        </div>
       </main>
     </>
   );

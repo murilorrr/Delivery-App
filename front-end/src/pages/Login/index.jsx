@@ -14,9 +14,8 @@ export default function Login() {
 
   const history = useHistory();
 
-  const user = localStorage.getItem('user');
-
-  if (user) history.push('/customer/products');
+  const isLogged = localStorage.getItem('user');
+  if (isLogged) history.push('/customer/products');
 
   useEffect(() => {
     const validateEmail = () => {
