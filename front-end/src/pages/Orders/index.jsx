@@ -23,7 +23,7 @@ function Orders() {
       <Header />
       <S.Main>
         {
-          orders.map((order) => (
+          orders.length && orders.map((order) => (
             <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
               <span data-testid={ `customer_orders__element-order-id-${order.id}` }>
                 { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
