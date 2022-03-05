@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import getAllSales from '../../fetchs/saleEndpoints/getAllSales';
@@ -35,7 +36,7 @@ function Orders() {
               </span>
               <div>
                 <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
-                  { new Date(order.saleDate).toLocaleDateString({ locales: 'pt-BR' }) }
+                  { moment(order.saleDate).format('DD/MM/YYYY') }
                 </span>
                 <span data-testid={ `customer_orders__element-card-price-${order.id}` }>
                   { Number(order.totalPrice)
