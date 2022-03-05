@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import getAllSales from '../../fetchs/saleEndpoints/getAllSales';
@@ -11,7 +12,6 @@ function Orders() {
     const getSalesAsync = async () => {
       const result = await getAllSales();
       setOrders(result);
-      console.log('orders', result);
     };
 
     getSalesAsync();
@@ -24,7 +24,7 @@ function Orders() {
       <Header />
       <S.Main>
         {
-          orders.map((order) => (
+          orders.length && orders.map((order) => (
             <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
               <span data-testid={ `customer_orders__element-order-id-${order.id}` }>
                 { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
@@ -36,9 +36,9 @@ function Orders() {
               </span>
               <div>
                 <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
-                  { new Date(order.saleDate).toLocaleDateString({ locales: 'pt-BR' }) }
+                  { moment(order.saleDate).format('DD/MM/YYYY') }
                 </span>
-                <span data-testid={ `customer_products__element-card-price-${order.id}` }>
+                <span data-testid={ `customer_orders__element-card-price-${order.id}` }>
                   { Number(order.totalPrice)
                     .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
                 </span>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
 import Header from '../../components/Header';
 import OrderDetailsTable from '../../components/OrderDetails/Table';
 import getSaleById from '../../fetchs/saleEndpoints/getSaleById';
@@ -54,16 +55,18 @@ function OrderDetails() {
           <span
             data-testid="customer_order_details__element-order-details-label-order-date"
           >
-            { new Date(order.saleDate).toLocaleDateString({ locales: 'pt-BR' }) }
+            { moment(order.saleDate).format('DD/MM/YYYY') }
           </span>
           <span
-            data-testid="
-              customer_order_details__element-order-details-label-delivery-status"
+            data-testid={
+              `customer_order_details__element-order-details-label-delivery-status${''}`
+            }
           >
             { order.status }
           </span>
           <button
             type="button"
+            disabled
             data-testid="customer_order_details__button-delivery-check"
           >
             Marcar como entregue
@@ -71,6 +74,11 @@ function OrderDetails() {
         </div>
 
         <OrderDetailsTable products={ order.products } />
+
+        <div data-testid="customer_order_details__element-order-total-price">
+          { Number(order.totalPrice)
+            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+        </div>
       </main>
     </>
   );
