@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import moment from 'moment';
 import { getAllSalesFromUser } from '../../fetchs';
 
 function SellerOrders() {
@@ -69,7 +70,7 @@ function SellerOrders() {
               <li
                 data-testid={ `seller_orders__element-order-date-${cardItem.id}` }
               >
-                {cardItem.saleDate}
+                {moment(cardItem.saleDate).format('DD/MM/YYYY')}
               </li>
               <li
                 data-testid={ `seller_orders__element-card-price-${cardItem.id}` }
