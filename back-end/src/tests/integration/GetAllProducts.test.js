@@ -21,25 +21,10 @@ describe("Get All Products - Sua aplicação deve ter o endpoint GET `/customer/
   });
 
   describe("Caso de sucesso", () => {
-    let token;
-
-    before((done) => {
-      chai
-        .request(server)
-        .post("/login")
-        .send(adminUser)
-        .end((err, res) => {
-          if (err) done(err);
-          token = res.body.token;
-          done();
-        });
-    });
-
     it("recebe um array de todas os produtos", (done) => {
       chai
         .request(server)
         .get("/customer/products")
-        .set("authorization", token)
         .end((err, res) => {
           if (err) done(err);
           expect(res.status).to.be.equal(200);
@@ -60,7 +45,6 @@ describe("Get All Products - Sua aplicação deve ter o endpoint GET `/customer/
       chai
         .request(server)
         .get("/customer/products")
-        .set("authorization", token)
         .end((err, res) => {
           if (err) done(err);
           expect(res.status).to.be.equal(200);
