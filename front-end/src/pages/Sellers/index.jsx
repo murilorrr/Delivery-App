@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import Header from '../../components/Header';
 import { getAllSalesFromUser } from '../../fetchs';
 
 function SellerOrders() {
@@ -11,7 +12,6 @@ function SellerOrders() {
     const user = JSON.parse(localStorage.getItem('user'));
 
     if (!user) history.push('/login');
-    else setName(user.name);
 
     const fetchSeller = async () => {
       const listaDePedidos = await getAllSalesFromUser();
@@ -24,28 +24,7 @@ function SellerOrders() {
 
   return (
     <div>
-      <header>
-        <nav>
-          <Link
-            to="/customer/products"
-            data-testid="customer_products__element-navbar-link-products"
-          >
-            Produtos
-          </Link>
-          <span
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            { name }
-          </span>
-          <Link
-            to="/"
-            onClick={ logOut }
-            data-testid="customer_products__element-navbar-link-logout"
-          >
-            Sair
-          </Link>
-        </nav>
-      </header>
+      <Header />
       <div>
         { pedidos.length && pedidos.map((cardItem, index) => (
           <Link
