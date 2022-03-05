@@ -33,30 +33,22 @@ function SellerOrders() {
           >
             <ul>
               <li
-                data-testid={
-                  `seller_orders__element-order-id-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-order-id-${cardItem.id}` }
               >
-                { cardItem.id }
+                {cardItem.id}
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-delivery-status-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-delivery-status-${cardItem.id}` }
               >
-                { cardItem.status }
+                {cardItem.status}
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-order-date-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-order-date-${cardItem.id}` }
               >
                 { moment(cardItem.saleDate).format('DD/MM/YYYY') }
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-card-price-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-card-price-${cardItem.id}` }
               >
                 {
                   Number(cardItem.totalPrice)
@@ -65,9 +57,7 @@ function SellerOrders() {
                 }
               </li>
               <li
-                data-testid={
-                  `seller_orders__element-card-address-${cardItem.id}`
-                }
+                data-testid={ `seller_orders__element-card-address-${cardItem.id}` }
               >
                 { `${cardItem.deliveryAddress} ${cardItem.deliveryNumber}` }
               </li>
