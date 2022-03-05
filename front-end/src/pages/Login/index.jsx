@@ -14,9 +14,6 @@ export default function Login() {
 
   const history = useHistory();
 
-  const isLogged = localStorage.getItem('user');
-  if (isLogged) history.push('/customer/products');
-
   useEffect(() => {
     const validateEmail = () => {
       const emailVerification = /\S+@\S+\.\S+/;
@@ -40,6 +37,14 @@ export default function Login() {
     };
     return history.push(page[role]);
   };
+
+  useEffect(() => {
+    const isLogged = localStorage.getItem('user');
+    if (isLogged) {
+      const user = JSON.parse(isLogged);
+      redirectUserByRole(user.role);
+    }
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
