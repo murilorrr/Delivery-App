@@ -1,10 +1,10 @@
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { getAllSalesFromUser } from '../../fetchs';
 
 function SellerOrders() {
-  const [name, setName] = useState('');
-  const [pedidos, setPedidos] = useState('');
+  const [pedidos, setPedidos] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -20,12 +20,7 @@ function SellerOrders() {
       }
     };
     fetchSeller();
-  }, [pedidos, history]);
-
-  const logOut = () => {
-    localStorage.removeItem('user');
-    history.push('/login');
-  };
+  }, [history]);
 
   return (
     <div>
@@ -52,7 +47,7 @@ function SellerOrders() {
         </nav>
       </header>
       <div>
-        { pedidos.map((cardItem, index) => (
+        { pedidos.length && pedidos.map((cardItem, index) => (
           <Link
             key={ index }
             to={ `/seller/orders/${cardItem.id}` }
@@ -77,7 +72,7 @@ function SellerOrders() {
                   `seller_orders__element-order-date-${cardItem.id}`
                 }
               >
-                { cardItem.saleDate }
+                { moment(cardItem.saleDate).format('DD/MM/YYYY') }
               </li>
               <li
                 data-testid={
@@ -87,6 +82,7 @@ function SellerOrders() {
                 {
                   Number(cardItem.totalPrice)
                     .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+                    .replace('.', '')
                 }
               </li>
               <li
@@ -94,7 +90,7 @@ function SellerOrders() {
                   `seller_orders__element-card-address-${cardItem.id}`
                 }
               >
-                { `${cardItem.deliveryAddress}``${cardItem.deliveryNumber}` }
+                { `${cardItem.deliveryAddress} ${cardItem.deliveryNumber}` }
               </li>
             </ul>
           </Link>
