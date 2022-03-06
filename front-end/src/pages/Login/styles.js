@@ -16,3 +16,11 @@ gap: 1rem;
 max-width: 450px;
 margin: 0 auto;
 `;
+
+export const Input = styled.input`
+display: block;
+`;
+
+export const Label = styled.label`
+
+`;

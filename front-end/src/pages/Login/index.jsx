@@ -6,6 +6,9 @@ import * as S from './styles';
 
 const twoSeconds = 2000;
 
+const emailId = 'email';
+const passwordId = 'password';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -69,22 +72,28 @@ export default function Login() {
   return (
     <div>
       <S.Form onSubmit={ handleSubmit }>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={ email }
-          data-testid="common_login__input-email"
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={ password }
-          data-testid="common_login__input-password"
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
+        <S.Label htmlFor={ emailId }>
+          Email
+          <S.Input
+            type="email"
+            name="email"
+            id={ emailId }
+            value={ email }
+            data-testid="common_login__input-email"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+        </S.Label>
+        <S.Label htmlFor={ passwordId }>
+          Password
+          <S.Input
+            type="password"
+            name="password"
+            id={ passwordId }
+            value={ password }
+            data-testid="common_login__input-password"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+        </S.Label>
         <button
           type="submit"
           data-testid="common_login__button-login"
