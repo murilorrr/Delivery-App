@@ -1,0 +1,10 @@
+span * {
+  color: white ;
+  text-decoration: none ;
+  padding: 20px 2em 0 2em;
+  width: 100%;
+}
+
+span, a { 
+  display: flex;
+}

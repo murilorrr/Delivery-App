@@ -27,9 +27,6 @@ function ProductsCard({ product }) {
 
   return (
     <div>
-      <div data-testid={ `customer_products__element-card-price-${id}` }>
-        { Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-      </div>
 
       <img
         src={ urlImage }
@@ -37,6 +34,9 @@ function ProductsCard({ product }) {
         height={ 150 }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
+      <div data-testid={ `customer_products__element-card-price-${id}` }>
+        { Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+      </div>
 
       <div data-testid={ `customer_products__element-card-title-${id}` }>
         { name }

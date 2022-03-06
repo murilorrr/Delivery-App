@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import * as S from './styles';
+import './header.css';
 
 function Header() {
   const [name, setName] = useState('');
@@ -24,35 +26,44 @@ function Header() {
   };
 
   return (
-    <header>
-      <nav>
-        <Link
-          to="/customer/products"
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          Produtos
-        </Link>
-        <Link
-          to={ ordersLink.to }
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          { ordersLink.name }
-        </Link>
+    <S.Header>
+      <S.Nav>
+        <S.Span>
+          <Link
+            to="/customer/products"
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            Produtos
+          </Link>
+        </S.Span>
+        <S.Span>
+          <Link
+            to={ ordersLink.to }
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            { ordersLink.name }
+          </Link>
+        </S.Span>
+        <S.Span>
+          <span
+            data-testid="customer_products__element-navbar-user-full-name"
+          >
+            { name }
+          </span>
+        </S.Span>
 
-        <span
-          data-testid="customer_products__element-navbar-user-full-name"
-        >
-          { name }
-        </span>
-        <Link
-          to="/"
-          onClick={ logOut }
-          data-testid="customer_products__element-navbar-link-logout"
-        >
-          Sair
-        </Link>
-      </nav>
-    </header>
+        <S.Span>
+          <Link
+            to="/"
+            onClick={ logOut }
+            data-testid="customer_products__element-navbar-link-logout"
+          >
+            Sair
+          </Link>
+        </S.Span>
+
+      </S.Nav>
+    </S.Header>
   );
 }
 
