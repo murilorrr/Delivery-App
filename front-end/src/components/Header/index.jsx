@@ -3,13 +3,19 @@ import { Link, useHistory } from 'react-router-dom';
 
 function Header() {
   const [name, setName] = useState('');
+  const [ordersLink, setOrdersLink] = useState({ to: '' });
   const history = useHistory();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
 
-    if (!user) history.push('/login');
-    else setName(user.name);
+    if (!user) return history.push('/login');
+
+    setName(user.name);
+
+    if (user.role === 'customer') {
+      setOrdersLink({ to: '/customer/orders', name: 'Meus pedidos' });
+    } else setOrdersLink({ to: '/seller/orders', name: 'Pedidos' });
   }, [history]);
 
   const logOut = () => {
@@ -27,10 +33,10 @@ function Header() {
           Produtos
         </Link>
         <Link
-          to="/customer/orders"
+          to={ ordersLink.to }
           data-testid="customer_products__element-navbar-link-orders"
         >
-          Meus pedidos
+          { ordersLink.name }
         </Link>
 
         <span
