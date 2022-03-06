@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 function Header() {
-  const [name, setName] = useState('');
+  const [user, setUser] = useState('');
   const [ordersLink, setOrdersLink] = useState({ to: '' });
   const history = useHistory();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const userStorage = JSON.parse(localStorage.getItem('user'));
 
-    if (!user) return history.push('/login');
+    if (!userStorage) return history.push('/login');
 
-    setName(user.name);
+    setUser(userStorage);
 
-    if (user.role === 'customer') {
+    if (userStorage.role === 'customer') {
       setOrdersLink({ to: '/customer/orders', name: 'Meus pedidos' });
     } else setOrdersLink({ to: '/seller/orders', name: 'Pedidos' });
   }, [history]);
@@ -26,12 +26,16 @@ function Header() {
   return (
     <header>
       <nav>
-        <Link
-          to="/customer/products"
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          Produtos
-        </Link>
+        {
+          user.role === 'customer' && (
+            <Link
+              to="/customer/products"
+              data-testid="customer_products__element-navbar-link-products"
+            >
+              Produtos
+            </Link>
+          )
+        }
         <Link
           to={ ordersLink.to }
           data-testid="customer_products__element-navbar-link-orders"
@@ -42,7 +46,7 @@ function Header() {
         <span
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          { name }
+          { user.name }
         </span>
         <Link
           to="/"

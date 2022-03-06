@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
+import { io } from 'socket.io-client';
 import Header from '../../components/Header';
 import OrderDetailsTable from '../../components/OrderDetails/Table';
 import getSaleById from '../../fetchs/saleEndpoints/getSaleById';
@@ -26,6 +27,14 @@ function OrderDetails() {
     },
     products: [],
   });
+
+  const socket = io('http://localhost:3001');
+
+  const changeStatus = () => {
+    socket.emit('updateStatus', { saleId: orderId, status: 'Entregue' });
+  };
+
+  socket.on('statusUpdated', ({ status }) => setOrder((prev) => ({ ...prev, status })));
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +75,8 @@ function OrderDetails() {
           </span>
           <button
             type="button"
-            disabled
+            disabled={ !order.status.includes('Em Trânsito') }
+            onClick={ changeStatus }
             data-testid="customer_order_details__button-delivery-check"
           >
             Marcar como entregue

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { io } from 'socket.io-client';
 import Header from '../../components/Header';
 import getAllSales from '../../fetchs/saleEndpoints/getAllSales';
 
@@ -7,6 +8,11 @@ import * as S from './styles';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const [update, setUpdate] = useState(false);
+
+  const socket = io('http://localhost:3001');
+
+  socket.on('statusUpdated', () => setUpdate((prev) => !prev));
 
   useEffect(() => {
     const getSalesAsync = async () => {
@@ -15,7 +21,7 @@ function Orders() {
     };
 
     getSalesAsync();
-  }, []);
+  }, [update]);
 
   const orderIdLength = 4;
 
