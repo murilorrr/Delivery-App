@@ -63,14 +63,13 @@ export default function Login() {
       // redirect user by role
       redirectUserByRole(role);
     } else {
-      console.error(message);
       setError(message);
       setTimeout(() => setError(''), twoSeconds);
     }
   };
 
   return (
-    <div>
+    <S.Body>
       <S.Form onSubmit={ handleSubmit }>
         <S.Label htmlFor={ emailId }>
           Email
@@ -79,6 +78,7 @@ export default function Login() {
             name="email"
             id={ emailId }
             value={ email }
+            placeholder="Alguem@gmail.com"
             data-testid="common_login__input-email"
             onChange={ ({ target }) => setEmail(target.value) }
           />
@@ -88,37 +88,37 @@ export default function Login() {
           <S.Input
             type="password"
             name="password"
+            placeholder="******"
             id={ passwordId }
             value={ password }
             data-testid="common_login__input-password"
             onChange={ ({ target }) => setPassword(target.value) }
           />
         </S.Label>
-        <button
+        <S.Button
           type="submit"
           data-testid="common_login__button-login"
           disabled={ disableButton }
         >
           Login
-        </button>
+        </S.Button>
 
-        <button
+        <S.Button
           type="button"
           onClick={ () => history.push('/register') }
           data-testid="common_login__button-register"
         >
           Cadastrar
-        </button>
+        </S.Button>
 
         <S.ErrorMessage
           data-testid="common_login__element-invalid-email"
-          className="error"
-          visible={ error === '' }
+          className={ error !== '' ? 'error' : '' }
         >
           {error}
         </S.ErrorMessage>
       </S.Form>
 
-    </div>
+    </S.Body>
   );
 }
