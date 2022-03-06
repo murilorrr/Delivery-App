@@ -56,7 +56,7 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <S.Body>
       <S.Form onSubmit={ handleSubmit }>
         <S.Label htmlFor={ nameId }>
           Name
@@ -91,22 +91,21 @@ export default function Register() {
             onChange={ ({ target }) => setPassword(target.value) }
           />
         </S.Label>
-        <button
+        <S.Button
           type="submit"
           data-testid="common_register__button-register"
           disabled={ disableButton }
         >
           Cadastrar
-        </button>
+        </S.Button>
 
         <S.ErrorMessage
           data-testid="common_register__element-invalid_register"
-          className="error"
-          visible={ error === '' }
+          className={ error !== '' ? 'error' : '' }
         >
           {error}
         </S.ErrorMessage>
       </S.Form>
-    </div>
+    </S.Body>
   );
 }
