@@ -16,12 +16,7 @@ const deleteUser = async (id, agentRole) => {
 
   await validateUserExist(id);
   
-  try {
-    await User.destroy({ where: { id } });
-    return;
-  } catch (err) {
-    throw customizeError(StatusCodes.BAD_REQUEST, err.message);
-  }
+  await User.destroy({ where: { id } });
 };
 
 module.exports = deleteUser;

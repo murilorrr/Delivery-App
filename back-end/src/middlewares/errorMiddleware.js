@@ -5,8 +5,6 @@ const errorMiddleware = (error, _req, res, _n) => {
     });
   }
 
-  console.log('ERROR HANDLER:', error);
-
   return res.status(500).json({ message: 'Internal error' });
 };
 

@@ -4,7 +4,7 @@ const { customizeError } = require('../../utils');
 
 const getAllProductsService = async (email) => {
   const userInfo = await User.findOne({ where: { email } });
-  if (!userInfo) throw customizeError(StatusCodes.NOT_FOUND, 'user not found');
+  if (!userInfo) throw customizeError(StatusCodes.NOT_FOUND, 'User not found');
   return userInfo;
 };
 
