@@ -28,6 +28,7 @@ height: 2em;
 font-size: 18px;
 border: 1px solid #888888;
 border-radius: 5px;
+padding: 0 0 0 0.5em;
 `;
 
 export const Label = styled.label`
