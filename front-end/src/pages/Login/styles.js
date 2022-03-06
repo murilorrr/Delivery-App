@@ -26,6 +26,8 @@ width: -webkit-fill-available;
 box-shadow: 5px 10px 5px #888888;
 height: 2em;
 font-size: 18px;
+border: 1px solid #888888;
+border-radius: 5px;
 `;
 
 export const Label = styled.label`
