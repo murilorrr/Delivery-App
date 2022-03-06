@@ -7,7 +7,7 @@ const { User } = require('../../database/models');
 const { generateJWT } = require('../../utils');
 
 const userSchema = Joi.object({
-  name: Joi.string().min(12),
+  name: Joi.string().min(12).required(),
   email: Joi.string().regex(/\S+@\S+\.\S+/).required(),
   password: Joi.string().min(6).required(),
   role: Joi.string().required(),
@@ -33,17 +33,13 @@ const createUser = async (user) => {
 
   await validateUser({ name, email, password, role });
   
-  try {
-    const hashPassword = crypto.createHash('md5').update(password).digest('hex');
+  const hashPassword = crypto.createHash('md5').update(password).digest('hex');
 
-    const { id } = await User.create({ name, email, password: hashPassword, role });
+  const { id } = await User.create({ name, email, password: hashPassword, role });
 
-    const token = generateJWT({ id, name, email, role });
+  const token = generateJWT({ id, name, email, role });
 
-    return token;
-  } catch (err) {
-    throw customizeError(StatusCodes.BAD_REQUEST, err.message);
-  }
+  return token;
 };
 
 module.exports = createUser;
