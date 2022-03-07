@@ -8,11 +8,6 @@ import * as S from './styles';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
-  const [update, setUpdate] = useState(false);
-
-  const socket = io('http://localhost:3001');
-
-  socket.on('statusUpdated', () => setUpdate((prev) => !prev));
 
   useEffect(() => {
     const getSalesAsync = async () => {
@@ -21,7 +16,13 @@ function Orders() {
     };
 
     getSalesAsync();
-  }, [update]);
+
+    const newSocket = io('http://localhost:3001');
+
+    newSocket.on('connect', () => console.log('socket connected'));
+    newSocket.on('statusUpdated', async () => getSalesAsync());
+    return () => newSocket.close();
+  }, []);
 
   const orderIdLength = 4;
 
