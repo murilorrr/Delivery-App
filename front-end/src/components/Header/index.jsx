@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import * as S from './styles';
+import './header.css';
 
 function Header() {
   const [user, setUser] = useState('');
@@ -24,39 +26,48 @@ function Header() {
   };
 
   return (
-    <header>
-      <nav>
+    <S.Header>
+      <S.Nav>
         {
           user.role === 'customer' && (
-            <Link
-              to="/customer/products"
-              data-testid="customer_products__element-navbar-link-products"
-            >
-              Produtos
-            </Link>
+            <S.Span>
+              <Link
+                to="/customer/products"
+                data-testid="customer_products__element-navbar-link-products"
+              >
+                Produtos
+              </Link>
+            </S.Span>
           )
         }
-        <Link
-          to={ ordersLink.to }
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          { ordersLink.name }
-        </Link>
+        <S.Span>
+          <Link
+            to={ ordersLink.to }
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            { ordersLink.name }
+          </Link>
+        </S.Span>
+        <S.Span>
+          <span
+            data-testid="customer_products__element-navbar-user-full-name"
+          >
+            { user.name }
+          </span>
+        </S.Span>
 
-        <span
-          data-testid="customer_products__element-navbar-user-full-name"
-        >
-          { user.name }
-        </span>
-        <button
-          type="button"
-          onClick={ logOut }
-          data-testid="customer_products__element-navbar-link-logout"
-        >
-          Sair
-        </button>
-      </nav>
-    </header>
+        <S.Span>
+          <Link
+            to="/"
+            onClick={ logOut }
+            data-testid="customer_products__element-navbar-link-logout"
+          >
+            Sair
+          </Link>
+        </S.Span>
+
+      </S.Nav>
+    </S.Header>
   );
 }
 
