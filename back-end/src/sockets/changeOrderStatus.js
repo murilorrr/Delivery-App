@@ -1,7 +1,13 @@
 const updateSaleStatus = require('../services/sales/updateSaleStatus');
 
-module.exports = async (io) => {
+let count = 0;
+
+module.exports = (io) => {
   io.on('connection', (socket) => {
+    count += 1;
+    console.log(`conectado ${count} vezes`);
+    console.log(`com id: ${socket.id || io.id}`);
+
     socket.on('updateStatus', async ({ saleId, status }) => {
       try {
         await updateSaleStatus({ saleId, status });
