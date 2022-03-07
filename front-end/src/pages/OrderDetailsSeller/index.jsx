@@ -7,11 +7,12 @@ import OrderDetailsTable from '../../components/OrderDetailsSeller';
 import getSaleById from '../../fetchs/saleEndpoints/getSaleById';
 
 const STATUS = 'seller_order_details__element-order-details-label-delivery-status';
+const DATE = 'seller_order_details__element-order-details-label-order-date';
 
 function OrderDetailsSeller() {
   const { orderId } = useParams();
   const [order, setOrder] = useState({
-    id: Number(),
+    id: 0,
     totalPrice: String(),
     deliveryAddress: String(),
     deliveryNumber: String(),
@@ -60,46 +61,52 @@ function OrderDetailsSeller() {
     <>
       <Header />
       <main>
-        <div>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-id"
-          >
-            { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
-          </span>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-date"
-          >
-            { moment(order.saleDate).format('DD/MM/YYYY') }
-          </span>
-          <span
-            data-testid={ STATUS }
-          >
-            { order.status }
-          </span>
-          <button
-            type="button"
-            disabled={ !order?.status.includes('Pendente') }
-            onClick={ () => changeStatus('Preparando') }
-            data-testid="seller_order_details__button-preparing-check"
-          >
-            PREPARAR PEDIDO
-          </button>
-          <button
-            type="button"
-            disabled={ !order?.status.includes('Preparando') }
-            onClick={ () => changeStatus('Em Trânsito') }
-            data-testid="seller_order_details__button-dispatch-check"
-          >
-            SAIU PARA ENTREGA
-          </button>
-        </div>
+        {
+          order.id && (
+            <>
+              <div>
+                <span
+                  data-testid="seller_order_details__element-order-details-label-order-id"
+                >
+                  { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
+                </span>
+                <span
+                  data-testid={ DATE }
+                >
+                  { moment(order.saleDate).format('DD/MM/YYYY') }
+                </span>
+                <span
+                  data-testid={ STATUS }
+                >
+                  { order.status }
+                </span>
+                <button
+                  type="button"
+                  disabled={ !order.status.includes('Pendente') }
+                  onClick={ () => changeStatus('Preparando') }
+                  data-testid="seller_order_details__button-preparing-check"
+                >
+                  PREPARAR PEDIDO
+                </button>
+                <button
+                  type="button"
+                  disabled={ !order.status.includes('Preparando') }
+                  onClick={ () => changeStatus('Em Trânsito') }
+                  data-testid="seller_order_details__button-dispatch-check"
+                >
+                  SAIU PARA ENTREGA
+                </button>
+              </div>
 
-        <OrderDetailsTable products={ order.products } />
+              <OrderDetailsTable products={ order.products } />
 
-        <div data-testid="seller_order_details__element-order-total-price">
-          { Number(order.totalPrice)
-            .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-        </div>
+              <div data-testid="seller_order_details__element-order-total-price">
+                { Number(order.totalPrice)
+                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+              </div>
+            </>
+          )
+        }
       </main>
     </>
   );
