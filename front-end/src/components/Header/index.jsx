@@ -48,13 +48,13 @@ function Header() {
         >
           { user.name }
         </span>
-        <Link
-          to="/"
+        <button
+          type="button"
           onClick={ logOut }
           data-testid="customer_products__element-navbar-link-logout"
         >
           Sair
-        </Link>
+        </button>
       </nav>
     </header>
   );
