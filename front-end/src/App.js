@@ -1,10 +1,9 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import {
   Checkout,
   Login,
   Register,
-  Home,
   OrderDetails,
   Products,
   AdminPage,
@@ -20,7 +19,9 @@ function App() {
     <CartContextProvider>
       <AdminUsersProvider>
         <Switch>
-          <Route exact path="/" component={ Home } />
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
           <Route exact path="/customer/products" component={ Products } />
@@ -29,6 +30,9 @@ function App() {
           <Route exact path="/customer/orders/:orderId" component={ OrderDetails } />
           <Route exact path="/seller/orders" component={ Sellers } />
           <Route exact path="/customer/orders" component={ Orders } />
+          <Route exact path="/*">
+            <Redirect to="/notFound" />
+          </Route>
           {/* <Route exact path="/" component={  } /> */}
         </Switch>
       </AdminUsersProvider>

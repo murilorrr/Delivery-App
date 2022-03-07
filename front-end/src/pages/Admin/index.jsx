@@ -5,7 +5,7 @@ import FormCreateAnyUser from '../../components/forms/CreateAnyUser';
 import UserList from '../../components/lists/UserList';
 
 export default function Home() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user')) || { name: 'trybeAdmin' };
 
   return (
     <div>
