@@ -7,3 +7,4 @@ export { default as AdminPage } from './Admin';
 export { default as Products } from './Products';
 export { default as Checkout } from './Checkout';
 export { default as Sellers } from './Sellers';
+export { default as OrderDetailsSeller } from './OrderDetailsSeller';
