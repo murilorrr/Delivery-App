@@ -1,15 +1,11 @@
 import api from '../api';
 
-async function getAllSales(token) {
+async function getAllSalesFromUser() {
   const sales = await api
-    .get('/sales', {
-      headers: {
-        Authorization: token,
-      },
-    })
+    .get('/seller/orders')
     .then((response) => (response.data))
     .catch((err) => ({ error: err.response.data.message }));
   return sales;
 }
 
-export default getAllSales;
+export default getAllSalesFromUser;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import {
+  Checkout,
   Login,
   Register,
   Home,
@@ -8,6 +9,8 @@ import {
   Products,
   AdminPage,
   Orders,
+  Sellers,
+  OrderDetailsSeller,
 } from './pages';
 
 import CartContextProvider from './contexts/cartContext';
@@ -23,8 +26,11 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <Route exact path="/customer/products" component={ Products } />
           <Route exact path="/admin/manage" component={ AdminPage } />
+          <Route exact path="/customer/checkout" component={ Checkout } />
           <Route exact path="/customer/orders/:orderId" component={ OrderDetails } />
-          <Route path="/customer/orders" component={ Orders } />
+          <Route exact path="/seller/orders/:id" component={ OrderDetailsSeller } />
+          <Route exact path="/seller/orders" component={ Sellers } />
+          <Route exact path="/customer/orders" component={ Orders } />
           {/* <Route exact path="/" component={  } /> */}
         </Switch>
       </AdminUsersProvider>

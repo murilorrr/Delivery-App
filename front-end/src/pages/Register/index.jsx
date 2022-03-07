@@ -5,6 +5,9 @@ import { createCustomer } from '../../fetchs';
 import * as S from './styles';
 
 const twoSeconds = 2000;
+const nameId = 'name';
+const emailId = 'email';
+const passwordId = 'password';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -53,48 +56,56 @@ export default function Register() {
   };
 
   return (
-    <div>
+    <S.Body>
       <S.Form onSubmit={ handleSubmit }>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          value={ name }
-          data-testid="common_register__input-name"
-          onChange={ ({ target }) => setName(target.value) }
-        />
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={ email }
-          data-testid="common_register__input-email"
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={ password }
-          data-testid="common_register__input-password"
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
-        <button
+        <S.Label htmlFor={ nameId }>
+          Name
+          <S.Input
+            type="text"
+            name="name"
+            id={ nameId }
+            value={ name }
+            data-testid="common_register__input-name"
+            onChange={ ({ target }) => setName(target.value) }
+          />
+        </S.Label>
+        <S.Label htmlFor={ emailId }>
+          Email
+          <S.Input
+            type="email"
+            name="email"
+            id="email"
+            value={ email }
+            data-testid="common_register__input-email"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+        </S.Label>
+        <S.Label htmlFor={ passwordId }>
+          Password
+          <S.Input
+            type="password"
+            name="password"
+            id={ passwordId }
+            value={ password }
+            data-testid="common_register__input-password"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+        </S.Label>
+        <S.Button
           type="submit"
           data-testid="common_register__button-register"
           disabled={ disableButton }
         >
           Cadastrar
-        </button>
+        </S.Button>
 
         <S.ErrorMessage
           data-testid="common_register__element-invalid_register"
-          className="error"
-          visible={ error === '' }
+          className={ error !== '' ? 'error' : '' }
         >
           {error}
         </S.ErrorMessage>
       </S.Form>
-    </div>
+    </S.Body>
   );
 }
