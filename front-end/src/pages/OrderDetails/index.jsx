@@ -38,7 +38,6 @@ function OrderDetails() {
   useEffect(() => {
     const fetchData = async () => {
       const orderData = await getSaleById(orderId);
-      console.log(orderData);
       setOrder(orderData);
     };
     fetchData();
