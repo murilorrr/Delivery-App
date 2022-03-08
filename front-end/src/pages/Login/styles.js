@@ -49,7 +49,7 @@ font-family: Roboto;
 font-style: normal;
 font-size: 28px;
 line-height: 100%;
-align: center;
+text-align: center;
 vertical-align: center;
 `;
 

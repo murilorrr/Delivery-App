@@ -1,6 +1,7 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { io } from 'socket.io-client';
 import Header from '../../components/Header';
 import { getAllSalesFromUser } from '../../fetchs';
 
@@ -20,6 +21,12 @@ function SellerOrders() {
       }
     };
     fetchSeller();
+
+    const newSocket = io('http://localhost:3001');
+
+    newSocket.on('connect', () => console.log('socket connected'));
+    newSocket.on('statusUpdated', async () => fetchSeller());
+    return () => newSocket.close();
   }, [history]);
 
   return (
