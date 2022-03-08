@@ -33,9 +33,11 @@ body, input, textarea, button {
 }
 
 button {
-  cursor: pointer;
   border: none;
   outline: none;
+  &:not(:disabled) {
+    cursor: pointer;
+  }
 }
 
 h1 {
