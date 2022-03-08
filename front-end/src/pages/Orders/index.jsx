@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { io } from 'socket.io-client';
 import Header from '../../components/Header';
 import getAllSales from '../../fetchs/saleEndpoints/getAllSales';
 
@@ -15,6 +16,12 @@ function Orders() {
     };
 
     getSalesAsync();
+
+    const newSocket = io('http://localhost:3001');
+
+    newSocket.on('connect', () => console.log('socket connected'));
+    newSocket.on('statusUpdated', async () => getSalesAsync());
+    return () => newSocket.close();
   }, []);
 
   const orderIdLength = 4;
