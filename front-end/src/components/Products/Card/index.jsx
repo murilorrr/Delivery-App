@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useCart from '../../../hooks/useCart';
-import CardProduct, { Price, Description, Button, Quantity, Img } from './styles';
+import CardProduct, { Price, Description, Button, Quantity, Img, Input } from './styles';
 
 function ProductsCard({ product }) {
   const { id, name, url_image: urlImage, price } = product;
@@ -36,9 +36,6 @@ function ProductsCard({ product }) {
         width={ 130 }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
-      <Price data-testid={ `customer_products__element-card-price-${id}` }>
-        { Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-      </Price>
 
       <Description>
 
@@ -46,31 +43,36 @@ function ProductsCard({ product }) {
           { name }
         </div>
 
-        <Quantity>
-          <Button
-            type="button"
-            onClick={ removeQuantity }
-            data-testid={ `customer_products__button-card-rm-item-${id}` }
-          >
-            -
-          </Button>
-          <input
-            type="number"
-            name="quantity"
-            id="quantity"
-            value={ quantity }
-            data-testid={ `customer_products__input-card-quantity-${id}` }
-            onChange={ ({ target }) => handleChange(Number(target.value)) }
-          />
-          <Button
-            type="button"
-            data-testid={ `customer_products__button-card-add-item-${id}` }
-            onClick={ addQuantity }
-          >
-            +
-          </Button>
-        </Quantity>
       </Description>
+
+      <Quantity>
+        <Button
+          type="button"
+          onClick={ removeQuantity }
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
+        >
+          -
+        </Button>
+        <Input
+          type="number"
+          name="quantity"
+          id="quantity"
+          value={ quantity }
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          onChange={ ({ target }) => handleChange(Number(target.value)) }
+        />
+        <Button
+          type="button"
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+          onClick={ addQuantity }
+        >
+          +
+        </Button>
+      </Quantity>
+
+      <Price data-testid={ `customer_products__element-card-price-${id}` }>
+        { Number(price).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+      </Price>
 
     </CardProduct>
   );

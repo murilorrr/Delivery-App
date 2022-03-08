@@ -21,7 +21,7 @@ function Products() {
   }, []);
 
   return (
-    <>
+    <S.ProductsPage>
       <Header />
       <S.Main>
         {
@@ -46,7 +46,7 @@ function Products() {
           }
         </span>
       </S.ButtonGoToCart>
-    </>
+    </S.ProductsPage>
   );
 }
 
