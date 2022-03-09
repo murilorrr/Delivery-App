@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { getByEmail, loginUser } from '../../fetchs';
 import * as S from './styles';
@@ -8,12 +8,16 @@ const twoSeconds = 2000;
 
 const emailId = 'email';
 const passwordId = 'password';
+let timer;
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const [disableButton, setDisableButton] = useState(true);
+  const [reminder, setReminder] = useState(false);
 
   const history = useHistory();
 
@@ -30,6 +34,9 @@ export default function Login() {
     if (validateEmail() && validatePassword()) {
       setDisableButton(false);
     } else setDisableButton(true);
+
+    if (email.length) setEmailError(!validateEmail());
+    if (password.length) setPasswordError(!validatePassword());
   }, [email, password]);
 
   const redirectUserByRole = (role) => {
@@ -52,73 +59,92 @@ export default function Login() {
 
     const { error: message, token } = await loginUser({ email, password });
 
-    const { name, role } = await getByEmail(email);
-
-    const userInfo = { name, email, role };
-
-    const user = { ...userInfo, token };
-
     if (token) {
+      const { name, role } = await getByEmail(email);
+      const userInfo = { name, email, role };
+      const user = { ...userInfo, token };
+
       localStorage.setItem('user', JSON.stringify(user));
       // redirect user by role
       redirectUserByRole(role);
     } else {
       setError(message);
-      setTimeout(() => setError(''), twoSeconds);
+      timer = setTimeout(() => setError(''), twoSeconds);
     }
   };
 
   return (
-    <S.Body>
+    <S.Main>
+      <h1>Vamos às bebidas!</h1>
+      <h2>Faça login para continuar</h2>
       <S.Form onSubmit={ handleSubmit }>
-        <S.Label htmlFor={ emailId }>
-          Email
-          <S.Input
+        <label htmlFor={ emailId } className={ emailError ? 'error' : '' }>
+          <img src="/images/envelope-solid.svg" alt="e-mail" />
+          <input
             type="email"
             name="email"
             id={ emailId }
             value={ email }
-            placeholder="Alguem@gmail.com"
+            placeholder="E-mail"
             data-testid="common_login__input-email"
             onChange={ ({ target }) => setEmail(target.value) }
           />
-        </S.Label>
-        <S.Label htmlFor={ passwordId }>
-          Password
-          <S.Input
+        </label>
+        <label htmlFor={ passwordId } className={ passwordError ? 'error' : '' }>
+          <img src="/images/lock-solid.svg" alt="senha" />
+          <input
             type="password"
             name="password"
-            placeholder="******"
+            placeholder="Senha"
             id={ passwordId }
             value={ password }
             data-testid="common_login__input-password"
             onChange={ ({ target }) => setPassword(target.value) }
           />
-        </S.Label>
+          <img src="/images/eye-slash-solid.svg" alt="mostrar senha" />
+        </label>
+
+        <S.Reminder>
+          <p>Lembrar de mim na próxima vez</p>
+          <S.Switch
+            height={ 16 }
+            width={ 40 }
+            checked={ reminder }
+            onChange={ () => setReminder((prev) => !prev) }
+            handleDiameter={ 16 }
+            boxShadow="none"
+          />
+        </S.Reminder>
         <S.Button
           type="submit"
           data-testid="common_login__button-login"
           disabled={ disableButton }
         >
-          Login
+          Entrar
         </S.Button>
 
-        <S.Button
-          type="button"
-          onClick={ () => history.push('/register') }
-          data-testid="common_login__button-register"
-        >
-          Cadastrar
-        </S.Button>
+        <S.Register>
+          <span>Não tem uma conta? </span>
+          <Link
+            to="/register"
+            data-testid="common_login__button-register"
+          >
+            Cadastre-se
+          </Link>
+        </S.Register>
 
         <S.ErrorMessage
           data-testid="common_login__element-invalid-email"
           className={ error !== '' ? 'error' : '' }
+          onClick={ () => {
+            clearTimeout(timer);
+            setError('');
+          } }
         >
-          {error}
+          <div>{error}</div>
         </S.ErrorMessage>
       </S.Form>
 
-    </S.Body>
+    </S.Main>
   );
 }
