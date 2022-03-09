@@ -3,7 +3,6 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import { Login } from "../../pages";
-import '@testing-library/jest-dom';
 
 const datatestids = {
   email: 'common_login__input-email',
@@ -27,7 +26,7 @@ describe("Teste da Página de Login", () => {
 
     const button = screen.getByTestId(datatestids.login);
     expect(button).toBeInTheDocument();
-    expect(button).toHaveProperty('disabled', true)
+    expect(button).toHaveProperty('disabled', true);
   });
 
   test('Testa se todos os data-testid estão presentes na tela', () => {
