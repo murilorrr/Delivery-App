@@ -15,11 +15,11 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [disableButton, setDisableButton] = useState(true);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [nameError, setNameError] = useState(false);
   const [reminder, setReminder] = useState(false);
+  const [showPassword, setShowPassword] = useState('password');
 
   const history = useHistory();
 
@@ -37,10 +37,6 @@ export default function Register() {
       const minPasswordLength = 6;
       return password.length >= minPasswordLength;
     };
-
-    if (validateEmail() && validateName() && validatePassword()) {
-      setDisableButton(false);
-    } else setDisableButton(true);
 
     setNameError(!validateName() && name !== '');
     setEmailError(!validateEmail() && email !== '');
@@ -94,7 +90,7 @@ export default function Register() {
         <label htmlFor={ passwordId } className={ passwordError ? 'error' : '' }>
           <img src="/images/lock-solid.svg" alt="senha" />
           <input
-            type="password"
+            type={ showPassword }
             name="password"
             placeholder="Senha"
             id={ passwordId }
@@ -102,7 +98,19 @@ export default function Register() {
             data-testid="common_register__input-password"
             onChange={ ({ target }) => setPassword(target.value) }
           />
-          <img src="/images/eye-slash-solid.svg" alt="mostrar senha" />
+          <button
+            type="button"
+            onClick={ () => setShowPassword((prev) => {
+              if (prev === 'password') return 'text';
+              return 'password';
+            }) }
+          >
+            {
+              showPassword === 'password'
+                ? <img src="/images/eye-slash-solid.svg" alt="mostrar senha" />
+                : <img src="/images/eye-solid.svg" alt="esconder senha" />
+            }
+          </button>
         </label>
 
         <S.Reminder>
@@ -120,7 +128,8 @@ export default function Register() {
         <S.Button
           type="submit"
           data-testid="common_register__button-register"
-          disabled={ disableButton }
+          disabled={ passwordError || emailError || nameError
+            || !email || !password || !name }
         >
           Cadastrar
         </S.Button>

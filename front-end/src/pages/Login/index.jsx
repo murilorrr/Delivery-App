@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 import { getByEmail, loginUser } from '../../fetchs';
@@ -10,49 +10,51 @@ const emailId = 'email';
 const passwordId = 'password';
 let timer;
 
+const verifyUserLogged = (redirectUserByRole) => {
+  const isLogged = localStorage.getItem('user');
+  if (isLogged) {
+    const user = JSON.parse(isLogged);
+    redirectUserByRole(user.role);
+  }
+};
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [disableButton, setDisableButton] = useState(true);
   const [reminder, setReminder] = useState(false);
+  const [showPassword, setShowPassword] = useState('password');
 
   const history = useHistory();
 
   useEffect(() => {
     const validateEmail = () => {
       const emailVerification = /\S+@\S+\.\S+/;
-      return emailVerification.test(email);
+      const isValid = emailVerification.test(email);
+      return isValid;
     };
     const validatePassword = () => {
       const minPasswordLength = 6;
-      return password.length >= minPasswordLength;
+      const isValid = password.length >= minPasswordLength;
+      return isValid;
     };
 
-    if (validateEmail() && validatePassword()) {
-      setDisableButton(false);
-    } else setDisableButton(true);
-
-    if (email.length) setEmailError(!validateEmail());
-    if (password.length) setPasswordError(!validatePassword());
+    setEmailError(!validateEmail() && email !== '');
+    setPasswordError(!validatePassword() && password !== '');
   }, [email, password]);
 
-  const redirectUserByRole = (role) => {
+  const redirectUserByRole = useCallback((role) => {
     const page = {
       customer: '/customer/products',
       seller: '/seller/orders',
       administrator: '/admin/manage',
     };
     return history.push(page[role]);
-  };
+  }, [history]);
 
-  const isLogged = localStorage.getItem('user');
-  if (isLogged) {
-    const user = JSON.parse(isLogged);
-    redirectUserByRole(user.role);
-  }
+  useEffect(() => verifyUserLogged(redirectUserByRole), [redirectUserByRole]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,7 +95,7 @@ export default function Login() {
         <label htmlFor={ passwordId } className={ passwordError ? 'error' : '' }>
           <img src="/images/lock-solid.svg" alt="senha" />
           <input
-            type="password"
+            type={ showPassword }
             name="password"
             placeholder="Senha"
             id={ passwordId }
@@ -101,7 +103,19 @@ export default function Login() {
             data-testid="common_login__input-password"
             onChange={ ({ target }) => setPassword(target.value) }
           />
-          <img src="/images/eye-slash-solid.svg" alt="mostrar senha" />
+          <button
+            type="button"
+            onClick={ () => setShowPassword((prev) => {
+              if (prev === 'password') return 'text';
+              return 'password';
+            }) }
+          >
+            {
+              showPassword === 'password'
+                ? <img src="/images/eye-slash-solid.svg" alt="mostrar senha" />
+                : <img src="/images/eye-solid.svg" alt="esconder senha" />
+            }
+          </button>
         </label>
 
         <S.Reminder>
@@ -118,7 +132,7 @@ export default function Login() {
         <S.Button
           type="submit"
           data-testid="common_login__button-login"
-          disabled={ disableButton }
+          disabled={ passwordError || emailError || !email || !password }
         >
           Entrar
         </S.Button>
