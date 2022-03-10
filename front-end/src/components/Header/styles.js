@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const Header = styled.header`
 display: flex;
+justify-content: space-evenly;
 height: 3rem;
-max-width: 100vw;
+width: 100vw;
 margin-bottom: 0.5rem;
 /* background-color: var(--silk); */
 `;
@@ -14,21 +15,8 @@ display: flex;
 
 export const Span = styled.span`
 display: flex;
-color: black;
-/* padding: 0.5rem; */
+color: var(--crimson);
+padding: 0.5rem 1.5rem;
 margin: 0.5rem;
 text-align: center;
-
-  &:nth-child(1) {
-    
-  }
-  &:nth-child(2) {
-    
-  }
-  &:nth-child(3) {
-    
-  }
-  &:nth-child(4) {
-    
-  }
 `;

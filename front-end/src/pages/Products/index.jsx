@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import Header from '../../components/Header';
 import ProductsCard from '../../components/Products/Card';
 import getAllProducts from '../../fetchs/productsEndpoints/getAllProducts';
@@ -35,7 +37,7 @@ function Products() {
         data-testid="customer_products__button-cart"
         disabled={ !cartTotal }
       >
-        Ver carrinho:
+        <FontAwesomeIcon icon={ faCartShopping } />
         { ' ' }
         <span
           data-testid="customer_products__checkout-bottom-value"

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const ProductsPage = styled.div`
+background-color: var(--gray-100);
 display: flex;
 flex-direction: column;
 align-items: center;
 margin: 0;
-padding: 1rem;
 box-sizing: border-box;
 max-width: 100%;
 `;
@@ -27,6 +27,10 @@ display: block;
 padding: 1rem;
 margin: 0.5rem 0.5rem;
 right: 2rem;
+
+&:disabled {
+  opacity: 0.5;
+}
 
 span {
   justify-content: center;

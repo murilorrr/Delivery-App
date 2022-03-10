@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBeerMugEmpty,
+  faClipboardList,
+  faArrowRightFromBracket,
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import * as S from './styles';
-import './header.css';
 
 function Header() {
   const [user, setUser] = useState('');
@@ -35,7 +41,7 @@ function Header() {
                 to="/customer/products"
                 data-testid="customer_products__element-navbar-link-products"
               >
-                Produtos
+                <FontAwesomeIcon icon={ faBeerMugEmpty } />
               </Link>
             </S.Span>
           )
@@ -45,14 +51,16 @@ function Header() {
             to={ ordersLink.to }
             data-testid="customer_products__element-navbar-link-orders"
           >
-            { ordersLink.name }
+            {/* { ordersLink.name } */}
+            <FontAwesomeIcon icon={ faClipboardList } />
           </Link>
         </S.Span>
         <S.Span>
           <span
             data-testid="customer_products__element-navbar-user-full-name"
           >
-            { user.name }
+            {/* { user.name } */}
+            <FontAwesomeIcon icon={ faUser } />
           </span>
         </S.Span>
 
@@ -62,7 +70,7 @@ function Header() {
             onClick={ logOut }
             data-testid="customer_products__element-navbar-link-logout"
           >
-            Sair
+            <FontAwesomeIcon icon={ faArrowRightFromBracket } />
           </Link>
         </S.Span>
 

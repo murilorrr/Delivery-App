@@ -27,7 +27,7 @@ function Orders() {
   const orderIdLength = 4;
 
   return (
-    <>
+    <S.OrderPage>
       <Header />
       <S.Main>
         {
@@ -41,20 +41,18 @@ function Orders() {
               >
                 { order.status }
               </span>
-              <div>
-                <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
-                  { moment(order.saleDate).format('DD/MM/YYYY') }
-                </span>
-                <span data-testid={ `customer_orders__element-card-price-${order.id}` }>
-                  { Number(order.totalPrice)
-                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-                </span>
-              </div>
+              <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
+                { moment(order.saleDate).format('DD/MM/YYYY') }
+              </span>
+              <span data-testid={ `customer_orders__element-card-price-${order.id}` }>
+                { Number(order.totalPrice)
+                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+              </span>
             </S.OrderCard>
           ))
         }
       </S.Main>
-    </>
+    </S.OrderPage>
   );
 }
 
