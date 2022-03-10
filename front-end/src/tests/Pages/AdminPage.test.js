@@ -161,4 +161,72 @@ describe("Teste da Página de Admin", () => {
     expect(registerButton).toHaveProperty('disabled', false);
 
   });
+
+  test('Espera-se que os campos sejam limpos apos o click de adicionar usuário', async () => {
+
+    render(
+      <Router>
+        <AdminUsersProvider>
+          <AdminPage />
+        </AdminUsersProvider>
+      </Router>
+    );
+
+    const emailInput = screen.getByTestId(datatestids.form.email);
+    const nameInput = screen.getByTestId(datatestids.form.name);
+    const passwordInput = screen.getByTestId(datatestids.form.password);
+    const roleSelect = screen.getByTestId(datatestids.form.role);
+    const registerButton = screen.getByTestId(datatestids.form.createButton);
+
+    expect(registerButton).toBeInTheDocument();
+
+    userEvent.type(emailInput, mockUsers[0].randomEmail);
+    userEvent.type(nameInput, mockUsers[0].randomName);
+    userEvent.type(passwordInput, mockUsers[0].randomPassword);
+    userEvent.selectOptions(roleSelect, mockUsers[0].role);
+
+    userEvent.click(registerButton);
+
+    await waitFor(() => {
+      screen.getAllByTestId('userCard');
+    });
+
+    expect(emailInput).toHaveTextContent('');
+    expect(nameInput).toHaveTextContent('');
+    expect(passwordInput).toHaveTextContent('');
+    expect(roleSelect).toHaveTextContent('customer');
+
+  });
+
+  test('Espera-se que após os usuários serem criados eles estejam na lista de Users', async () => {
+
+    render(
+      <Router>
+        <AdminUsersProvider>
+          <AdminPage />
+        </AdminUsersProvider>
+      </Router>
+    );
+
+    const emailInput = screen.getByTestId(datatestids.form.email);
+    const nameInput = screen.getByTestId(datatestids.form.name);
+    const passwordInput = screen.getByTestId(datatestids.form.password);
+    const roleSelect = screen.getByTestId(datatestids.form.role);
+    const registerButton = screen.getByTestId(datatestids.form.createButton);
+
+    expect(registerButton).toBeInTheDocument();
+    
+    mockUsers.map(async (user) => {
+      console.log(`rodando com user ${user.randomName}`);
+      userEvent.type(emailInput, user.randomEmail);
+      userEvent.type(nameInput, user.randomName);
+      userEvent.type(passwordInput, user.randomPassword);
+      userEvent.selectOptions(roleSelect, user.role);
+      
+      userEvent.click(registerButton);
+      await screen.findByText(user.randomEmail);
+      await screen.findByText(user.randomName);
+    });
+  });
+
 });
