@@ -1,7 +1,7 @@
 import React from "react";
 
-import { render, screen } from "@testing-library/react";
-import userEvent from '@testing-library/user-event';
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from '@testing-library/user-event'
 import { Login } from "../../pages";
 
 const datatestids = {
@@ -9,7 +9,7 @@ const datatestids = {
   password: 'common_login__input-password',
   login: 'common_login__button-login',
   register: 'common_login__button-register',
-  warning: 'common_login__element-invalid-email' 
+  warning: 'common_login__element-invalid-email'
 };
 
 const customerUser = {
@@ -56,9 +56,9 @@ describe("Teste da Página de Login", () => {
 
   });
 
-  test('Testa se aparece um wanning quando não é possivel logar', () => {
+  test('Testa se aparece um wanning quando não é possivel logar', async () => {
     render(
-        <Login />
+      <Login />
     );
 
     const emailInput = screen.getByTestId(datatestids.email);
@@ -66,12 +66,21 @@ describe("Teste da Página de Login", () => {
     const loginButton = screen.getByTestId(datatestids.login);
     const warnning = screen.getByTestId(datatestids.warning);
 
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    expect(loginButton).toBeInTheDocument();
+    expect(warnning).toBeInTheDocument();
+
+    expect(loginButton).toHaveProperty('disabled', true);
+
     userEvent.type(emailInput, `${customerUser.email}1`);
     userEvent.type(passwordInput, customerUser.password);
 
     expect(loginButton).toHaveProperty('disabled', false);
-    expect(warnning).toBeInTheDocument();
-    // expect(warnning.innerHTML).toMatch('invalid'); precisa mockar a requisição
+    userEvent.dblClick(loginButton);
+    await waitFor(() => expect(warnning).toHaveClass('error'));
+   
+    expect(warnning.innerHTML).toMatch("Invalid fields")
 
   });
 
