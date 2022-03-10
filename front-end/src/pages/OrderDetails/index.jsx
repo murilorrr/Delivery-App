@@ -44,7 +44,7 @@ function OrderDetails() {
 
     const newSocket = io('http://localhost:3001');
 
-    newSocket.on('connect', () => console.log('socket connected'));
+    newSocket.on('connect');
     newSocket.on('statusUpdated', ({ status }) => {
       setOrder((prev) => ({ ...prev, status }));
     });

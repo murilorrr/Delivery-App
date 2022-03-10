@@ -19,7 +19,7 @@ function Orders() {
 
     const newSocket = io('http://localhost:3001');
 
-    newSocket.on('connect', () => console.log('socket connected'));
+    newSocket.on('connect');
     newSocket.on('statusUpdated', async () => getSalesAsync());
     return () => newSocket.close();
   }, []);
