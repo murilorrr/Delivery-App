@@ -10,7 +10,7 @@ import App from "../App";
 
 import "@testing-library/jest-dom";
 
-describe.skip("1 - Teste de Rotas", () => {
+describe("1 - Teste de Rotas", () => {
   let history;
 
   beforeEach(() => {
