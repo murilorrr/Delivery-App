@@ -74,6 +74,36 @@ describe("Teste da Página de Admin", () => {
     localStorage.setItem("user", JSON.stringify(adminUser));
   });
 
+  test('Testa se Exitem todos os data-testid requisitados', async () => {
+
+    render(
+      <Router>
+        <AdminUsersProvider>
+          <AdminPage />
+        </AdminUsersProvider>
+      </Router>
+    );
+
+    await waitFor(() => {
+      const userCards = screen.getAllByTestId('userCard');
+      userCards.map((_user, index) => {
+        Object.values(datatestids.listUsers).map((value) => {
+          if (value === "admin_manage__element-invalid-exclude") return;
+          const SUT = screen.getByTestId(`${value}${index + 1}`);
+          expect(SUT).toBeInTheDocument();
+        });
+      });
+      const warnningExclude = screen.getAllByTestId("admin_manage__element-invalid-exclude");
+      expect(warnningExclude.length).toEqual(userCards.length);
+    });
+
+      Object.values(datatestids.form).map((value) => {
+        const SUT = screen.getByTestId(value);
+        expect(SUT).toBeInTheDocument();
+      });
+
+  });
+
   test("Testa se o botão da página esta desabilitado", () => {
     render(
       <Router>

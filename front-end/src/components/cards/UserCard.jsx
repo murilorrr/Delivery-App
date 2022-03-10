@@ -25,7 +25,9 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
   index += 1;
 
   return (
-    <UserCardDiv>
+    <UserCardDiv
+      data-testid="userCard"
+    >
       <div data-testid={ `admin_manage__element-user-table-item-number-${index}` }>
         { index }
 
