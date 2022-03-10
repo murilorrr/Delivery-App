@@ -58,7 +58,4 @@ describe("Teste da Página de Register", () => {
     expect(registerButton).toHaveProperty('disabled', false);
 
   });
-
-  test.skip('not implemented', () => {});
-
 });

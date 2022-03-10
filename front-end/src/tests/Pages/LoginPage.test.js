@@ -84,6 +84,4 @@ describe("Teste da Página de Login", () => {
 
   });
 
-  test.skip('not implemented', () => {});
-
 });
