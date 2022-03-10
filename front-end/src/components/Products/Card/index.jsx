@@ -27,7 +27,7 @@ function ProductsCard({ product }) {
   };
 
   return (
-    <CardProduct>
+    <CardProduct data-testid="productCard">
 
       <Img
         src={ urlImage }
