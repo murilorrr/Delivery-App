@@ -15,6 +15,10 @@ export default function UserList() {
     };
 
     fetch();
+
+    return () => {
+      setUsersList([]);
+    };
   }, [setUsersList]);
 
   return (

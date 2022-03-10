@@ -21,7 +21,10 @@ function Orders() {
 
     newSocket.on('connect');
     newSocket.on('statusUpdated', async () => getSalesAsync());
-    return () => newSocket.close();
+    return () => {
+      setOrders([]);
+      newSocket.close();
+    };
   }, []);
 
   const orderIdLength = 4;

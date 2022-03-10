@@ -26,6 +26,10 @@ function Checkout() {
     };
 
     fetchSeller();
+
+    return () => {
+      setVendedores([]);
+    };
   }, [cart, history]);
 
   const submitOrder = async (event) => {
