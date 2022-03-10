@@ -97,11 +97,29 @@ describe("Teste da Página de Admin", () => {
       expect(warnningExclude.length).toEqual(userCards.length);
     });
 
-      Object.values(datatestids.form).map((value) => {
-        const SUT = screen.getByTestId(value);
-        expect(SUT).toBeInTheDocument();
-      });
+    Object.values(datatestids.form).map((value) => {
+      const SUT = screen.getByTestId(value);
+      expect(SUT).toBeInTheDocument();
+    });
+  });
 
+  test('Testa se existem os campos esperados para o Header', () => {
+
+    render(
+      <Router>
+        <AdminUsersProvider>
+          <AdminPage />
+        </AdminUsersProvider>
+      </Router>
+    )
+
+    const management = screen.getByText('GERENCIAR USUÁRIOS');
+    const userName = screen.getByText(adminUser.name);
+    const logout = screen.getByText('Sair');
+
+    expect(management).toBeInTheDocument();
+    expect(userName).toBeInTheDocument();
+    expect(logout).toBeInTheDocument();
   });
 
   test("Testa se o botão da página esta desabilitado", () => {
