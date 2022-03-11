@@ -1,13 +1,38 @@
 import styled from 'styled-components';
 
+export const ProductsPage = styled.div`
+background-color: var(--gray-100);
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 0;
+box-sizing: border-box;
+max-width: 100%;
+`;
+
 export const Main = styled.main`
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-margin: 5vw 7vw;
+display: column;
+margin: 0;
+padding: 0;
 `;
 
 export const ButtonGoToCart = styled.button`
-position: fixed;
-right: 2rem;
+/* position: fixed; */
+align-items: center;
+background-color: var(--crimson);
+border-radius: 5rem;
 bottom: 2rem;
+color: var(--linen);
+display: block;
+padding: 1rem;
+margin: 0.5rem 0.5rem;
+right: 2rem;
+
+&:disabled {
+  opacity: 0.5;
+}
+
+span {
+  justify-content: center;
+}
 `;
