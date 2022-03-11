@@ -36,7 +36,7 @@ const clickManyTimes = (button, times) => {
   }
 };
 
-describe.only("Teste da Página de Produtos", () => {
+describe("Teste da Página de Produtos", () => {
   beforeEach(() => {
     localStorage.setItem("user", JSON.stringify(localStorageUserMock));
   });
@@ -128,13 +128,16 @@ describe.only("Teste da Página de Produtos", () => {
     const cartButton = screen.getByTestId(datatestids.cartButton);
     const addButtom = screen.getByTestId(`${datatestids.card.addButtom}1`);
     const quantity = screen.getByTestId(`${datatestids.card.quantity}1`);
+    expect(cartButton).toHaveProperty('disabled', true);
 
     expect(quantity.value).toBe("0");
 
     clickManyTimes(addButtom, 1);
     expect(quantity.value).toBe("1");
 
-    // expect(cartButton).toHaveProperty('disabled', false);
-    
+    await waitFor(() => {
+      expect(cartButton).toHaveProperty('disabled', false);
+    });
+
   });
 });
