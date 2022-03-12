@@ -36,7 +36,7 @@ function OrderDetailsTable({ products }) {
                   `seller_order_details__element-order-table-quantity-${index}`
                 }
               >
-                { product.quantity }
+                { product.SalesProduct.quantity }
               </td>
               <td
                 data-testid={
