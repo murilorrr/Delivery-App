@@ -212,20 +212,28 @@ describe("Teste da Página de Admin", () => {
     const nameInput = screen.getByTestId(datatestids.form.name);
     const passwordInput = screen.getByTestId(datatestids.form.password);
     const roleSelect = screen.getByTestId(datatestids.form.role);
-    const registerButton = screen.getByTestId(datatestids.form.createButton);
 
-    expect(registerButton).toBeInTheDocument();
-    
-    mockUsers.map(async (user) => {
+    mockUsers.forEach(async (user) => {
       console.log(`rodando com user ${user.randomName}`);
       userEvent.type(emailInput, user.randomEmail);
       userEvent.type(nameInput, user.randomName);
       userEvent.type(passwordInput, user.randomPassword);
       userEvent.selectOptions(roleSelect, user.role);
       
-      userEvent.click(registerButton);
-      await screen.findByText(user.randomEmail);
-      await screen.findByText(user.randomName);
+      await waitFor(() => {
+        const registerButton = screen.getByTestId(datatestids.form.createButton);
+        expect(registerButton).toHaveProperty('disable', false);
+        expect(registerButton).toBeInTheDocument();
+        userEvent.click(registerButton);
+      });
+
+      await waitFor(() => {
+        const userEmail = screen.findByText(user.randomEmail);
+        const userName = screen.findByText(user.randomName);
+
+        expect(userEmail).toBeInTheDocument();
+        expect(userName).toBeInTheDocument();
+      });
     });
   });
 
