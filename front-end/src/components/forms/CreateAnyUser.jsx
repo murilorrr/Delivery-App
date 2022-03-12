@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { createAnyUser, getByEmail } from '../../fetchs';
 import * as S from '../../pages/Register/styles';
-import FormCreateAnyUser from './styles';
+import * as S from './styles';
 import { AdminUsersContext } from '../../contexts/adminContext';
 
 export default function CreateAnyUser() {
@@ -56,7 +56,7 @@ export default function CreateAnyUser() {
   }, [name, email, password]);
 
   return (
-    <FormCreateAnyUser onSubmit={ handleSubmit }>
+    <S.FormCreateAnyUser onSubmit={ handleSubmit }>
       <input
         data-testid="admin_manage__input-name"
         type="text"
@@ -110,6 +110,6 @@ export default function CreateAnyUser() {
       >
         {warning}
       </S.ErrorMessage>
-    </FormCreateAnyUser>
+    </S.FormCreateAnyUser>
   );
 }

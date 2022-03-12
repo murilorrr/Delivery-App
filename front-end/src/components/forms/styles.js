@@ -71,5 +71,3 @@ export const select = styled.select`
   padding: 0.25em 1em;
   font-size: 15px;
 `;
-
-export default FormCreateAnyUser;
