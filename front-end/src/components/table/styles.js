@@ -7,6 +7,7 @@ export const button = styled.button`
   margin: center;
   padding: 0.8rem;
   font-size: 10px;
+  width: 100%;
 `;
 
 export const div = styled.div`
@@ -30,11 +31,15 @@ font-size: 2rem;
 export const table = styled.table`
 background: var(--silk);
 color: black;
-font-size: 10px;
-display: box;
-justify-content: center;
-align-items: center;
-gap: 1rem;
+
+@media(max-width: 800px) {
+  font-size: 10px;
+  display: box;
+  justify-content: center;
+  align-items: center;
+}
+width: 100%;
+
 `;
 
 export const tbody = styled.tbody`
@@ -65,4 +70,7 @@ padding: 05px;
 `;
 
 export const tfoot = styled.tfoot`
+& tr:first-child {
+    background: var(--gray-100);
+  }
 `;

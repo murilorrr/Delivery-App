@@ -9,8 +9,5 @@ align-items: center;
 `;
 
 export const tableDiv = styled.div`
-display: flex;
 background: var(--grey50);
-justify-content: center;
-align-items: center;
 `;
