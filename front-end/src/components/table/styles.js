@@ -1,23 +1,15 @@
 import styled from 'styled-components';
 
 export const button = styled.button`
-  background: var(--gray-100);
-  width: 5,5rem;
-  height: 3em;
-  border-radius: 3px;
+  border-radius: 0.3rem;
   border: 2px solid var(--gray-100);
   color: black;
   margin: center;
-  padding: 0.25em;
+  padding: 0.8rem;
   font-size: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 `;
 
 export const div = styled.div`
-background: white;
 top: 0;
 padding: 1em;
 border-radius: 5px;
@@ -27,11 +19,12 @@ align-items: center;
 `;
 
 export const caption = styled.caption`
-background-color: var(--white);
 color: black;
-padding: 10px;
+place-content: center;
 display: inline-flex;
-margin-left: 9em;
+margin: 1rem 0rem;
+font-family: Roboto;
+font-size: 2rem;
 `;
 
 export const table = styled.table`
@@ -45,25 +38,21 @@ gap: 1rem;
 `;
 
 export const tbody = styled.tbody`
-background-color: var(--white);
 padding: 05px;
 
 `;
 
 export const thead = styled.thead`
-background-color: var(--white);
 padding: 05px;
 
 `;
 
 export const td = styled.td`
-background-color: var(--pink);
 padding: 05px;
 
 `;
 
 export const th = styled.th`
-background-color: var(--white);
 padding: 05px;
 
 // margin-left: 3px;
@@ -76,5 +65,4 @@ padding: 05px;
 `;
 
 export const tfoot = styled.tfoot`
-background-color: var(--white);
 `;

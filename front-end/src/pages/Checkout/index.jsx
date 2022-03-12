@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../../components/Header';
 import Table from '../../components/table';
 import FormsNewOrder from '../../components/forms/formNewOrder';
-import div from './styles';
+import * as S from './styles';
 
 function Checkout() {
   const history = useHistory();
@@ -17,12 +17,12 @@ function Checkout() {
 
   return (
     <div>
-      <div>
+      <S.div>
         <Header />
-      </div>
-      <div>
+      </S.div>
+      <S.tableDiv>
         <Table />
-      </div>
+      </S.tableDiv>
       <div>
         <FormsNewOrder />
       </div>
