@@ -17,7 +17,6 @@ padding: 0;
 `;
 
 export const ButtonGoToCart = styled.button`
-/* position: fixed; */
 align-items: center;
 background-color: var(--crimson);
 border-radius: 5rem;
