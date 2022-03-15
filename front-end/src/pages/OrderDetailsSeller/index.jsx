@@ -5,6 +5,7 @@ import { io } from 'socket.io-client';
 import Header from '../../components/Header';
 import OrderDetailsTable from '../../components/OrderDetailsSeller';
 import getSaleById from '../../fetchs/saleEndpoints/getSaleById';
+import * as S from './styles';
 
 const STATUS = 'seller_order_details__element-order-details-label-delivery-status';
 const DATE = 'seller_order_details__element-order-details-label-order-date';
@@ -58,12 +59,12 @@ function OrderDetailsSeller() {
   const orderIdLength = 4;
 
   return (
-    <>
+    <S.OrderDetailsSellerPage>
       <Header />
       <main>
         {
           order.id && (
-            <>
+            <S.OrderDetailsCard>
               <div>
                 <span
                   data-testid="seller_order_details__element-order-details-label-order-id"
@@ -104,11 +105,11 @@ function OrderDetailsSeller() {
                 { Number(order.totalPrice)
                   .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
               </div>
-            </>
+            </S.OrderDetailsCard>
           )
         }
       </main>
-    </>
+    </S.OrderDetailsSellerPage>
   );
 }
 
