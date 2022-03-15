@@ -1,9 +1,10 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import Header from '../../components/Header';
 import { getAllSalesFromUser } from '../../fetchs';
+import * as S from './styles';
 
 function SellerOrders() {
   const [pedidos, setPedidos] = useState([]);
@@ -30,13 +31,14 @@ function SellerOrders() {
   }, [history]);
 
   return (
-    <div>
+    <S.OrdersSellerPage>
       <Header />
       <div>
         { pedidos.length && pedidos.map((cardItem, index) => (
-          <Link
+          <S.OrderLink
             key={ index }
             to={ `/seller/orders/${cardItem.id}` }
+            orderStatus={ cardItem.status }
           >
             <ul>
               <li
@@ -44,7 +46,7 @@ function SellerOrders() {
                   `seller_orders__element-order-id-${cardItem.id}`
                 }
               >
-                { cardItem.id }
+                { `#${cardItem.id}` }
               </li>
               <li
                 data-testid={
@@ -79,10 +81,10 @@ function SellerOrders() {
                 { `${cardItem.deliveryAddress} ${cardItem.deliveryNumber}` }
               </li>
             </ul>
-          </Link>
+          </S.OrderLink>
         ))}
       </div>
-    </div>
+    </S.OrdersSellerPage>
   );
 }
 
