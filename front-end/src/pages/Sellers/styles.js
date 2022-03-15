@@ -55,6 +55,8 @@ ul li:nth-child(2) {
   width: 8rem;
   margin-left: 5rem;
   border-radius: 1.5rem;
+  font-weight: bold;
+  padding: 0.2rem;
 }
 
 li {

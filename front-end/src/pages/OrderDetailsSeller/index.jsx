@@ -64,7 +64,7 @@ function OrderDetailsSeller() {
       <main>
         {
           order.id && (
-            <S.OrderDetailsCard>
+            <S.OrderDetailsCard orderStatus={ order.status }>
               <div>
                 <span
                   data-testid="seller_order_details__element-order-details-label-order-id"

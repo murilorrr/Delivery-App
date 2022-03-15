@@ -32,17 +32,21 @@ function Orders() {
       <S.Main>
         {
           orders.length > 0 && orders.map((order) => (
-            <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
+            <S.OrderCard
+              to={ `/customer/orders/${order.id}` }
+              key={ order.id }
+              orderStatus={ order.status }
+            >
               <span data-testid={ `customer_orders__element-order-id-${order.id}` }>
                 { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
+              </span>
+              <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
+                { moment(order.saleDate).format('DD/MM/YYYY') }
               </span>
               <span
                 data-testid={ `customer_orders__element-delivery-status-${order.id}` }
               >
                 { order.status }
-              </span>
-              <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
-                { moment(order.saleDate).format('DD/MM/YYYY') }
               </span>
               <span data-testid={ `customer_orders__element-card-price-${order.id}` }>
                 { Number(order.totalPrice)

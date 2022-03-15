@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 export const div = styled.div`
-padding: 0,5em;
-border-radius: 5px;
-display: box;
-justify-content: center;
-align-items: center;
+  background-color: var(--gray-100);
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
 `;
 
 export const tableDiv = styled.div`

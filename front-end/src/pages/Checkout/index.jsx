@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import useCart from '../../hooks/useCart';
 import Header from '../../components/Header';
 import Table from '../../components/table';
 import FormsNewOrder from '../../components/forms/formNewOrder';
@@ -16,17 +15,15 @@ function Checkout() {
   }, [history]);
 
   return (
-    <div>
-      <S.div>
-        <Header />
-      </S.div>
+    <S.div>
+      <Header />
       <S.tableDiv>
         <Table />
       </S.tableDiv>
       <div>
         <FormsNewOrder />
       </div>
-    </div>
+    </S.div>
   );
 }
 
