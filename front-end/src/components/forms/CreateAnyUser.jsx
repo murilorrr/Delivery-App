@@ -105,10 +105,10 @@ export default function CreateAnyUser() {
       </button>
       <S.ErrorMessage
         data-testid="admin_manage__element-invalid-register"
-        className="error"
+        className={ warning !== '' ? 'error' : '' }
         visible={ warning === '' }
       >
-        {warning}
+        <div>{warning}</div>
       </S.ErrorMessage>
     </F.FormCreateAnyUser>
   );
