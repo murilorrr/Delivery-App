@@ -1,58 +1,82 @@
 import styled from 'styled-components';
 
-const CardProduct = styled.div`
+export const CardProduct = styled.div`
 background-color: var(--gray-50);
-border-radius: 5px;
-box-sizing: border-box;
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 0.5rem;
-padding: 0.5rem;
-width: 70vw;
-`;
-
-export const Img = styled.img`
-align-self: center;
 border-radius: 0.5rem;
-max-width: 5rem;
-max-height: 5rem;
+display: flex;
+justify-content: space-between;
+overflow: hidden;
+box-shadow: 0 0 10px rgb(0,0,0,0.02);
+
+& + div {
+  margin-top: 1rem;
+}
+
 `;
 
-export const Description = styled.div`
+export const Image = styled.div`
+background-image: ${({ src }) => `url(${src})`};
+background-color: var(--white);
+background-position: center;
+background-size: contain;
+background-repeat: no-repeat;
+width: 40%;
+height: 9rem;
+
+img {
+  align-self: center;
+  border-radius: 0.5rem;
+  height: 11rem;
+  margin: 0 auto;
+}
+`;
+
+export const Info = styled.div`
 display: flex;
 flex-direction: column;
+justify-content: space-between;
+padding: 1rem;
+flex: 1;
+
+div {
+  svg {
+    margin-left: 0.5rem;
+    color: var(--anzac);
+  }
+}
+
+h5 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+`;
+
+export const Options = styled.div`
+display: flex;
+justify-content: space-between;
 align-items: center;
-padding: 0.8rem;
-max-width: 15rem;
-color: var(--gray-800);
-margin-bottom: 0.5rem;
-`;
 
-export const Quantity = styled.div`
-display: flex;
-`;
+div {
+  display: inherit;
 
-export const Button = styled.button`
-background: var(--crimson);
-border-radius: 50%;
-color: var(--linen);
-width: 1.5rem;
-margin: 0 1.5rem;
-`;
+  input {
+    border: 1px solid var(--gray-100);
+    border-radius: 0.25rem;
+    width: 2rem;
+    text-align: center;
+    display: none;
+  }
 
-export const Input = styled.input`
-display: flex;
-text-align: center;
-border-radius: 5rem;
-max-width: 5rem;
+  button {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    background: var(--crimson);
+    color: var(--white);
+  }
+}
 `;
-
-export const Price = styled.div`
-  display: flex;
-  width: min-content;
-  padding: 0.2rem;
-  margin-top: 0.2rem;
-`;
-
-export default CardProduct;
