@@ -59,7 +59,7 @@ function OrderDetailsSeller() {
   const orderIdLength = 4;
 
   return (
-    <S.OrderDetailsSellerPage>
+    <>
       <Header />
       <main>
         {
@@ -109,7 +109,7 @@ function OrderDetailsSeller() {
           )
         }
       </main>
-    </S.OrderDetailsSellerPage>
+    </>
   );
 }
 

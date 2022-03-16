@@ -12,6 +12,7 @@ left: 0;
 width: 100vw;
 background-color: var(--white);
 box-shadow: 0 0 50px rgb(0,0,0,0.1);
+z-index: 10;
 
 a {
   display: flex;
