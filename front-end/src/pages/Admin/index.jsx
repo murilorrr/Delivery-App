@@ -9,21 +9,23 @@ export default function Home() {
 
   return (
     <S.AdminPage>
-      <S.AdminHeader>
-        <div>
-          GERENCIAR USUÁRIOS
-        </div>
-        <div>
-          {user.name}
-        </div>
-        <Exit />
-      </S.AdminHeader>
       <div>
+        <S.AdminHeader>
+          <div>
+            GERENCIAR USUÁRIOS
+          </div>
+          <div>
+            {user.name}
+          </div>
+          <Exit />
+        </S.AdminHeader>
         <div>
-          Cadastrar Novo Usuário
-          <FormCreateAnyUser />
+          <div>
+            Cadastrar Novo Usuário
+            <FormCreateAnyUser />
+          </div>
+          <UserList />
         </div>
-        <UserList />
       </div>
     </S.AdminPage>
   );
