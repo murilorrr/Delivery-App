@@ -53,6 +53,7 @@ div {
 
 export const Address = styled.div`
 padding: 1rem 0;
+margin-bottom: 2rem;
 
 h4 {
   margin-bottom: 0.5rem;
