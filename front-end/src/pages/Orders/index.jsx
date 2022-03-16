@@ -1,6 +1,11 @@
-import moment from 'moment';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import moment from 'moment';
+import 'moment/locale/pt-br';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Header from '../../components/Header';
 import getAllSales from '../../fetchs/saleEndpoints/getAllSales';
 
@@ -8,6 +13,7 @@ import * as S from './styles';
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const getSalesAsync = async () => {
@@ -18,45 +24,74 @@ function Orders() {
     getSalesAsync();
 
     const newSocket = io('http://localhost:3001');
-
     newSocket.on('connect', () => console.log('socket connected'));
     newSocket.on('statusUpdated', async () => getSalesAsync());
     return () => newSocket.close();
   }, []);
 
-  const orderIdLength = 4;
+  const maxLength = 5;
 
   return (
-    <S.OrderPage>
+    <>
       <Header />
       <S.Main>
         {
           orders.length > 0 && orders.map((order) => (
-            <S.OrderCard
-              to={ `/customer/orders/${order.id}` }
-              key={ order.id }
-              orderStatus={ order.status }
-            >
-              <span data-testid={ `customer_orders__element-order-id-${order.id}` }>
-                { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
-              </span>
-              <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
-                { moment(order.saleDate).format('DD/MM/YYYY') }
-              </span>
-              <span
-                data-testid={ `customer_orders__element-delivery-status-${order.id}` }
-              >
-                { order.status }
-              </span>
-              <span data-testid={ `customer_orders__element-card-price-${order.id}` }>
-                { Number(order.totalPrice)
-                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-              </span>
+            <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
+              <S.OrderCardHeader>
+                <div>
+                  <h5>{ `Vendido por: ${order.seller.name}` }</h5>
+                  <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
+                    { moment(order.saleDate).locale('pt-br').format('lll') }
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={ () => history.push(`/customer/orders/${order.id}`) }
+                >
+                  <FontAwesomeIcon icon={ faAngleRight } />
+                </button>
+              </S.OrderCardHeader>
+
+              <S.ProductContainer>
+                {
+                  order.products
+                    .slice(0, order.products.length > maxLength
+                      ? maxLength
+                      : order.products.length)
+                    .map((product) => (
+                      <S.Product
+                        src={ product.url_image }
+                        alt={ product.name }
+                        key={ product.id }
+                      />
+                    ))
+                }
+                { order.products.length > maxLength && (
+                  <span>{ `+${order.products.length - maxLength}` }</span>)}
+              </S.ProductContainer>
+
+              <S.OrderCardFooter>
+                <div
+                  data-testid={ `customer_orders__element-delivery-status-${order.id}` }
+                >
+                  <span>Status</span>
+                  <span>{ order.status }</span>
+                </div>
+
+                <div data-testid={ `customer_orders__element-card-price-${order.id}` }>
+                  <span>Valor total</span>
+                  <span>
+                    { Number(order.totalPrice)
+                      .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+                  </span>
+                </div>
+              </S.OrderCardFooter>
             </S.OrderCard>
           ))
         }
       </S.Main>
-    </S.OrderPage>
+    </>
   );
 }
 

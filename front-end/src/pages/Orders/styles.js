@@ -1,82 +1,106 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const OrderPage = styled.div`
-background-color: var(--gray-100);
-height: 100vh;
-width: 100vw;
-`;
-
 export const Main = styled.main`
 display: flex;
 flex-direction: column;
-align-items: center;
-margin: 0.3rem;
+background-color: var(--gray-100);
+/* align-items: center; */
+margin: 0;
+box-sizing: border-box;
+max-width: 100%;
+padding: 1rem 1rem 6rem;
 `;
 
 export const OrderCard = styled(Link)`
-  background-color: var(--gray-50);
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  color: var(--gray-800);
-  justify-content: center;
-  margin: 0.4rem 0.5rem;
+background-color: var(--gray-50);
+display: flex;
+justify-content: center;
+flex-direction: column;
+flex-wrap: wrap;
+border-radius: 0.5rem;
+padding: 1rem;
+color: var(--gray-800);
+box-shadow: 2px 2px 5px rgb(0,0,0,0.02);
 
-  span:nth-child(1) {
-    margin: 0.5rem 2rem 0.5rem 0;
-    width: 30%;
+& + a {
+  margin-top: 0.75rem;
+}
+`;
+
+export const OrderCardHeader = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+div {
+  display: inherit;
+  flex-direction: column;
+
+  h5 {
+    font-size: 1rem;
+    font-weight: 600;
   }
 
-  span:nth-child(2) {
-    margin: 0.5rem 0 0.5rem 2rem;
-    width: 30%;
+  span {
+    margin: 0.5rem 0;
+    color: var(--gray-500);
   }
-
-  span:nth-child(3) {
-  color: ${({ orderStatus }) => {
-    switch (orderStatus) {
-    case 'Pendente':
-      return 'var(--gray-100)';
-    case 'Preparando':
-      return 'var(--gray-800)';
-    case 'Em Trânsito':
-      return 'var(--gray-800)';
-    case 'Entregue':
-      return 'var(--gray-100)';
-
-    default:
-      break;
-    }
-  }};
-  background-color: ${({ orderStatus }) => {
-    switch (orderStatus) {
-    case 'Pendente':
-      return 'var(--crimson)';
-    case 'Preparando':
-      return 'var(--anzac)';
-    case 'Em Trânsito':
-      return 'var(--marzipan)';
-    case 'Entregue':
-      return 'var(--tuscany)';
-
-    default:
-      break;
-    }
-  }};;
-  width: 8rem;
-  /* margin-left: 4.1rem; */
-  margin-top: 0.5rem;
-  border-radius: 1.5rem;
-  text-align: center;
-  font-weight: bold;
-  padding: 0.5rem;
-  flex-basis: 100%;
 }
 
-span:nth-child(4) {
-  margin: 1rem 0;
-  font-weight: bold;
+button {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+`;
+
+export const ProductContainer = styled.div`
+display: flex;
+/* justify-content: space-between; */
+align-items: center;
+padding: 0.25rem 0;
+
+span {
+  padding: 1rem;
+  background-color: var(--crimson);
+  color: var(--white);
+  font-weight: 700;
+  border-radius: 0.75rem;
+  margin-left: auto;
+}
+`;
+export const Product = styled.div`
+background-image: ${({ src }) => `url(${src})`};
+background-color: var(--white);
+background-position: center;
+background-size: contain;
+background-repeat: no-repeat;
+width: 3rem;
+height: 3rem;
+
+& + div {
+  margin-left: 0.5rem;
+}
+`;
+
+export const OrderCardFooter = styled.div`
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 0.5rem 0;
+
+div {
+  display: inherit;
+  flex-direction: column;
+
+  span {
+    font-weight: 600;
+    
+    &:first-child {
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+      color: var(--gray-500);
+    }
+  }
 }
 `;

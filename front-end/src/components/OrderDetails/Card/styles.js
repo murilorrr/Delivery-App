@@ -9,9 +9,8 @@ overflow: hidden;
 box-shadow: 0 0 10px rgb(0,0,0,0.02);
 
 & + div {
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
-
 `;
 
 export const Image = styled.div`
@@ -20,38 +19,24 @@ background-color: var(--white);
 background-position: center;
 background-size: contain;
 background-repeat: no-repeat;
-width: 40%;
-height: 9rem;
-
-img {
-  align-self: center;
-  border-radius: 0.5rem;
-  height: 11rem;
-  margin: 0 auto;
-}
+width: 20%;
+height: 5rem;
 `;
 
 export const Info = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-between;
-padding: 1rem;
+padding: 0.75rem;
 flex: 1;
 
-div {
-  svg {
-    margin-left: 0.5rem;
-    color: var(--anzac);
-  }
+> div {
+  display: flex;
+  gap: 0.25rem;
 }
 
 h5 {
-  font-size: 1.15rem;
-  font-weight: 600;
-}
-
-h6 {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
 }
 `;
@@ -63,21 +48,16 @@ align-items: center;
 
 div {
   display: inherit;
+  gap: 0.15rem;
 
-  input {
-    border: 1px solid var(--gray-100);
-    border-radius: 0.25rem;
-    width: 2rem;
-    text-align: center;
-    display: none;
+  span {
+    font-size: 1rem;
   }
 
-  button {
-    font-size: 1.5rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 0.5rem;
-    background: var(--crimson);
-    color: var(--white);
+  &:first-child {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gray-800);
   }
 }
 `;

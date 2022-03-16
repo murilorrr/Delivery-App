@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBeerMugEmpty,
+  // faArrowRightFromBracket,
+  // faBeerMugEmpty,
+  faCartShopping,
   faClipboardList,
-  faArrowRightFromBracket,
   faUser,
+  faHome,
 } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import useCart from '../../hooks/useCart';
+
 import * as S from './styles';
 
 function Header() {
+  const { cartTotal } = useCart();
   const [user, setUser] = useState('');
   const [ordersLink, setOrdersLink] = useState({ to: '' });
   const history = useHistory();
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem('user'));
-
     if (!userStorage) return history.push('/login');
-
     setUser(userStorage);
 
     if (userStorage.role === 'customer') {
@@ -26,55 +29,65 @@ function Header() {
     } else setOrdersLink({ to: '/seller/orders', name: 'Pedidos' });
   }, [history]);
 
-  const logOut = () => {
-    localStorage.removeItem('user');
-    history.push('/login');
-  };
+  // const logOut = () => {
+  //   localStorage.removeItem('user');
+  //   history.push('/login');
+  // };
 
   return (
     <S.Header>
-      <S.Nav>
-        {
-          user.role === 'customer' && (
-            <S.Span>
-              <Link
-                to="/customer/products"
-                data-testid="customer_products__element-navbar-link-products"
-              >
-                <FontAwesomeIcon icon={ faBeerMugEmpty } />
-              </Link>
-            </S.Span>
-          )
-        }
-        <S.Span>
-          <Link
-            to={ ordersLink.to }
-            data-testid="customer_products__element-navbar-link-orders"
+      {
+        user.role === 'customer' && (
+          <S.Link
+            to="/customer/products"
+            data-testid="customer_products__element-navbar-link-products"
+            current={ history.location.pathname }
           >
-            {/* { ordersLink.name } */}
-            <FontAwesomeIcon icon={ faClipboardList } />
-          </Link>
-        </S.Span>
-        <S.Span>
-          <span
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            {/* { user.name } */}
-            <FontAwesomeIcon icon={ faUser } />
-          </span>
-        </S.Span>
+            <FontAwesomeIcon icon={ faHome } />
+            <span>Início</span>
+          </S.Link>
+        )
+      }
 
-        <S.Span>
-          <Link
-            to="/"
-            onClick={ logOut }
-            data-testid="customer_products__element-navbar-link-logout"
-          >
-            <FontAwesomeIcon icon={ faArrowRightFromBracket } />
-          </Link>
-        </S.Span>
+      <S.Link
+        to={ ordersLink.to }
+        data-testid="customer_products__element-navbar-link-orders"
+        current={ history.location.pathname }
+      >
+        <FontAwesomeIcon icon={ user.role === 'customer' ? faClipboardList : faHome } />
+        <span>{ ordersLink.name }</span>
+      </S.Link>
 
-      </S.Nav>
+      {
+        user.role === 'customer' ? (
+          <S.Link
+            to="/customer/checkout"
+            data-testid="customer_products__button-cart"
+            disabled={ !cartTotal }
+            current={ history.location.pathname }
+          >
+            <FontAwesomeIcon icon={ faCartShopping } />
+            <span>Carrinho</span>
+          </S.Link>
+        ) : null
+      }
+
+      <S.Link
+        data-testid="customer_products__element-navbar-user-full-name"
+        to="#"
+        current={ history.location.pathname }
+      >
+        <FontAwesomeIcon icon={ faUser } />
+        <span>Conta</span>
+      </S.Link>
+
+      {/* <Link
+        to="/"
+        onClick={ logOut }
+        data-testid="customer_products__element-navbar-link-logout"
+      >
+        <FontAwesomeIcon icon={ faArrowRightFromBracket } />
+      </Link> */}
     </S.Header>
   );
 }

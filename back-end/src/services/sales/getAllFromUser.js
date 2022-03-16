@@ -9,6 +9,8 @@ const getAllSalesByUser = async (user) => {
         { userId: user.id },
       ],
     },
+    include: [{ all: true, nested: true, attributes: { exclude: ['email', 'password'] } }],
+    attributes: { exclude: ['user_id', 'seller_id', 'userId', 'sellerId'] },
   });
   
   return products;
