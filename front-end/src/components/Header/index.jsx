@@ -29,11 +29,6 @@ function Header() {
     } else setOrdersLink({ to: '/seller/orders', name: 'Pedidos' });
   }, [history]);
 
-  // const logOut = () => {
-  //   localStorage.removeItem('user');
-  //   history.push('/login');
-  // };
-
   return (
     <S.Header>
       {
@@ -74,7 +69,7 @@ function Header() {
 
       <S.Link
         data-testid="customer_products__element-navbar-user-full-name"
-        to="#"
+        to="/profile"
         current={ history.location.pathname }
       >
         <FontAwesomeIcon icon={ faUser } />

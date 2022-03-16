@@ -64,30 +64,21 @@ function OrderDetails() {
       {
         order.id && (
           <S.Main>
-            <div>
-              <span
-                data-testid="customer_order_details__element-order-details-label-order-id"
-              >
-                { `Pedido ${String(order.id).padStart(orderIdLength, '0')}` }
-              </span>
-              <span
+            <S.OrderDetailsHeader orderStatus={ order.status }>
+              <h2
                 data-testid={
                   `customer_order_details__element-order-details-label-seller-name${''}`
                 }
               >
-                { order.seller.name }
-              </span>
+                <span>Responsável pelo pedido:</span>
+                <span>{ order.seller.name }</span>
+              </h2>
               <span
                 data-testid={
                   `customer_order_details__element-order-details-label-order-date${''}`
                 }
               >
-                { moment(order.saleDate).format('DD/MM/YYYY') }
-              </span>
-              <span
-                data-testid={ STATUS }
-              >
-                { order.status }
+                { `Realizado em ${moment(order.saleDate).locale('pt-br').format('lll')}` }
               </span>
               <button
                 type="button"
@@ -97,7 +88,20 @@ function OrderDetails() {
               >
                 Marcar como entregue
               </button>
-            </div>
+
+              <h1
+                data-testid="customer_order_details__element-order-details-label-order-id"
+              >
+                <span>
+                  { `Pedido nº ${String(order.id).padStart(orderIdLength, '0')}` }
+                </span>
+                <span
+                  data-testid={ STATUS }
+                >
+                  { `Status: ${order.status}` }
+                </span>
+              </h1>
+            </S.OrderDetailsHeader>
 
             <div>
               {
@@ -108,11 +112,13 @@ function OrderDetails() {
             </div>
 
             <S.Total data-testid="customer_order_details__element-order-total-price">
-              <span>Valor total:</span>
-              <span>
-                { Number(order.totalPrice)
-                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-              </span>
+              <div>
+                <span>Valor total:</span>
+                <span>
+                  { Number(order.totalPrice)
+                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+                </span>
+              </div>
             </S.Total>
           </S.Main>
         )
