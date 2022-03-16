@@ -24,13 +24,10 @@ function Orders() {
     getSalesAsync();
 
     const newSocket = io('http://localhost:3001');
-
     newSocket.on('connect', () => console.log('socket connected'));
     newSocket.on('statusUpdated', async () => getSalesAsync());
     return () => newSocket.close();
   }, []);
-
-  console.log(orders);
 
   const maxLength = 5;
 
@@ -43,7 +40,7 @@ function Orders() {
             <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
               <S.OrderCardHeader>
                 <div>
-                  <h5>{ `Compra feita com: ${order.seller.name}` }</h5>
+                  <h5>{ `Vendido por: ${order.seller.name}` }</h5>
                   <span data-testid={ `customer_orders__element-order-date-${order.id}` }>
                     { moment(order.saleDate).locale('pt-br').format('lll') }
                   </span>
@@ -59,7 +56,9 @@ function Orders() {
               <S.ProductContainer>
                 {
                   order.products
-                    .slice(0, order.products.length > maxLength ? maxLength : undefined)
+                    .slice(0, order.products.length > maxLength
+                      ? maxLength
+                      : order.products.length)
                     .map((product) => (
                       <S.Product
                         src={ product.url_image }

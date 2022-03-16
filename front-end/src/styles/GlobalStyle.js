@@ -13,11 +13,12 @@ const GlobalStyle = createGlobalStyle`
 
   --white: #FFF;
   
-  --gray-50: #f9f7fa;
+  --gray-50: #f7f7fa;
   --gray-100: #E6E8EB;
   --gray-200: #AFB2B1;
   --gray-500: #808080;
-  --gray-800: #242121;
+  --gray-600: #3a3a3a;
+  --gray-800: #222124;
 }
 
 * {

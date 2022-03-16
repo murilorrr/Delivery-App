@@ -18,7 +18,7 @@ display: flex;
 justify-content: center;
 flex-direction: column;
 flex-wrap: wrap;
-border-radius: 0.25rem;
+border-radius: 0.5rem;
 padding: 1rem;
 color: var(--gray-800);
 box-shadow: 2px 2px 5px rgb(0,0,0,0.02);

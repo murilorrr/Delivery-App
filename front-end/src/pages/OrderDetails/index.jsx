@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { io } from 'socket.io-client';
 import Header from '../../components/Header';
-import OrderDetailsTable from '../../components/OrderDetails/Table';
 import getSaleById from '../../fetchs/saleEndpoints/getSaleById';
+import OrderDetailsCard from '../../components/OrderDetails/Card';
+
+import * as S from './styles';
 
 const STATUS = 'customer_order_details__element-order-details-label-delivery-status';
 
@@ -61,7 +63,7 @@ function OrderDetails() {
       <Header />
       {
         order.id && (
-          <main>
+          <S.Main>
             <div>
               <span
                 data-testid="customer_order_details__element-order-details-label-order-id"
@@ -97,13 +99,22 @@ function OrderDetails() {
               </button>
             </div>
 
-            <OrderDetailsTable products={ order.products } />
-
-            <div data-testid="customer_order_details__element-order-total-price">
-              { Number(order.totalPrice)
-                .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+            <div>
+              {
+                order.products.length && order.products.map((product) => (
+                  <OrderDetailsCard key={ product.id } product={ product } />
+                ))
+              }
             </div>
-          </main>
+
+            <S.Total data-testid="customer_order_details__element-order-total-price">
+              <span>Valor total:</span>
+              <span>
+                { Number(order.totalPrice)
+                  .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+              </span>
+            </S.Total>
+          </S.Main>
         )
       }
     </>
