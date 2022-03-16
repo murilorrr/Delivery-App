@@ -6,7 +6,6 @@ justify-content: space-evenly;
 height: 3rem;
 width: 100vw;
 margin-bottom: 0.5rem;
-/* background-color: var(--silk); */
 `;
 
 export const Nav = styled.nav`

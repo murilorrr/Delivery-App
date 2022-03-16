@@ -1,15 +1,15 @@
 import React from 'react';
 import Exit from '../../components/buttons/exit';
-import AdminHeader from './styles';
 import FormCreateAnyUser from '../../components/forms/CreateAnyUser';
 import UserList from '../../components/lists/UserList';
+import * as S from './styles';
 
 export default function Home() {
   const user = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <div>
-      <AdminHeader>
+    <S.AdminPage>
+      <S.AdminHeader>
         <div>
           GERENCIAR USUÁRIOS
         </div>
@@ -17,7 +17,7 @@ export default function Home() {
           {user.name}
         </div>
         <Exit />
-      </AdminHeader>
+      </S.AdminHeader>
       <div>
         <div>
           Cadastrar Novo Usuário
@@ -25,6 +25,6 @@ export default function Home() {
         </div>
         <UserList />
       </div>
-    </div>
+    </S.AdminPage>
   );
 }

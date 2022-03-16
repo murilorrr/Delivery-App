@@ -1,8 +1,18 @@
 import styled from 'styled-components';
 
-const AdminHeader = styled.header`
-  display: flex;
-  margin-bottom: 50px;
+export const AdminPage = styled.div`
+height: 100vh;
+width: 100vw;
 `;
 
-export default AdminHeader;
+export const AdminHeader = styled.header`
+display: flex;
+flex-direction: column;
+position: fixed;
+bottom: 0;
+
+div:nth-child(1) {
+  width: 100vw;
+  align-self: center;
+}
+`;
