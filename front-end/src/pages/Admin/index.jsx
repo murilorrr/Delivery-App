@@ -1,30 +1,35 @@
 import React from 'react';
+import {
+  faUser,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Exit from '../../components/buttons/exit';
-import AdminHeader from './styles';
 import FormCreateAnyUser from '../../components/forms/CreateAnyUser';
 import UserList from '../../components/lists/UserList';
+import * as S from './styles';
 
 export default function Home() {
-  const user = JSON.parse(localStorage.getItem('user'));
+  // const user = JSON.parse(localStorage.getItem('user'));
 
   return (
-    <div>
-      <AdminHeader>
+    <S.AdminPage>
+      <h1>
+        GERENCIAR USUÁRIOS
+      </h1>
+      <header>
         <div>
-          GERENCIAR USUÁRIOS
-        </div>
-        <div>
-          {user.name}
+          <FontAwesomeIcon icon={ faUser } />
+          {/* {user.name} */}
         </div>
         <Exit />
-      </AdminHeader>
+      </header>
       <div>
-        <div>
+        <h4>
           Cadastrar Novo Usuário
-          <FormCreateAnyUser />
-        </div>
-        <UserList />
+        </h4>
+        <FormCreateAnyUser />
       </div>
-    </div>
+      <UserList />
+    </S.AdminPage>
   );
 }

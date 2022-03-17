@@ -6,7 +6,6 @@ const TableOrderDetails = styled.table`
   max-height: 100vh;
   max-width: 100vw;
   display: flex;
-  /* border: 1px solid var(--gray-800); */
   border-radius: 0.3rem;
   margin: 2rem 0;
 

@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  faArrowRightFromBracket,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router-dom';
 
 export default function Exit() {
@@ -10,7 +14,7 @@ export default function Exit() {
 
   return (
     <button type="button" onClick={ getOut }>
-      Sair
+      <FontAwesomeIcon icon={ faArrowRightFromBracket } />
     </button>
   );
 }
