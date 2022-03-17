@@ -27,20 +27,16 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
   return (
     <UserCardDiv>
       <div data-testid={ `admin_manage__element-user-table-item-number-${index}` }>
-        { index }
-
+        { `#${index}` }
       </div>
       <div data-testid={ `admin_manage__element-user-table-name-${index}` }>
         { name }
-
       </div>
       <div data-testid={ `admin_manage__element-user-table-email-${index}` }>
         { email }
-
       </div>
       <div data-testid={ `admin_manage__element-user-table-role-${index}` }>
         { role }
-
       </div>
       <button
         data-testid={ `admin_manage__element-user-table-remove-${index}` }
@@ -48,7 +44,6 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
         type="button"
       >
         Excluir
-
       </button>
       <ErrorRegister message={ warning } />
     </UserCardDiv>
