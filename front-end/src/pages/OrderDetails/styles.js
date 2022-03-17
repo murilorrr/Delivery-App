@@ -4,7 +4,6 @@ export const Main = styled.main`
 display: flex;
 flex-direction: column;
 background-color: var(--gray-100);
-/* align-items: center; */
 min-height: 100vh;
 padding: 1rem 1rem 6rem;
 `;
@@ -12,7 +11,6 @@ padding: 1rem 1rem 6rem;
 export const OrderDetailsHeader = styled.div`
 display: flex;
 flex-direction: column;
-/* align-items: center; */
 
 h1 {
   border-top: 1px dashed var(--gray-200);
