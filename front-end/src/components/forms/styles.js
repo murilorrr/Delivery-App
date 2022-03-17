@@ -10,32 +10,45 @@ const FormCreateAnyUser = styled.form`
   input {
     display: block;
     width: -webkit-fill-available;
-    box-shadow: 0.5rem 1rem 0.5rem var(--gray-200);
-    height: 1rem;
+    box-shadow: 0 0 15px rgb(0,0,0,0.05);
     font-size: 18px;
     border: 1px solid var(--gray-100);
     border-radius: 2rem;
     padding: 1rem;
     margin: 0.5em 0;
+    color: var(--gray-500);
+    font-weight: 400;
+    /* height: 4rem; */
+
   }
 
   select {
     /* background: var(--crimson); */
-    border-radius: 1rem;
     /* border: 2px solid var(--crimson); */
-    color: black;
-    padding: 0.25rem 1rem;
-    font-size: 1rem;
+    border-radius: 2rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 18px;
     margin: 0.5rem;
-    box-shadow: 0.5rem 1rem 0.5rem var(--gray-200);
+    background: var(--gray-50);
+    color: var(--gray-500);
+    box-shadow: 0 0 15px rgb(0,0,0,0.05);
+    border: none;
+    font-weight: 400;
+    /* height: 4rem; */
+
+    option {
+      color: var(--gray-500);
+    }
   }
 
   button {
     background: var(--crimson);
     font-weight: 600;
-    width: 5.5rem;
-    height: 2rem;
-    border-radius: 1rem;
+    /* width: 5.5rem; */
+    width: 100%;
+    /* height: 2rem; */
+    border-radius: 2rem;
     color: var(--gray-50);
     margin: 0.5rem 0 1.2rem;
     padding: 1rem;
@@ -44,7 +57,7 @@ const FormCreateAnyUser = styled.form`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    box-shadow: 0.5rem 1rem 0.5rem var(--gray-200);
+    box-shadow: 0 0 15px rgb(0,0,0,0.05);
   }
 `;
 

@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-body, input, textarea, button {
+body, input, textarea, button, select, option {
   font: 500 1rem 'Inter', sans-serif;
   background-color: var(--gray-50);
   color: var(--gray-500);
