@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../../components/Header';
+// import Header from '../../components/Header';
 import ProductsCard from '../../components/Products/Card';
 import getAllProducts from '../../fetchs/productsEndpoints/getAllProducts';
 import * as S from './styles';
@@ -16,16 +16,13 @@ function Products() {
   }, []);
 
   return (
-    <>
-      <Header />
-      <S.Main>
-        {
-          products && products.map((product) => (
-            <ProductsCard key={ product.id } product={ product } />
-          ))
-        }
-      </S.Main>
-    </>
+    <S.Main>
+      {
+        products && products.map((product) => (
+          <ProductsCard key={ product.id } product={ product } />
+        ))
+      }
+    </S.Main>
   );
 }
 

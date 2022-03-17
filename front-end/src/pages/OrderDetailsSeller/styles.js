@@ -1,53 +1,84 @@
 import styled from 'styled-components';
 
-export const OrderDetailsSellerPage = styled.div`
-  background-color: var(--gray-100);
-  height: 100%;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
+export const Main = styled.main`
+display: flex;
+flex-direction: column;
+background-color: var(--gray-100);
+/* align-items: center; */
+min-height: 100vh;
+padding: 1rem 1rem 6rem;
 `;
 
-export const OrderDetailsCard = styled.div`
-background-color: var(--gray-50);
-margin: 1rem;
-border-radius: 1.5rem;
-height: 10rem;
-padding: 0.5rem;
-max-width: 100vw;
-height: 100vh;
-justify-content: center;
+export const OrderDetailsHeader = styled.div`
+display: flex;
+flex-direction: column;
+/* align-items: center; */
 
-div:nth-child(1) {
-  margin: 0.5rem;
+h1 {
+  border-top: 1px dashed var(--gray-200);
+  border-bottom: 1px dashed var(--gray-200);
+  padding: 1rem 0;
+  margin: 1rem 0;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+
+  span {
+    font-size: 1.5rem;
+    
+    &:last-child {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
 }
 
-
-div:nth-child(3) {
-  margin: 1rem;
-  display: block;
-  text-align: center;
-  color: var(--gray-800);
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-span {
-  margin: 0.3rem;
-  color: var(--gray-800);
-
+h2 {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.15rem;
 }
 
 button {
-  background-color: var(--crimson);
-  margin: 1.2rem 0.4rem;
-  padding: 0.5rem;
-  border-radius: 1.5rem;
-  color: var(--gray-50);
-  max-width: 45%;
-  font-weight: bold;
+  width: 100%;
+  font-size: 1.15rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--crimson);
+  color: var(--white);
+
+  &:disabled {
+    background: var(--gray-200);
+    color: var(--gray-500);
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
+`;
+
+export const Total = styled.div`
+border-top: 1px dashed var(--gray-500);
+margin-top: 1.5rem;
+
+div {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white);
+  margin-top: 1.5rem;
+  padding: .5rem;
+  width: 100%;
+  border-radius: 0.25rem;
+
+    span {
+    color: var(--gray-500);
+    font-size: 1.25rem;
+    
+    &:last-child {
+      color: var(--gray-800);
+      font-weight: 700;
+    }
+  }
 }
 `;

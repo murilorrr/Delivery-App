@@ -75,14 +75,6 @@ function Header() {
         <FontAwesomeIcon icon={ faUser } />
         <span>Conta</span>
       </S.Link>
-
-      {/* <Link
-        to="/"
-        onClick={ logOut }
-        data-testid="customer_products__element-navbar-link-logout"
-      >
-        <FontAwesomeIcon icon={ faArrowRightFromBracket } />
-      </Link> */}
     </S.Header>
   );
 }

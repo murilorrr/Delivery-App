@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
 import { io } from 'socket.io-client';
-import Header from '../../components/Header';
+
+// import Header from '../../components/Header';
 import getSaleById from '../../fetchs/saleEndpoints/getSaleById';
 import OrderDetailsCard from '../../components/OrderDetails/Card';
 
@@ -59,71 +60,66 @@ function OrderDetails() {
   const orderIdLength = 4;
 
   return (
-    <>
-      <Header />
-      {
-        order.id && (
-          <S.Main>
-            <S.OrderDetailsHeader orderStatus={ order.status }>
-              <h2
-                data-testid={
-                  `customer_order_details__element-order-details-label-seller-name${''}`
-                }
-              >
-                <span>Responsável pelo pedido:</span>
-                <span>{ order.seller.name }</span>
-              </h2>
-              <span
-                data-testid={
-                  `customer_order_details__element-order-details-label-order-date${''}`
-                }
-              >
-                { `Realizado em ${moment(order.saleDate).locale('pt-br').format('lll')}` }
-              </span>
-              <button
-                type="button"
-                disabled={ !order.status.includes('Em Trânsito') }
-                onClick={ changeStatus }
-                data-testid="customer_order_details__button-delivery-check"
-              >
-                Marcar como entregue
-              </button>
+    order.id && (
+      <S.Main>
+        <S.OrderDetailsHeader orderStatus={ order.status }>
+          <h2
+            data-testid={
+              `customer_order_details__element-order-details-label-seller-name${''}`
+            }
+          >
+            <span>Responsável pelo pedido:</span>
+            <span>{ order.seller.name }</span>
+          </h2>
+          <span
+            data-testid={
+              `customer_order_details__element-order-details-label-order-date${''}`
+            }
+          >
+            { `Realizado em ${moment(order.saleDate).locale('pt-br').format('lll')}` }
+          </span>
+          <button
+            type="button"
+            disabled={ !order.status.includes('Em Trânsito') }
+            onClick={ changeStatus }
+            data-testid="customer_order_details__button-delivery-check"
+          >
+            Marcar como entregue
+          </button>
 
-              <h1
-                data-testid="customer_order_details__element-order-details-label-order-id"
-              >
-                <span>
-                  { `Pedido nº ${String(order.id).padStart(orderIdLength, '0')}` }
-                </span>
-                <span
-                  data-testid={ STATUS }
-                >
-                  { `Status: ${order.status}` }
-                </span>
-              </h1>
-            </S.OrderDetailsHeader>
+          <h1
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            <span>
+              { `Pedido nº ${String(order.id).padStart(orderIdLength, '0')}` }
+            </span>
+            <span
+              data-testid={ STATUS }
+            >
+              { `Status: ${order.status}` }
+            </span>
+          </h1>
+        </S.OrderDetailsHeader>
 
-            <div>
-              {
-                order.products.length && order.products.map((product) => (
-                  <OrderDetailsCard key={ product.id } product={ product } />
-                ))
-              }
-            </div>
+        <div>
+          {
+            order.products.length && order.products.map((product) => (
+              <OrderDetailsCard key={ product.id } product={ product } />
+            ))
+          }
+        </div>
 
-            <S.Total data-testid="customer_order_details__element-order-total-price">
-              <div>
-                <span>Valor total:</span>
-                <span>
-                  { Number(order.totalPrice)
-                    .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-                </span>
-              </div>
-            </S.Total>
-          </S.Main>
-        )
-      }
-    </>
+        <S.Total data-testid="customer_order_details__element-order-total-price">
+          <div>
+            <span>Valor total:</span>
+            <span>
+              { Number(order.totalPrice)
+                .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+            </span>
+          </div>
+        </S.Total>
+      </S.Main>
+    )
   );
 }
 

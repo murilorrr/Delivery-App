@@ -5,7 +5,6 @@ import * as S from './styles';
 
 function OrderDetailsCard({ product }) {
   const { id, name, url_image: urlImage, price, SalesProduct } = product;
-  console.log(product);
 
   return (
     <S.CardProduct>
