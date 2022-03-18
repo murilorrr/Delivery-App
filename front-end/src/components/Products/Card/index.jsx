@@ -31,8 +31,14 @@ function ProductsCard({ product }) {
   };
 
   return (
+<<<<<<< HEAD
+    <CardProduct data-testid="productCard">
+
+      <Img
+=======
     <S.CardProduct>
       <S.Image
+>>>>>>> c2eb6ef6935d9629d1b6a100ce7f94194f160c9b
         src={ urlImage }
         alt={ name }
         data-testid={ `customer_products__img-card-bg-image-${id}` }

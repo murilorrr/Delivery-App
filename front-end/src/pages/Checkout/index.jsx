@@ -27,6 +27,13 @@ function Checkout() {
     };
 
     fetchSeller();
+<<<<<<< HEAD
+
+    return () => {
+      setVendedores([]);
+    };
+  }, [cart, history]);
+=======
   }, []);
 
   useEffect(() => {
@@ -34,6 +41,7 @@ function Checkout() {
       history.push('/login');
     }
   }, [history]);
+>>>>>>> c2eb6ef6935d9629d1b6a100ce7f94194f160c9b
 
   const submitOrder = async (event) => {
     event.preventDefault();

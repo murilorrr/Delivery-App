@@ -1,17 +1,16 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import {
   Checkout,
   Login,
   Register,
-  Home,
   OrderDetails,
   Products,
   AdminPage,
   Orders,
   Sellers,
   OrderDetailsSeller,
-  Profile,
+  Profile
 } from './pages';
 
 import CartContextProvider from './contexts/cartContext';
@@ -23,7 +22,9 @@ function App() {
     <CartContextProvider>
       <AdminUsersProvider>
         <Switch>
-          <Route exact path="/" component={ Home } />
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
           <Route exact path="/login" component={ Login } />
           <Route exact path="/register" component={ Register } />
           <Route exact path="/admin/manage" component={ AdminPage } />

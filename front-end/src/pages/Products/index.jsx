@@ -13,6 +13,9 @@ function Products() {
       setProducts(response);
     };
     fetchData();
+    return () => {
+      setProducts([]);
+    };
   }, []);
 
   return (

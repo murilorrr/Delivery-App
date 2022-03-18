@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import UserCardDiv from './styles';
 import { deleteUser } from '../../fetchs';
 import { AdminUsersContext } from '../../contexts/adminContext';
-import ErrorRegister from '../errors/ErroRegister';
+import ErrorExclude from '../errors/ErrorExclude';
 
 export default function UserCard({ user: { id, name, email, role }, index }) {
   const [warning, setWarnning] = useState('');
@@ -25,7 +25,9 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
   index += 1;
 
   return (
-    <UserCardDiv>
+    <UserCardDiv
+      data-testid="userCard"
+    >
       <div data-testid={ `admin_manage__element-user-table-item-number-${index}` }>
         { `#${index}` }
       </div>
@@ -45,7 +47,7 @@ export default function UserCard({ user: { id, name, email, role }, index }) {
       >
         Excluir
       </button>
-      <ErrorRegister message={ warning } />
+      <ErrorExclude message={ warning } />
     </UserCardDiv>
   );
 }
