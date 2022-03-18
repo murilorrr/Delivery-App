@@ -8,7 +8,7 @@ export const CartContext = createContext({
 });
 
 function CartContextProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
   const [cartTotal, setCartTotal] = useState(0);
 
   const addProduct = (product, quantity) => {
@@ -41,6 +41,8 @@ function CartContextProvider({ children }) {
   useEffect(() => {
     const total = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
     setCartTotal(total);
+
+    localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   return (

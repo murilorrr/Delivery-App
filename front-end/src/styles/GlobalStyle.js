@@ -13,11 +13,12 @@ const GlobalStyle = createGlobalStyle`
 
   --white: #FFF;
   
-  --gray-50: #F7F8FA;
+  --gray-50: #f7f7fa;
   --gray-100: #E6E8EB;
   --gray-200: #AFB2B1;
   --gray-500: #808080;
-  --gray-800: #242121;
+  --gray-600: #3a3a3a;
+  --gray-800: #222124;
 }
 
 * {
@@ -26,8 +27,8 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 
-body, input, textarea, button {
-  font: 500 1rem sans-serif;
+body, input, textarea, button, select, option {
+  font: 500 1rem 'Inter', sans-serif;
   background-color: var(--gray-50);
   color: var(--gray-500);
 }
@@ -50,7 +51,7 @@ h2 {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
-  font-family: sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--gray-800);
 }
 

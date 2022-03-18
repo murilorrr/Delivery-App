@@ -91,9 +91,9 @@ export default function CreateAnyUser() {
         id="role"
         onChange={ ({ target }) => setRole(target.value) }
       >
-        <option value="customer">customer</option>
-        <option value="seller">seller</option>
-        <option value="administrator">administrator</option>
+        <option value="customer">Comprador</option>
+        <option value="seller">Vendedor</option>
+        <option value="administrator">Administrador</option>
       </select>
       <button
         data-testid="admin_manage__button-register"
@@ -105,10 +105,10 @@ export default function CreateAnyUser() {
       </button>
       <S.ErrorMessage
         data-testid="admin_manage__element-invalid-register"
-        className="error"
+        className={ warning !== '' ? 'error' : '' }
         visible={ warning === '' }
       >
-        {warning}
+        <div>{warning}</div>
       </S.ErrorMessage>
     </FormCreateAnyUser>
   );

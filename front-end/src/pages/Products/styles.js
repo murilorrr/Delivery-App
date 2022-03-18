@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
 export const Main = styled.main`
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-margin: 5vw 7vw;
+display: flex;
+flex-direction: column;
+background-color: var(--gray-100);
+/* align-items: center; */
+margin: 0;
+box-sizing: border-box;
+max-width: 100%;
+padding: 1rem 1rem 6rem;
 `;
 
-export const ButtonGoToCart = styled.button`
-position: fixed;
-right: 2rem;
-bottom: 2rem;
+export const Div = styled.div`
+display: flex;
 `;

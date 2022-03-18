@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TableOrderDetails from './styles';
 
 function OrderDetailsTable({ products }) {
   return (
-    <table>
+    <TableOrderDetails>
       <thead>
         <tr>
           <th>Item</th>
@@ -58,7 +59,7 @@ function OrderDetailsTable({ products }) {
           ))
         }
       </tbody>
-    </table>
+    </TableOrderDetails>
   );
 }
 

@@ -1,22 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import useCart from '../../../hooks/useCart';
 
 import * as S from './styles';
 
-function ProductsCard({ product }) {
-  const { id, name, url_image: urlImage, price } = product;
-  const [quantity, setQuantity] = useState(0);
+function CheckoutCard({ product }) {
+  const { id, name, url_image: urlImage, price, quantity: cartQuantity } = product;
+  const [quantity, setQuantity] = useState(cartQuantity);
   const { updateCart } = useCart();
 
-  // const removeQuantity = () => {
-  //   const newQuantity = quantity - 1;
-  //   if (newQuantity >= 0) setQuantity(newQuantity);
-  //   updateCart(product, newQuantity);
-  // };
+  const removeQuantity = () => {
+    const newQuantity = quantity - 1;
+    if (newQuantity >= 0) setQuantity(newQuantity);
+    updateCart(product, newQuantity);
+  };
 
   const addQuantity = () => {
     const newQuantity = quantity + 1;
@@ -31,35 +29,41 @@ function ProductsCard({ product }) {
   };
 
   return (
-<<<<<<< HEAD
-    <CardProduct data-testid="productCard">
-
-      <Img
-=======
     <S.CardProduct>
       <S.Image
->>>>>>> c2eb6ef6935d9629d1b6a100ce7f94194f160c9b
         src={ urlImage }
         alt={ name }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
 
       <S.Info>
-        <div>
-          <span>{ 4.7 }</span>
-          <FontAwesomeIcon icon={ faStar } />
-        </div>
-
         <h5 data-testid={ `customer_products__element-card-title-${id}` }>
           { name }
         </h5>
 
-        <S.Options>
-          <h6 data-testid={ `customer_products__element-card-price-${id}` }>
+        <div>
+          <span>{ cartQuantity }</span>
+          <span>x</span>
+          <span data-testid={ `customer_products__element-card-price-${id}` }>
             { Number(price)
               .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
-          </h6>
+          </span>
+        </div>
+
+        <S.Options>
           <div>
+            { Number(price * cartQuantity)
+              .toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) }
+          </div>
+
+          <div>
+            <button
+              type="button"
+              data-testid={ `customer_products__button-card-remove-item-${id}` }
+              onClick={ removeQuantity }
+            >
+              -
+            </button>
             <input
               type="number"
               name="quantity"
@@ -77,14 +81,13 @@ function ProductsCard({ product }) {
             </button>
           </div>
         </S.Options>
-
       </S.Info>
     </S.CardProduct>
   );
 }
 
-ProductsCard.propTypes = {
+CheckoutCard.propTypes = {
   product: PropTypes.object,
 }.isRequired;
 
-export default ProductsCard;
+export default CheckoutCard;
