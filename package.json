@@ -1,35 +1,29 @@
 {
-    "name": "sd-0x-project-delivery-app",
+    "name": "delivery-app",
     "version": "1.0.0",
-    "description": "\"Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀\"",
     "engines": {
         "node": ">=14.0.0"
     },
     "engineStrict": true,
     "scripts": {
         "pm2": "./node_modules/.bin/pm2",
-        "jest": "./node_modules/.bin/jest",
         "start": "./scripts/prepare-for-test.sh",
         "stop": "(pm2 stop all && pm2 delete all) | grep 'PM2'",
         "dev": "./scripts/prepare-for-dev.sh",
         "dev:prestart": "./scripts/prestart-dev.sh",
         "db:reset": "./scripts/reset-db-dev.sh",
-        "db:reset:debug": "./scripts/reset-db-dev-debug.sh",
-        "test": "jest --runInBand --detectOpenHandles --forceExit --verbose",
-        "test:dev": "NODE_ENV=development npm run jest -- --runInBand --detectOpenHandles --forceExit --verbose",
-        "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev",
-        "test:dev:report": "./__tests__/reports/generate.sh"
+        "db:reset:debug": "./scripts/reset-db-dev-debug.sh"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/betrybe/sd-0x-project-delivery-app.git"
+        "url": "git+https://github.com/murilorsv14/Delivery-App.git"
     },
-    "author": "",
-    "license": "ISC",
+    "author": "Murilo Ribeiro",
+    "license": "MIT",
     "bugs": {
-        "url": "https://github.com/betrybe/sd-0x-project-delivery-app/issues"
+        "url": "https://github.com/murilorsv14/Delivery-App/issues"
     },
-    "homepage": "https://github.com/betrybe/sd-0x-project-delivery-app#readme",
+    "homepage": "https://github.com/murilorsv14/Delivery-App",
     "devDependencies": {
         "axios": "^0.21.4",
         "dotenv": "8.2.0",
@@ -43,15 +37,5 @@
         "puppeteer": "9.1.0",
         "sequelize": "^6.17.0",
         "sequelize-cli": "^6.4.1"
-    },
-    "jest": {
-        "globals": {
-            "__DATABASE__": true,
-            "__COVERAGE__": true,
-            "__REQUIREMENTS__": true,
-            "__TESTID__": true,
-            "__TESTDESC__": true,
-            "__TESTFILE__": true
-        }
     }
 }
