@@ -18,13 +18,6 @@ flex-direction: column;
   h1 {
     font-size: 1.25rem;
   }
-
-  span {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: var(--crimson);
-  }
 }
 `;
 
