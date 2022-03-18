@@ -7,7 +7,7 @@ const archive = path.join(__dirname, '..', '..', '..', 'back-end', 'jwt.evaluati
 const secret = fs.readFileSync(archive, {
   encoding: 'utf8',
   flags: 'string',
-}).trim() || 'secret_key';
+}).trim();
 
 const generateJWT = (payload) => {
   const JWTconfig = {
