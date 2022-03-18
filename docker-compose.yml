@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  react:
+    stdin_open: true
+    tty: true
+    restart: always
+    build: 
+      context: ./src/front-end
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    depends_on:
+      - node
+      - mysql
+  node:
+    restart: always
+    environment:
+      - HOST=mysql
+    build: ./src/back-end
+    ports:
+      - 3001:3001
+    volumes:
+      - ./:/code
+    depends_on:
+      - mysql
+  
+  mysql:
+    restart: always
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'exemple' # TODO: Change this
+      MYSQL_USER: 'test'
+      MYSQL_PASS: 'exemple'
+    volumes_from:
+      - /opt/mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  
+volumes:
+  mysql_data:
