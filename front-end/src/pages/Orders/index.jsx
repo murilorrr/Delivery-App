@@ -24,12 +24,8 @@ function Orders() {
     getSalesAsync();
 
     const newSocket = io('http://localhost:3001');
-<<<<<<< HEAD
 
     newSocket.on('connect');
-=======
-    newSocket.on('connect', () => console.log('socket connected'));
->>>>>>> c2eb6ef6935d9629d1b6a100ce7f94194f160c9b
     newSocket.on('statusUpdated', async () => getSalesAsync());
     return () => {
       setOrders([]);

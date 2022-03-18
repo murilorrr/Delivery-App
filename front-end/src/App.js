@@ -10,7 +10,7 @@ import {
   Orders,
   Sellers,
   OrderDetailsSeller,
-  Profile
+  Profile,
 } from './pages';
 
 import CartContextProvider from './contexts/cartContext';
