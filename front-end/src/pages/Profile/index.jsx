@@ -6,8 +6,11 @@ import { Link, useHistory } from 'react-router-dom';
 
 import * as S from './styles';
 
+const apiHashfyBaseURL = 'https://api.hashify.net/hash/md5/hex?value=';
+
 export default function Profile() {
   const [user, setUser] = useState({});
+  const [emailHash, setEmailHash] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -15,7 +18,10 @@ export default function Profile() {
     if (!userStorage) history.push('/login');
 
     setUser(JSON.parse(userStorage));
-  }, [history]);
+
+    fetch(`${apiHashfyBaseURL}${user.email}`)
+      .then((json) => json.json().then((response) => setEmailHash(response)));
+  }, [history, user.email]);
 
   const logOut = () => {
     localStorage.removeItem('user');
@@ -25,7 +31,7 @@ export default function Profile() {
   return (
     <S.Main>
       <div>
-        <span />
+        <img src={ `https://gravatar.com/avatar/${emailHash.Digest}?d=wavatar` } alt="avatar" />
         <h1>{ user.name }</h1>
       </div>
 
