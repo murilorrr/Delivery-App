@@ -6,12 +6,12 @@ const fs = require('fs');
 
 const { customizeError, decodeJWT } = require('../utils');
 
-const archive = path.resolve(__dirname, '..', '..', '..', 'back-end', 'jwt.evaluation.key');
+const archive = path.join(__dirname, "..", "..", 'jwt.evaluation.key');
 
 const secret = fs.readFileSync(archive, {
   encoding: 'utf8',
   flags: 'string',
-}).trim() || 'secret_key';
+}).trim();
 
 const authMiddleware = (req, res, next) => {
   const { authorization } = req.headers;

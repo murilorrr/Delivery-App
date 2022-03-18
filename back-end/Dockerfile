@@ -4,5 +4,5 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
 EXPOSE 3001
 COPY . .
-ENTRYPOINT ["npm", "run", "db:reset"]
-CMD ["npm", "start"]
+RUN ["npm", "run", "dev"]
+RUN ["npm", "run", "db:reset"]
