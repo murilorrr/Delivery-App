@@ -1,21 +1,15 @@
 {
-  "name": "delivery-app-back-end",
+  "name": "delivery-app-front-end",
   "version": "0.1.0",
   "description": "Front-end do projeto App de Delivery",
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "engineStrict": true,
   "private": true,
   "scripts": {
-    "with-env": "SKIP_PREFLIGHT_CHECK=true",
-    "start": "npm run with-env react-scripts start",
-    "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
-    "build": "npm run with-env react-scripts build",
-    "test": "npm run with-env react-scripts test -- --runInBand --detectOpenHandles --verbose",
-    "test:coverage": "npm run with-env react-scripts test -- --coverage --watchAll",
-    "test:coverage:json": "npm run with-env react-scripts test -- --coverage --coverageReporters=\"json-summary\" --watchAll=false --testFailureExitCode=0 --detectOpenHandles --runInBand --forceExit",
-    "eject": "npm run with-env react-scripts eject",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "test": "react-scripts test -- --runInBand --detectOpenHandles --verbose",
+    "test:coverage": "react-scripts test -- --coverage --watchAll",
+    "test:coverage:json": "react-scripts test -- --coverage --coverageReporters=\"json-summary\" --watchAll=false --testFailureExitCode=0 --detectOpenHandles --runInBand --forceExit",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json .",
     "lint:styles": "stylelint **/*.css --config .stylelintrc.json --ignore-disables --allow-empty-input"
   },
@@ -24,9 +18,6 @@
     "@fortawesome/free-regular-svg-icons": "^6.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.1.17",
-    "@testing-library/jest-dom": "5.14.1",
-    "@testing-library/react": "11.2.7",
-    "@testing-library/user-event": "12.8.3",
     "axios": "^0.26.1",
     "moment": "^2.29.1",
     "react": "17.0.2",
@@ -42,6 +33,9 @@
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-beta.0",
     "@testing-library/dom": "^8.11.3",
+    "@testing-library/jest-dom": "5.14.1",
+    "@testing-library/react": "11.2.7",
+    "@testing-library/user-event": "12.8.3",
     "eslint-config-trybe-frontend": "1.2.1",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
