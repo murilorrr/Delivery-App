@@ -128,6 +128,7 @@ http://localhost:3000
 ## 👣 Next steps
 
 - deploy on heroku
+- improve security change md5 for bcrypt hash
 - feature: quantity item in Products Page
 - improve tests
 - implements atomic design in Front-end
