@@ -6,19 +6,19 @@ module.exports = {
       {
         name: 'Delivery App Admin',
         email: 'adm@deliveryapp.com',
-        password: 'a4c86edecc5aee06eff8fdeda69e0d04',
+        password: '$2a$07$7nmEYiZmu.Y0zNAa/KQAxe7JVoU/qoIDv/UCWOXv3KQ4g2MY9Ze8u',
         role: 'administrator'
       },
       {
         name: 'Fulana Pereira',
         email: 'fulana@deliveryapp.com',
-        password: '3c28d2b0881bf46457a853e0b07531c6',
+        password: '$2a$07$UL9JWiVenZ1ZISx/cXv6ge0iDjoPzqpFA/IQm5sWrz6SG/ghrOkUO',
         role: 'seller'
       },
       {
         name: 'Cliente Zé Birita',
         email: 'zebirita@email.com',
-        password: '1c37466c159755ce1fa181bd247cb925',
+        password: '$2a$07$SFj3bfAXCjX..BLf1ZzG7OYQQ8SQinm4E7.IpxI2Dfcvypig3zRsi',
         role: 'customer'
       },
       ], { timestamps: false });
