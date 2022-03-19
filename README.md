@@ -1,7 +1,16 @@
 # Delivery-App Monorepo
 
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/murilorsv14/Delivery-App/alerts/)
-[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/murilorsv14/Delivery-App/context:javascript)
+<p align="center">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/murilorsv14/Delivery-App?color=6E40C9&style=flat-square">
+  <img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/murilorsv14/Delivery-App?color=6E40C9&style=flat-square">
+  <a href="https://github.com/leandrolid/trivia-app/commits/main">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/murilorsv14/Delivery-App?color=6E40C9&style=flat-square">
+  </a>
+  <a href="https://lgtm.com/projects/g/murilorsv14/Delivery-App/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18"/>
+  </a>
+  <a href="https://lgtm.com/projects/g/murilorsv14/Delivery-App/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18"/>
+  </a>
+</p>
 
 #### Images preview app
 
