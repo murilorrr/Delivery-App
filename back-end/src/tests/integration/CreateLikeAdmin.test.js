@@ -1,6 +1,7 @@
 const chai = require("chai");
 const shell = require("shelljs");
 const chaiHttp = require("chai-http");
+// const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
 chai.use(chaiHttp);
@@ -23,7 +24,7 @@ const userCustomerForCreate = {
 };
 
 const compareHashPassword = (password, hash) => {
-  return bcrypt.compare(password, hash);
+  return bcrypt.compareSync(password, hash);
 };
 
 const userSellerForCreate = {
@@ -71,7 +72,9 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
             "role",
             "password"
           );
-          expect(compareHashPassword(userCustomerForCreate.password ,res.body.user.password)).to.be.true();
+          const isEqual = compareHashPassword(userCustomerForCreate.password, res.body.user.password);
+          console.log(isEqual);
+          expect(isEqual).to.be.true;
           done();
         });
     });
@@ -92,13 +95,8 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
             "role",
             "password"
           );
-          expect(compareHashPassword(userSellerForCreate.password ,res.body.user.password)).to.be.true();
-          expect(res.body).to.be.deep.equal({
-            user: {
-              ...userSellerForCreate,
-              password: hashPassword(userSellerForCreate.password),
-            },
-          });
+          const isEqual = compareHashPassword(userSellerForCreate.password, res.body.user.password);
+          expect(isEqual).to.be.true;
           done();
         });
     });
