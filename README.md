@@ -127,11 +127,11 @@ http://localhost:3000
 
 ## 👣 Next steps
 
-- [] Deploy on heroku
-- [x] Improve security change md5 for bcrypt hash 
-- [] Feature: quantity item in Products Page
-- [] Improve tests
-- [] Implements atomic design in Front-end
+- [x] Improve security change md5 for bcrypt hash
+- [ ] Deploy on heroku
+- [ ] Feature: quantity item in Products Page
+- [ ] Improve tests
+- [ ] Implements atomic design in Front-end
 
 ## :handshake: **Contributing**
 
