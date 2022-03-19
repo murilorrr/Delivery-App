@@ -58,34 +58,33 @@ Now it's hands to work! Let's start?
 and much more...
 
 ## Application flow
-- **Fluxo Comum** que compreende: 
-  - (1) Tela de Login (`01login.test`);
-  - (2) Tela de Registro (`02register.test`).
+- **Common Flow** that embrase: 
+  - (1) Login screen (`/login`);
+  - (2) Register screen (`/register`).
 
-- **Fluxo do Cliente** que compreende: : 
-  - (3) Tela de Produtos (`03customer_products.test`); 
-  - (4) Tela de Checkout (`04customer_checkout.test`); 
-  - (5) Tela de Pedidos (`05customer_orders.test`); 
-  - (6) Tela de Detalhes do Pedido (`06customer_order_details.test`).
+- **Customer Flow** that embrase: : 
+  - (3) Products screen (`/customer/products`); 
+  - (4) Checkout screen (`/customer/checkout`); 
+  - (5) Orders screen (`/customer/orders`); 
+  - (6) Orders details screen (`/customer/orders/id`); .
 
-- **Fluxo da Pessoa Vendedora** que compreende: 
-  - (7) Tela de Pedidos (`07seller_orders.test`); 
-  - (8) Tela de Detalhes/Controle do Pedido (`08seller_order_details.test`).
+- **Seller Flow** that embrase: 
+  - (7) Order screen (`/seller/orders`); 
+  - (8) Order details screen (`/seller/orders/id`).
 
-- **Validação do Status do Pedido** que compreende: 
-  - (9) Teste de status sem atualização em tempo real (`09customer_seller_status_sync.test`); 
-  - (10) Teste de status com atualização em tempo real (`10customer_seller_socket_status_sync.test`).
+- **Order Status Validation** that embrase: 
+  - (10) Status test with real-time update (`/customer/order/id and /seller/order/id`).
 
-- **Fluxo da Pessoa Administradora** que compreende: 
-  - (11) Tela de gerenciamento de usuários (`11admin_manage_users.test`).
+- **Administrator Flow** que compreende: 
+  - (11) User management screen (`/admin/manage`).
 
 ## 🏃 Getting started
 
 ### Pre-requisites
 
-- _Node:_ `^14.16.1` or higher.
-- _Npm:_ `8.3.0` or higher.
-- _Git:_ `2.25.1` or higher.
+- _Node(Optional):_ `^14.16.1` or higher.
+- _Npm(Optional):_ `8.3.0` or higher.
+- _Git(Optional):_ `2.25.1` or higher.
 - _Docker(Optional):_ `20.10.12` or higher.
 
 Clone the project from Github :
