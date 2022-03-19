@@ -23,7 +23,7 @@ function Orders() {
 
     getSalesAsync();
 
-    const newSocket = io('http://localhost:3001');
+    const newSocket = io(process.env.REACT_APP_API_URL || 'http://localhost:3001');
 
     newSocket.on('connect');
     newSocket.on('statusUpdated', async () => getSalesAsync());
@@ -38,7 +38,7 @@ function Orders() {
   return (
     <S.Main>
       {
-        orders.length > 0 && orders.map((order) => (
+        orders.length > 0 ? orders.map((order) => (
           <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
             <S.OrderCardHeader>
               <div>
@@ -90,7 +90,7 @@ function Orders() {
               </div>
             </S.OrderCardFooter>
           </S.OrderCard>
-        ))
+        )) : (<span>Ainda não há nada por aqui...</span>)
       }
     </S.Main>
   );

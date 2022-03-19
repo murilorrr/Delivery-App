@@ -5,6 +5,7 @@ export const CartContext = createContext({
   updateCart: () => {},
   cart: [],
   cartTotal: 0,
+  resetCart: () => {},
 });
 
 function CartContextProvider({ children }) {
@@ -38,6 +39,10 @@ function CartContextProvider({ children }) {
     return removeProduct(product.id);
   };
 
+  const resetCart = () => {
+    setCart([]);
+  };
+
   useEffect(() => {
     const total = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
     setCartTotal(total);
@@ -51,6 +56,7 @@ function CartContextProvider({ children }) {
         updateCart,
         cart,
         cartTotal,
+        resetCart,
       } }
     >
       { children }

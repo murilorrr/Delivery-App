@@ -1,19 +1,11 @@
 require('dotenv').config();
 const status = require('http-status-codes').StatusCodes;
 const JWT = require('jsonwebtoken');
-const path = require('path');
-const fs = require('fs');
-
 const { customizeError, decodeJWT } = require('../utils');
 
-const archive = path.join(__dirname, "..", "..", 'jwt.evaluation.key');
+const secret = process.env.JWT_SECRET;
 
-const secret = fs.readFileSync(archive, {
-  encoding: 'utf8',
-  flags: 'string',
-}).trim();
-
-const authMiddleware = (req, res, next) => {
+const authMiddleware = (req, _res, next) => {
   const { authorization } = req.headers;
   try {
     JWT.verify(authorization, secret);

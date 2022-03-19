@@ -26,7 +26,7 @@ function SellerOrders() {
     };
     fetchSeller();
 
-    const newSocket = io('http://localhost:3001');
+    const newSocket = io(process.env.REACT_APP_API_URL || 'http://localhost:3001');
 
     newSocket.on('connect');
     newSocket.on('statusUpdated', async () => fetchSeller());

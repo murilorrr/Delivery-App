@@ -14,7 +14,10 @@ export default function Exit() {
 
   return (
     <button type="button" onClick={ getOut }>
-      <FontAwesomeIcon icon={ faArrowRightFromBracket } />
+      <FontAwesomeIcon
+        style={ { fontSize: '1.5rem' } }
+        icon={ faArrowRightFromBracket }
+      />
     </button>
   );
 }
