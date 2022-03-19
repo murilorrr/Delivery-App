@@ -1,14 +1,6 @@
-const path = require('path');
-const fs = require('fs');
-
-const archive = path.join(__dirname, "..", "..", 'jwt.evaluation.key');
-
-const secret = fs.readFileSync(archive, {
-  encoding: 'utf8',
-  flags: 'string',
-}).trim();
-
 const JWT = require('jsonwebtoken');
+
+const secret = process.env.JWT_SECRET;
 
 module.exports = (token) => {
   const decoded = JWT.verify(token, secret);
