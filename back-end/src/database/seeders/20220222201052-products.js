@@ -1,12 +1,12 @@
 'use strict';
 require('dotenv').config();
 
-const URLImage = process.env.DEPLOY_URL || 'http://localhost:3001';
+const URLImage = process.env.BACK_END_DEPLOY_URL || 'http://localhost:3001';
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
       await queryInterface.bulkInsert('products', [
-        { name: 'Skol Lata 250ml', price: 2.20, url_image: 'http://localhost:3001' + '/images/skol_lata_350ml.jpg' },
+        { name: 'Skol Lata 250ml', price: 2.20, url_image: URLImage + '/images/skol_lata_350ml.jpg' },
         { name: 'Heineken 600ml', price: 7.50, url_image: URLImage + '/images/heineken_600ml.jpg' },
         { name: 'Antarctica Pilsen 300ml', price: 2.49, url_image: URLImage + '/images/antarctica_pilsen_300ml.jpg' },
         { name: 'Brahma 600ml', price: 7.50, url_image: URLImage + '/images/brahma_600ml.jpg' },
