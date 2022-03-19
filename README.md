@@ -145,4 +145,5 @@ All kinds of contributions are very welcome and appreciated!
 - ✋ Influence the future of Delivery-App with feature requests
 
 To learn how to contribute, read the [Contributing Guide](/CONTRIBUTION.md) before making the pull request.
+
 To learn a little more about the implemented architecture, read the [Architecture Design](/ARCHITECTURE.md).
