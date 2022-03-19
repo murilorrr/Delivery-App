@@ -34,7 +34,7 @@ const createUser = async (user, agentRole) => {
   const { name, email, password, role } = user;
 
   validateAgentRole(agentRole);
-
+  
   await validateUser({ name, email, password, role });
   
   const hashPassword = encryptPassword(password);
