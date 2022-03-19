@@ -72,11 +72,8 @@ and much more...
   - (7) Order screen (`/seller/orders`); 
   - (8) Order details screen (`/seller/orders/id`).
 
-- **Order Status Validation** that embrase: 
-  - (10) Status test with real-time update (`/customer/order/id and /seller/order/id`).
-
 - **Administrator Flow** que compreende: 
-  - (11) User management screen (`/admin/manage`).
+  - (9) User management screen (`/admin/manage`).
 
 ## 🏃 Getting started
 
