@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/register" component={ Register } />
           <Route exact path="/admin/manage" component={ AdminPage } />
           <>
-            <Route exact path="/" component={ Header } />
+            <Route path="/" component={ Header } />
             <Route exact path="/customer/products" component={ Products } />
             <Route exact path="/customer/checkout" component={ Checkout } />
             <Route exact path="/customer/orders/:orderId" component={ OrderDetails } />
