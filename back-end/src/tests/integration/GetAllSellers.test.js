@@ -97,13 +97,6 @@ describe("Get All Sellers - Sua aplicação deve ter o endpoint GET `/seller`", 
           res.body.map((seller) =>
             expect(seller["role"]).to.be.equal("seller")
           );
-          expect(res.body[0]).to.be.deep.equal({
-            id: 2,
-            name: "Fulana Pereira",
-            email: "fulana@deliveryapp.com",
-            password: "3c28d2b0881bf46457a853e0b07531c6",
-            role: "seller",
-          });
           done();
         });
     });

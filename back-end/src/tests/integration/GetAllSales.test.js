@@ -109,7 +109,7 @@ describe("Get All Sales - Sua aplicação deve ter o endpoint GET `/seller/order
           expect(res.status).to.be.equal(200);
           expect(res.body).to.be.a("array");
           res.body.map((obj) => expect(obj[0]).to.not.be.null);
-          res.body.map((obj) => expect(obj).have.all.keys('id', 'totalPrice', 'deliveryAddress', 'deliveryNumber', 'saleDate', 'userId', 'sellerId', 'status', 'seller_id', 'user_id'));
+          res.body.map((obj) => expect(obj).have.all.keys('id', 'totalPrice', 'deliveryAddress','products', 'deliveryNumber', 'seller', 'saleDate', 'user', 'status'));
           done();
         });
     });
