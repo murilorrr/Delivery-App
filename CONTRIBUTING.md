@@ -2,10 +2,6 @@
   How to contribute
 </h1>
 
-# Contributing
-
-Contributions, issues and feature requests are very welcome.
-
 ## Docker
 
 If you have docker installed, you can run with:
@@ -19,39 +15,19 @@ docker-compose up
 - _Node:_ `^14.16.1` or higher.
 - _Npm:_ `8.3.0` or higher.
 - _Git:_ `2.25.1` or higher.
+- _Docker(Optional):_ `20.10.12` or higher.
 
-### Backend Architecture
+## :handshake: **Contributing**
 
-We decided to follow some MSC to guide our backend architecture. Here is a quick glance of what we expect when of new contributions in the backend project. How we organize our project:
+Contributions, issues and feature requests are very welcome.
+This project is for study purposes too, so send me an email telling me what you are doing and why you are doing it, teach me what you know
 
-- `/back-end/src`: Source of all back-end;
-  - `public`: Is the layer that expose images to front-end;
-  - `api`: Here our server is instantiated and identifies the routes and entities;
-  - `controller`: Is the layer that takes care of http requests to the server;
-  - `database`: Is the layer that provide sequelize staffs and configs
-  - `middlewares`: Is a type of controller, but can be reused for authentication or error handling functions for example;
-  - `routes`: This layer will tell which endpoint will operate for each controller;
-  - `services`: Is the layer that takes care of the application's business rules, it intermediates the information coming from the route to the model;
-  - `socket`: Is the layer that care about real-time comunication client-server;
-  - `tests`: This layer makes everything, including coffee;
-  - `utils`: Here are custom functions to help our application
+All kinds of contributions are very welcome and appreciated!
 
-### Frontend Architecture
+- ⭐️ Star the project
+- 🐛 Find and report issues
+- 📥 Submit PRs to help solve issues or add features
+- ✋ Influence the future of Delivery-App with feature requests
 
-
- - `public`: This layer has all the static files of the system made available by http;
- - `src`: Source of all front-end code;
-   - `components`: Here our components are stored so they can be reused;
-   - `contexts`: This layer is responsible for managing the necessary contexts for the application;
-   - `fetchs`: This layer has all fetch into your API using axios;
-   - `hooks`: In this layer are the most common hooks;
-   <!-- - `assets`: This layers concentrate your styles and images; -->
-   - `pages`: Folder responsible for storing system pages;
-   - `styles`: Here are concentrated the global styles of the application, reuse constants;
-   - `tests`: This layer makes everything, including coffee;
-
-
-> This project has integration with LGTM automated code review
-
-
-Thanks ❤️
+To understand more about the purpose of the application, next steps and how to run, read the [ReadMe](/README.md) before making the pull request.
+To learn a little more about the implemented architecture, read the [Architecture Design](/ARCHITECTURE.md) before making the pull request.
