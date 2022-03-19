@@ -11,7 +11,7 @@ import CheckoutCard from '../../components/Checkout/Card';
 import * as S from './styles';
 
 function Checkout() {
-  const { cart, cartTotal } = useCart();
+  const { cart, cartTotal, resetCart } = useCart();
   const [vendedores, setVendedores] = useState([]);
   const [currSeller, setCurrSeller] = useState(2);
   const [endereço, setEndereço] = useState('');
@@ -47,6 +47,9 @@ function Checkout() {
         status: 'Pendente',
         cart: cartItens,
       });
+
+      resetCart();
+      localStorage.removeItem('cart');
 
       history.push(`/customer/orders/${sale.id}`);
     }
