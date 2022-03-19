@@ -1,4 +1,4 @@
-# Desafio-Tecnico-Ebytr Monorepo
+# Delivery-App Monorepo
 
 #### badges preview LGTM
 
