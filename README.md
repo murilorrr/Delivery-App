@@ -10,6 +10,7 @@
   </a>
   <a href="https://lgtm.com/projects/g/murilorsv14/Delivery-App/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18"/>
   </a>
+  <a href="https://codeclimate.com/github/murilorsv14/Delivery-App/maintainability"><img src="https://api.codeclimate.com/v1/badges/fb1b65d40930ea5e4e6d/maintainability" /></a>
 </p>
 
 #### Images preview app
