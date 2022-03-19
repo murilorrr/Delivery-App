@@ -72,7 +72,7 @@ and much more...
   - (7) Order screen (`/seller/orders`); 
   - (8) Order details screen (`/seller/orders/id`).
 
-- **Administrator Flow** que compreende: 
+- **Administrator Flow** that embrase: 
   - (9) User management screen (`/admin/manage`).
 
 ## 🏃 Getting started
@@ -127,11 +127,11 @@ http://localhost:3000
 
 ## 👣 Next steps
 
-- deploy on heroku
-- improve security change md5 for bcrypt hash
-- feature: quantity item in Products Page
-- improve tests
-- implements atomic design in Front-end
+- [] Deploy on heroku
+- [x] Improve security change md5 for bcrypt hash 
+- [] Feature: quantity item in Products Page
+- [] Improve tests
+- [] Implements atomic design in Front-end
 
 ## :handshake: **Contributing**
 
@@ -145,3 +145,4 @@ All kinds of contributions are very welcome and appreciated!
 - ✋ Influence the future of Delivery-App with feature requests
 
 To learn how to contribute and a little more about the implemented architecture, read the [Contributing Guide](/CONTRIBUTION.md) before making the pull request.
+To learn a little more about the implemented architecture, read the [Architecture Design](/ARCHITECTURE.md).
