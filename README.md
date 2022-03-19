@@ -1,4 +1,4 @@
-# Desafio-Tecnico-Ebytr Monorepo
+# Delivery-App Monorepo
 
 #### badges preview LGTM
 
@@ -38,7 +38,7 @@ Now it's hands to work! Let's start?
 ## :zap: **Tech Stack**
 
 <h1 align="center">
-  <img src="https://coinerblog.com/wp-content/uploads/2019/10/How-to-Build-A-Well-Structured-3-tier-Architecture-MERN-Stack%E2%80%8A-ES6-Step-by-Step-Guide.png" alt="Stack" height="200" width="300">
+  <img src="https://miro.medium.com/max/811/1*SEfonxxMIktyFJWwA_oTTg.png" alt="Stack" height="300" width="500">
   <br>
 </h1>
 
@@ -62,7 +62,7 @@ and much more...
   - (1) Login screen (`/login`);
   - (2) Register screen (`/register`).
 
-- **Customer Flow** that embrase: : 
+- **Customer Flow** that embrase: 
   - (3) Products screen (`/customer/products`); 
   - (4) Checkout screen (`/customer/checkout`); 
   - (5) Orders screen (`/customer/orders`); 
