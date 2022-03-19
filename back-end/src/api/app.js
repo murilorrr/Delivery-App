@@ -1,5 +1,6 @@
 require('express-async-errors');
 const express = require('express');
+const rateLimit = require('express-rate-limit')
 const cors = require('cors');
 const path = require('path');
 const io = require('socket.io');
@@ -25,6 +26,15 @@ const socketio = io(http, {
   },
 });
 
+const limiter = rateLimit({
+  windowMs: 1*60*1000, // 1 minute
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
+// apply rate limiter to all requests
+
+app.use(limiter);
 app.use(express.json());
 app.use(cors());
 
