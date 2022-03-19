@@ -21,9 +21,9 @@ function Products() {
   return (
     <S.Main>
       {
-        products && products.map((product) => (
+        products.length ? products.map((product) => (
           <ProductsCard key={ product.id } product={ product } />
-        ))
+        )) : (<span>Carregando produtos...</span>)
       }
     </S.Main>
   );
