@@ -130,7 +130,7 @@ http://localhost:3000
 - [x] Improve security change md5 for bcrypt hash
 - [ ] Deploy on heroku
 - [ ] Feature: quantity item in Products Page
-- [ ] Improve tests
+- [ ] Improve tests for 90% coverage
 - [ ] Implements atomic design in Front-end
 
 ## :handshake: **Contributing**
