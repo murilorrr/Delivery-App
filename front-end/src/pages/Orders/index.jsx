@@ -38,7 +38,7 @@ function Orders() {
   return (
     <S.Main>
       {
-        orders.length > 0 && orders.map((order) => (
+        orders.length > 0 ? orders.map((order) => (
           <S.OrderCard to={ `/customer/orders/${order.id}` } key={ order.id }>
             <S.OrderCardHeader>
               <div>
@@ -90,7 +90,7 @@ function Orders() {
               </div>
             </S.OrderCardFooter>
           </S.OrderCard>
-        ))
+        )) : (<span>Ainda não há nada por aqui...</span>)
       }
     </S.Main>
   );

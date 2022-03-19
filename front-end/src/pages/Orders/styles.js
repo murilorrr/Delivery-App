@@ -6,10 +6,27 @@ display: flex;
 flex-direction: column;
 background-color: var(--gray-100);
 /* align-items: center; */
+/* justify-content: center; */
 margin: 0;
 box-sizing: border-box;
 max-width: 100%;
+min-height: 100vh;
 padding: 1rem 1rem 6rem;
+> span {
+  width: 100%;
+  height: 7rem;
+  font-size: 1.25rem;
+  text-align: center;
+  line-height: 7rem;
+  border: 1px dashed var(--gray-200);
+  border-radius: 0.5rem;
+  margin: 2rem 0;
+  &:not(:first-child) {
+    background: var(--gray-200);
+    height: 7rem;
+    margin: 0.5rem 0;
+  }
+}
 `;
 
 export const OrderCard = styled(Link)`
@@ -17,11 +34,13 @@ background-color: var(--gray-50);
 display: flex;
 justify-content: center;
 flex-direction: column;
+justify-self: flex-start;
 flex-wrap: wrap;
 border-radius: 0.5rem;
 padding: 1rem;
 color: var(--gray-800);
 box-shadow: 2px 2px 5px rgb(0,0,0,0.02);
+width: 100%;
 
 & + a {
   margin-top: 0.75rem;
