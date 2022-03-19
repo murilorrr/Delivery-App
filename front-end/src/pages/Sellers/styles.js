@@ -9,6 +9,7 @@ background-color: var(--gray-100);
 margin: 0;
 box-sizing: border-box;
 max-width: 100%;
+min-height: 100vh;
 padding: 1rem 1rem 6rem;
 `;
 

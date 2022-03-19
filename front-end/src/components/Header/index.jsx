@@ -9,11 +9,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import useCart from '../../hooks/useCart';
 
 import * as S from './styles';
 
-function Header() {
+function Header({ children }) {
   const { cartTotal } = useCart();
   const [user, setUser] = useState('');
   const [ordersLink, setOrdersLink] = useState({ to: '' });
@@ -44,14 +46,33 @@ function Header() {
         )
       }
 
-      <S.Link
-        to={ ordersLink.to }
-        data-testid="customer_products__element-navbar-link-orders"
-        current={ history.location.pathname }
-      >
-        <FontAwesomeIcon icon={ user.role === 'customer' ? faClipboardList : faHome } />
-        <span>{ ordersLink.name }</span>
-      </S.Link>
+      {
+        user.role === 'administrator' && (
+          <S.Link
+            to="/admin/manage"
+            data-testid="customer_products__element-navbar-link-products"
+            current={ history.location.pathname }
+          >
+            <FontAwesomeIcon icon={ faHome } />
+            <span>Início</span>
+          </S.Link>
+        )
+      }
+
+      {
+        user.role !== 'administrator' && (
+          <S.Link
+            to={ ordersLink.to }
+            data-testid="customer_products__element-navbar-link-orders"
+            current={ history.location.pathname }
+          >
+            <FontAwesomeIcon
+              icon={ user.role === 'customer' ? faClipboardList : faHome }
+            />
+            <span>{ ordersLink.name }</span>
+          </S.Link>
+        )
+      }
 
       {
         user.role === 'customer' ? (
@@ -75,8 +96,18 @@ function Header() {
         <FontAwesomeIcon icon={ faUser } />
         <span>Conta</span>
       </S.Link>
+
+      { children }
     </S.Header>
   );
 }
+
+Header.defaultProps = {
+  children: null,
+};
+
+Header.propTypes = {
+  children: PropTypes.node,
+};
 
 export default Header;

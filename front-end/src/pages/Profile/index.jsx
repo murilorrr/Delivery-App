@@ -36,8 +36,8 @@ export default function Profile() {
       </div>
 
       <S.Menu>
-        <Link to={ user.role === 'customer' ? '/customer/orders' : '/seller/orders' }>
-          <span>Pedidos</span>
+        <Link to="/">
+          <span>{ user.role === 'administrator' ? 'Início' : 'Pedidos' }</span>
           <FontAwesomeIcon icon={ faAngleRight } />
         </Link>
         <div>
