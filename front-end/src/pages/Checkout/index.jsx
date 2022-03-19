@@ -36,18 +36,20 @@ function Checkout() {
   const submitOrder = async (event) => {
     event.preventDefault();
 
-    const cartItens = cart.map(({ id, quantity }) => ({ id, quantity }));
+    if (endereço && numero) {
+      const cartItens = cart.map(({ id, quantity }) => ({ id, quantity }));
 
-    const sale = await createSale({
-      sellerId: currSeller,
-      totalPrice: cartTotal,
-      deliveryAddress: endereço,
-      deliveryNumber: numero,
-      status: 'Pendente',
-      cart: cartItens,
-    });
+      const sale = await createSale({
+        sellerId: 2,
+        totalPrice: cartTotal,
+        deliveryAddress: endereço,
+        deliveryNumber: numero,
+        status: 'Pendente',
+        cart: cartItens,
+      });
 
-    history.push(`/customer/orders/${sale.id}`);
+      history.push(`/customer/orders/${sale.id}`);
+    }
   };
 
   return (
@@ -87,6 +89,7 @@ function Checkout() {
             name="endereço"
             id="endereço"
             placeholder="Rua da Sua Satisfação"
+            required
             value={ endereço }
             data-testid="customer_checkout__input-address"
             onChange={ ({ target }) => setEndereço(target.value) }
@@ -97,6 +100,7 @@ function Checkout() {
             id="numero"
             placeholder="Nº"
             value={ numero }
+            required
             data-testid="customer_checkout__input-addressNumber"
             onChange={ ({ target }) => setNumero(target.value) }
           />

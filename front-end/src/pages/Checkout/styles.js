@@ -87,7 +87,7 @@ form {
 export const Checkout = styled.div`
 display: flex;
 justify-content: space-between;
-margin-top: auto;
+margin: auto 0;
 
 div {
   display: flex;
