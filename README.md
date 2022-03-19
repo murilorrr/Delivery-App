@@ -1,7 +1,7 @@
 # Delivery-App Monorepo
 
-#### badges preview LGTM
-
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/murilorsv14/Delivery-App/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/murilorsv14/Delivery-App/context:javascript)
 
 #### Images preview app
 
