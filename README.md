@@ -25,7 +25,7 @@
   <a href="https://github.com/murilorsv14">About Me</a>
 </p>
 
-## :blush: **Why?**
+## 😊 **Why?**
 
 <h4>The context:</h4>
 Tereza's beer distributor is getting computerized! rocket Your business, previously focused on a specific location in the city, started to receive a massive amount of orders from other points, expanding its operations, especially via delivery. This is all thanks to the excellent price of drinks and service from the sales team.
@@ -44,7 +44,7 @@ The proposal enchanted, but Dona Tereza wants to see the business in action! She
 
 Now it's hands to work! Let's start?
 
-## :zap: **Tech Stack**
+## ⚡ **Tech Stack**
 
 <h1 align="center">
   <img src="https://miro.medium.com/max/811/1*SEfonxxMIktyFJWwA_oTTg.png" alt="Stack" height="300" width="500">
@@ -66,7 +66,7 @@ Now it's hands to work! Let's start?
 
 and much more...
 
-## Application flow
+## 🌊 Application flow
 - **Common Flow** that embrase: 
   - (1) Login screen (`/login`);
   - (2) Register screen (`/register`).
@@ -100,7 +100,7 @@ $ git clone git@github.com:murilorsv14/Delivery-App.git
 $ cd Delivery-App
 ```
 
-### :whale:Docker Method
+### 🐳 Docker Method
 
 If you have docker installed, you can run with:
 
@@ -142,7 +142,7 @@ http://localhost:3000
 - [ ] Improve tests for 90% coverage
 - [ ] Implements atomic design in Front-end
 
-## :handshake: **Contributing**
+## 🤝 **Contributing**
 
 This project is for study purposes too, so send me an email telling me what you are doing and why you are doing it, teach me what you know
 
