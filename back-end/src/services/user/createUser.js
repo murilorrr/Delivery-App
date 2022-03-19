@@ -1,10 +1,9 @@
 const Joi = require('joi');
 const { StatusCodes } = require('http-status-codes');
-const crypto = require('crypto');
 const { Op } = require('sequelize');
 const { customizeError } = require('../../utils');
 const { User } = require('../../database/models');
-const { generateJWT } = require('../../utils');
+const { generateJWT, encryptPassword } = require('../../utils');
 
 const userSchema = Joi.object({
   name: Joi.string().min(12).required(),
@@ -33,7 +32,7 @@ const createUser = async (user) => {
 
   await validateUser({ name, email, password, role });
   
-  const hashPassword = crypto.createHash('md5').update(password).digest('hex');
+  const hashPassword = encryptPassword(password);
 
   const { id } = await User.create({ name, email, password: hashPassword, role });
 

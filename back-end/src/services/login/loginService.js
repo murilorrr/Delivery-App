@@ -1,6 +1,5 @@
-const crypto = require('crypto');
-const { Op } = require('sequelize');
 const { StatusCodes } = require('http-status-codes');
+const bcrypt = require("bcrypt");
 const Joi = require('joi');
 const { customizeError } = require('../../utils');
 const { User } = require('../../database/models');
@@ -12,11 +11,14 @@ const userSchema = Joi.object({
 });
 
 const alreadyExists = async (email, password) => {
-  const hashPassword = crypto.createHash('md5').update(password).digest('hex');
+  const user = await User.findOne({ where: { email } });
+  const compare = bcrypt.compare(password, user.password);
 
-  const user = await User.findOne({ where: { [Op.and]: [{ email }, { password: hashPassword }] } });
+  if (compare) {
+    return user;
+  }
 
-  return user;
+  return false;
 };
 
 const validateLogin = async (email, password) => {
