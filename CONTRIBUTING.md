@@ -2,7 +2,7 @@
   How to contribute
 </h1>
 
-## Docker
+## 🐳 Docker
 
 If you have docker installed, you can run with:
 
