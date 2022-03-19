@@ -13,7 +13,7 @@ const user = {
   password: "fulana@123",
 };
 
-describe.only("Login - Sua aplicação deve ter o endpoint POST `/login`", () => {
+describe("Login - Sua aplicação deve ter o endpoint POST `/login`", () => {
   before(() => {
     shell.exec(
       "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
