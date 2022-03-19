@@ -1,6 +1,6 @@
 require('express-async-errors');
 const express = require('express');
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
 const cors = require('cors');
 const path = require('path');
 const io = require('socket.io');
