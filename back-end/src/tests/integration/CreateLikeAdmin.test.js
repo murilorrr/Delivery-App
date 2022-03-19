@@ -73,7 +73,6 @@ describe("Create User Like Admin - Sua aplicação deve ter o endpoint POST `/ad
             "password"
           );
           const isEqual = compareHashPassword(userCustomerForCreate.password, res.body.user.password);
-          console.log(isEqual);
           expect(isEqual).to.be.true;
           done();
         });

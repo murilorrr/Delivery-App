@@ -12,10 +12,13 @@ const userSchema = Joi.object({
 
 const alreadyExists = async (email, password) => {
   const user = await User.findOne({ where: { email } });
-  const compare = bcrypt.compare(password, user.password);
-
-  if (compare) {
-    return user;
+  
+  if (user) {
+    const compare = bcrypt.compareSync(password, user.password);
+    if (compare) {
+      return user;
+    }
+    return false;
   }
 
   return false;
@@ -26,7 +29,7 @@ const validateLogin = async (email, password) => {
   if (error) throw customizeError(StatusCodes.BAD_REQUEST, error.message);
   
   const userFound = await alreadyExists(email, password);
-
+  
   if (!userFound) {
     throw customizeError(StatusCodes.NOT_FOUND, 'Invalid fields');
   }

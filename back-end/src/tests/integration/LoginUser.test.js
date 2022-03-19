@@ -13,7 +13,7 @@ const user = {
   password: "fulana@123",
 };
 
-describe("Login - Sua aplicação deve ter o endpoint POST `/login`", () => {
+describe.only("Login - Sua aplicação deve ter o endpoint POST `/login`", () => {
   before(() => {
     shell.exec(
       "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
@@ -69,7 +69,7 @@ describe("Login - Sua aplicação deve ter o endpoint POST `/login`", () => {
     chai
       .request(server)
       .post("/login")
-      .send({ email: `${user.email} 1`, password: user.password })
+      .send({ email: `${user.email}1`, password: user.password })
       .end((err, res) => {
         if (err) done(err);
         expect(res.status).to.be.equal(404);
