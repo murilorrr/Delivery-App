@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 import useCart from '../../hooks/useCart';
 import { createSale, getAllSeller } from '../../fetchs';
@@ -18,20 +19,21 @@ function Checkout() {
   const [numero, setNumero] = useState('');
   const history = useHistory();
 
-  useEffect(() => {
-    const fetchSeller = async () => {
-      const seller = await getAllSeller();
-      if (seller) {
-        setVendedores([...seller, { ...seller[0], name: 'Ciclano Silva', id: 4 }]);
-      }
-    };
+  const { isSuccess, isLoading } = useQuery(
+    '/seller',
+    () => getAllSeller(),
+    {
+      onSuccess: (data) => (
+        setVendedores([...data, { ...data[0], name: 'Ciclano Silva', id: 4 }])),
+      onError: () => console.log('Erro react query'),
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+  );
 
-    fetchSeller();
-
-    return () => {
-      setVendedores([]);
-    };
-  }, [cart, history]);
+  useEffect(() => () => {
+    setVendedores([]);
+  }, []);
 
   const submitOrder = async (event) => {
     event.preventDefault();
@@ -55,21 +57,25 @@ function Checkout() {
     }
   };
 
+  const cards = () => {
+    if (isLoading) {
+      return <span>Carregando...</span>;
+    } if (isSuccess && cart.length) {
+      return cart.map((product) => (
+        <CheckoutCard key={ product.id } product={ product } />));
+    }
+    return <span>Ainda não há nada por aqui...</span>;
+  };
+
   return (
     <S.Main>
-      {
-        cart.length
-          ? cart.map((product) => (
-            <CheckoutCard key={ product.id } product={ product } />
-          ))
-          : (<span>Ainda não há nada por aqui...</span>)
-      }
+      { cards() }
       {/* <FormsNewOrder /> */}
       <S.Details>
         <h4>Fornecedores</h4>
         <div data-testid="customer_checkout__select-seller">
           {
-            vendedores.length && (
+            vendedores.length ? (
               vendedores.map((vendedor, index) => (
                 <button
                   type="button"
@@ -80,7 +86,7 @@ function Checkout() {
                   { vendedor.name }
                 </button>
               ))
-            )
+            ) : (<div />)
           }
         </div>
       </S.Details>

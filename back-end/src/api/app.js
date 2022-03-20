@@ -22,15 +22,15 @@ const http = createServer(app);
 const socketio = io(http, {
   cors: {
     origin: '*',
-    methods: ['GET', 'PUT', 'POST'],
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
   },
 });
 
 const limiter = rateLimit({
-  windowMs: 1*60*1000, // 1 minute
+  windowMs: 1 * 60 * 1000, // 1 minute
   max: 150, // Limit each IP to 150 requests per `window` (here, per 15 minutes)
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 // apply rate limiter to all requests
 
@@ -40,8 +40,7 @@ app.use(cors());
 
 changeOrderStatus(socketio);
 
-app.get('/coffee', (_req, res) => res.status(418).end());
-
+app.get('/', (_req, res) => res.send('Tudo Ok Por Aqui'));
 app.use('/images', express.static(path.join(__dirname, '..', '..', 'public', 'images')));
 app.use(loginRoute);
 app.use(userRoute);

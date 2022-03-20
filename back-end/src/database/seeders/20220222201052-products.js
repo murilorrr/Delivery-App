@@ -1,7 +1,9 @@
 'use strict';
 require('dotenv').config();
 
-const URLImage = process.env.BACK_END_DEPLOY_URL || 'http://localhost:3001';
+const PORT = process.env.PORT || 3001;
+const URLImage = process.env.BACK_END_DEPLOY_URL || `https://localhost:${PORT}`;
+console.log(URLImage);
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
