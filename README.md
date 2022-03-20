@@ -20,9 +20,9 @@
 <p align="center"><i> "How to safe a Food?" - Lay Herman </i> </p>
 
 <p align="center">
-  <a href="#blush-why">Why</a> •
-  <a href="#zap-tech-stack">Tech Stack</a> •
-  <a href="#handshake-contributing">Contributing</a> •
+  <a href="#-why">Why</a> •
+  <a href="#-tech-stack">Tech Stack</a> •
+  <a href="#-contributing">Contributing</a> •
   <a href="https://github.com/murilorsv14">About Me</a>
 </p>
 
