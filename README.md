@@ -1,11 +1,6 @@
 # Delivery-App Monorepo
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/murilorsv14/Delivery-App?color=6E40C9">
-  <img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/murilorsv14/Delivery-App?color=6E40C9">
-  <a href="https://github.com/leandrolid/trivia-app/commits/main">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/murilorsv14/Delivery-App?color=6E40C9">
-  </a>
   <a href="https://lgtm.com/projects/g/murilorsv14/Delivery-App/alerts/"><img alt="Total alerts" src="https://img.shields.io/lgtm/alerts/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18"/>
   </a>
   <a href="https://lgtm.com/projects/g/murilorsv14/Delivery-App/context:javascript"><img alt="Language grade: JavaScript" src="https://img.shields.io/lgtm/grade/javascript/g/murilorsv14/Delivery-App.svg?logo=lgtm&logoWidth=18"/>
@@ -15,6 +10,11 @@
 src="https://img.shields.io/github/contributors/murilorsv14/Delivery-App.svg" alt="Contributors"></a>
   <a href="https://opensource.org/licenses/MIT"><img
 src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/murilorsv14/Delivery-App?color=6E40C9">
+  <img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/murilorsv14/Delivery-App?color=6E40C9">
+  <a href="https://github.com/leandrolid/trivia-app/commits/main">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/murilorsv14/Delivery-App?color=6E40C9">
+  </a>
   <a href="https://github.com/murilorsv14/Delivery-App/issues"><img src="https://camo.githubusercontent.com/b9825004b96d28bb7ed515dc3d7c3a3aa3800b3211ef8a7f32820c0019a24e29/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6973737565732f74657277616e6572696b2f5363726f6c6c547269676765722e737667" alt="Issues" data-canonical-src="https://img.shields.io/github/issues/murilorsv14/Delivery-App.svg" style="max-width: 100%;"></a>
   
 </p>
