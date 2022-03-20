@@ -138,7 +138,7 @@ http://localhost:3000
 ## 👣 Next steps
 
 - [x] Improve security change md5 for bcrypt hash
-- [ ] Deploy on heroku
+- [x] Deploy on heroku
 - [ ] Feature: quantity item in Products Page
 - [ ] Improve tests for 90% coverage
 - [ ] Implements atomic design in Front-end
