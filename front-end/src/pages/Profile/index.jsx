@@ -31,7 +31,7 @@ export default function Profile() {
   return (
     <S.Main>
       <div>
-        <img src={ `https://gravatar.com/avatar/${emailHash.Digest}?d=wavatar` } alt="avatar" />
+        {emailHash && <img src={ `https://gravatar.com/avatar/${emailHash.Digest}?d=wavatar` } alt="avatar" />}
         <h1>{ user.name }</h1>
       </div>
 
