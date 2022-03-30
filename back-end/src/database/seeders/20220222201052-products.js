@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
-const URLImage = process.env.BACK_END_DEPLOY_URL || `https://localhost:${PORT}`;
+const URLImage = process.env.BACK_END_DEPLOY_URL || `http://localhost:3001`;
 console.log(URLImage);
 
 module.exports = {

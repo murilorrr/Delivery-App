@@ -2,7 +2,6 @@ import { faAngleRight, faArrowRightFromBracket } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-// import Header from '../../components/Header';
 
 import * as S from './styles';
 
@@ -31,7 +30,7 @@ export default function Profile() {
   return (
     <S.Main>
       <div>
-        {emailHash && <img src={ `https://gravatar.com/avatar/${emailHash.Digest}?d=wavatar` } alt="avatar" />}
+        {emailHash ? <img src={ `https://gravatar.com/avatar/${emailHash.Digest}?d=wavatar` } alt="avatar" /> : <div />}
         <h1>{ user.name }</h1>
       </div>
 
