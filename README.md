@@ -79,6 +79,7 @@ and much more...
   -  <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/Login.png?raw=true" width="auto" title="Image sketch">
   - 
   - (2) Register screen (`/register`).
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/Register.png?raw=true" width="auto" title="Image sketch">
 
 - **Customer Flow** that embrase: 
   - (3) Products screen (`/customer/products`); 
@@ -92,7 +93,9 @@ and much more...
 
 - **Seller Flow** that embrase: 
   - (7) Order screen (`/seller/orders`); 
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/Orders.png?raw=true" width="auto" title="Image sketch">
   - (8) Order details screen (`/seller/orders/id`).
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/OrdersDetails.png?raw=true" width="auto" title="Image sketch">
 
 - **Administrator Flow** that embrase: 
   - (9) User management screen (`/admin/manage`).
