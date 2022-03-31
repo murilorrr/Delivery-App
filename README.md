@@ -19,7 +19,7 @@ src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
   
 </p>
 
-#### Images preview app<img src="https://github.com/murilorsv14/Desafio-Tecnico-Ebytr/blob/main/projectReact.svg?raw=true" width="auto" title="Image sketch">
+#### Preview Sketch<img src="https://github.com/murilorsv14/Desafio-Tecnico-Ebytr/blob/main/projectReact.svg?raw=true" width="auto" title="Image sketch">
 
 <p align="center">A modern delivery App</p>
 
