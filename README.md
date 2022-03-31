@@ -19,7 +19,7 @@ src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
   
 </p>
 
-#### Images preview app
+#### Images preview app<img src="https://github.com/murilorsv14/Desafio-Tecnico-Ebytr/blob/main/projectReact.svg?raw=true" width="auto" title="Image sketch">
 
 <p align="center">A modern delivery App</p>
 
@@ -76,13 +76,19 @@ and much more...
 ## 🌊 Application flow
 - **Common Flow** that embrase: 
   - (1) Login screen (`/login`);
+  -  <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/Login.png?raw=true" width="auto" title="Image sketch">
+  - 
   - (2) Register screen (`/register`).
 
 - **Customer Flow** that embrase: 
   - (3) Products screen (`/customer/products`); 
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/Products.png?raw=true" width="auto" title="Image sketch">
   - (4) Checkout screen (`/customer/checkout`); 
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/CustomerCheckout.png?raw=true" width="auto" title="Image sketch">
   - (5) Orders screen (`/customer/orders`); 
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/CustomerOrders.png?raw=true" width="auto" title="Image sketch">
   - (6) Orders details screen (`/customer/orders/id`); .
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/CustomerOrderDetails.png?raw=true" width="auto" title="Image sketch">
 
 - **Seller Flow** that embrase: 
   - (7) Order screen (`/seller/orders`); 
@@ -90,6 +96,12 @@ and much more...
 
 - **Administrator Flow** that embrase: 
   - (9) User management screen (`/admin/manage`).
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/TelaAdmin.png?raw=true" width="auto" title="Image sketch">
+
+- **General Page** that embrase: 
+  - (9) Profile (`/profile`).
+  - <img src="https://github.com/murilorsv14/Delivery-App/blob/master/assets/CustomerProfile.png?raw=true" width="auto" title="Image sketch">
+
 
 ## 🏃 Getting started
 
